@@ -263,6 +263,7 @@ footer b{color:var(--ink-2)}
   <section id="p-ratings" class="panel" role="tabpanel" hidden></section>
   <section id="p-history" class="panel" role="tabpanel" hidden></section>
   <section id="p-health" class="panel" role="tabpanel" hidden></section>
+  <section id="p-settings" class="panel" role="tabpanel" hidden></section>
 
   <footer>
     <b>How to read this.</b> Raw edge is retained for auditing, but every displayed edge is compressed toward a 9.5% ceiling before the selection haircut and uncertainty reserve are applied. The posted line also anchors the projection scale, so an early-season rating miss cannot masquerade as a 20% advantage.<br>
@@ -272,6 +273,7 @@ footer b{color:var(--ink-2)}
 </main>
 
 <script src="sim.js"></script>
+<script src="staking.js"></script>
 <script>
 "use strict";
 /* ===================================================================== data */
@@ -281,7 +283,7 @@ const DATA_BASE = (() => {
   return "./data/";
 })();
 const FILES = ["meta", "summary", "board", "ledger", "ratings", "model_history", "schedule", "games"];
-const S = { meta:null, summary:null, board:[], ledger:[], ratings:[], model_history:null, schedule:[], games:[], tab:"best",
+const S = { meta:null, summary:null, board:[], ledger:[], ratings:[], model_history:null, schedule:[], games:[], tab:"best", staking:null,
             filters:{tier:"PLAYS", market:"ALL", q:""}, sort:{key:"rating", dir:-1}, schedWeek:null, slateIndex:null,
             sim:{ready:false,gameId:"",away:"",home:"",neutral:false,spread:"",total:"",iterations:10000} };
 
@@ -297,6 +299,19 @@ async function load(){
 
 /* ================================================================= helpers */
 const cfg = () => (S.meta && S.meta.settings) || {};
+const STAKING = window.EdgeStaking;
+const STAKING_KEY = "ncaaf-edge.staking.v1";
+const stakingDefaults = () => {
+  const b = cfg().bankroll || {};
+  return {bankroll:Number(b.starting||500),system:"kelly",kelly_fraction:Number(b.kelly_fraction??0.25),
+    bankroll_pct:0.02,flat_stake:10,max_stake_pct:Number(b.max_stake_pct??0.05),
+    max_slate_exposure_pct:0.50,min_stake:Number(b.min_stake??1),round_to:Number(b.round_stake_to??0.5)};
+};
+const stakingSettings = () => {
+  if (!S.staking) S.staking = STAKING ? STAKING.load(STAKING_KEY, stakingDefaults()) : stakingDefaults();
+  return S.staking;
+};
+const localBankroll = () => Number(stakingSettings().bankroll||0);
 const sym = () => (cfg().currency_symbol || "$");
 const pct = (v,d=1) => v === null || v === undefined || isNaN(v) ? "—" : (v*100).toFixed(d) + "%";
 const sgn = (v,d=1) => v === null || v === undefined || isNaN(v) ? "—" : (v>=0?"+":"") + (v*100).toFixed(d) + "%";
@@ -390,6 +405,7 @@ function renderStamp(){
 
 function renderKpis(){
   const s = S.summary || {};
+  const roll = localBankroll();
   const allPlays = S.board.filter(b => b.tier !== "PASS");
   const board = slateRows();
   const plays = board.filter(b => b.tier !== "PASS");
@@ -399,7 +415,7 @@ function renderKpis(){
   const k = [
     ["This slate", String(plays.length), `${new Set(board.map(b=>b.game_id)).size} games priced`, plays.length ? "flagc" : ""],
     ["All qualified", String(allPlays.length), `${allPlays.filter(b=>b.tier==="BEST BET").length} best bets`, allPlays.length ? "flagc" : ""],
-    ["Bankroll", money(s.current_bankroll), `from ${money(s.starting_bankroll)}`, cls((s.current_bankroll||0)-(s.starting_bankroll||0))],
+    ["Bankroll", money(roll), "saved on this device", ""],
     ["Settled", String(s.settled||0), `${rec} · ${s.pending||0} pending`, ""],
     ["ROI", sgn(s.roi), s.roi==null?"no settled bets":`${money(s.pnl)} P/L`, cls(s.roi)],
     ["Model scale", String((S.meta.model_health||{}).status||"—").toUpperCase(), `max edge ${pct((S.meta.model_health||{}).max_displayed_edge)}`, (S.meta.model_health||{}).status==="healthy"?"pos":""],
@@ -417,6 +433,7 @@ const TABS = [
   ["ratings","Power Ratings", () => S.ratings.length],
   ["history","Model History", () => (S.model_history||{}).total_logged ?? null],
   ["health","Model Health", () => null],
+  ["settings","Bankroll & Stakes", () => null],
 ];
 function renderTabs(){
   document.getElementById("tabs").innerHTML = TABS.map(([id,label,cnt]) => {
@@ -454,19 +471,7 @@ function why(b){
 }
 
 function stake(b){
-  const bk = cfg().bankroll || {};
-  const s = S.summary || {};
-  const bankroll = bk.size_off === "starting" ? (s.starting_bankroll || 0) : (s.current_bankroll || 0);
-  const dec = b.price > 0 ? 1 + b.price/100 : 1 + 100/(-b.price);
-  const p = Math.min(b.model_prob, (cfg().model||{}).max_model_prob ?? 0.85);
-  let f = ((p*(dec-1)) - (1-p)) / (dec-1);
-  f = Math.max(0, f) * (bk.kelly_fraction ?? 0.25);
-  f = Math.min(f, bk.max_stake_pct ?? 0.05);
-  const step = bk.round_stake_to || 0.5;
-  const raw = f * bankroll;
-  const risk = Math.max(0, Math.min(1, b.stake_multiplier ?? 1));
-  const v = step > 0 ? Math.round((raw*risk)/step)*step : raw*risk;
-  return v < (bk.min_stake || 0) ? 0 : v;
+  return STAKING ? STAKING.suggestedStake(b, stakingSettings(), localBankroll(), (cfg().model||{}).max_model_prob) : 0;
 }
 
 function renderWhyEmpty(){
@@ -529,18 +534,19 @@ function renderBest(){
   const board = slateRows();
   const plays = board.filter(b => b.tier !== "PASS")
     .sort((a,b) => RANK[a.tier]-RANK[b.tier] || actionEdge(b)-actionEdge(a));
+  const planned = STAKING ? STAKING.plan(plays, stakingSettings(), localBankroll(), (cfg().model||{}).max_model_prob) : plays.map(stake);
   const el = document.getElementById("p-best");
   const nearby = S.schedule.map((s,i)=>({s,i})).filter(x => (x.s.with_odds||0)>0).slice(0,5);
   let h = `<div class="slate-strip">${nearby.map(({s,i}) => `<button class="slate-chip" data-slate="${i}" aria-pressed="${i===S.slateIndex}">
       <b>${esc(s.date_range)}</b><span>${esc(s.games)} games · ${slateRowsFor(s).filter(b=>b.tier!=="PASS").length} plays</span></button>`).join("")}</div>`;
   h += `<div class="panel-head"><div><h2>${plays.length} play${plays.length===1?"":"s"} · ${esc(slate?slate.date_range:"all upcoming")}</h2>
     <p>Only LEAN or better appears here. Projections are market-scaled, edges are compressed, and one correlated angle per game survives.</p></div>
-    <div class="pill">${money(plays.reduce((n,b)=>n+stake(b),0))} total at risk</div></div>`;
+    <div class="pill">${money(planned.reduce((n,v)=>n+v,0))} total at risk</div></div>`;
   if (!plays.length){
     h += renderWhyEmpty();
   } else {
-    h += `<div class="plays-panel">` + plays.map(b => {
-      const tc = TIERCLS[b.tier], st = stake(b), warn = (b.warning||b.filtered||"");
+    h += `<div class="plays-panel">` + plays.map((b,i) => {
+      const tc = TIERCLS[b.tier], st = planned[i], warn = (b.warning||b.filtered||"");
       const meter = Math.max(3,Math.min(100,Math.abs(actionEdge(b))*1000));
       return `<div class="play-row">
         <span class="tier ${tc}">${esc(tierLabel(b.tier))}</span>
@@ -551,7 +557,7 @@ function renderBest(){
         <em class="play-note">${esc(warn || (b.confidence<.8?"early-season confidence reserve applied":"model and market checked"))}</em>
         <b class="play-stake">${st?money(st):"—"}</b>
       </div>`;
-    }).join("") + `<p class="plays-foot">Stakes use 0.25 Kelly on the conservative action edge, capped at ${pct((cfg().bankroll||{}).max_stake_pct||.05,0)} of bankroll per play. Re-check the price before betting.</p></div>`;
+    }).join("") + `<p class="plays-foot">${esc(STAKING?STAKING.description(stakingSettings(),sym()):"Staking")} · capped at ${pct(stakingSettings().max_stake_pct,0)} per play and ${pct(stakingSettings().max_slate_exposure_pct,0)} per slate. Change this under Bankroll & Stakes. Re-check the price before betting.</p></div>`;
   }
 
   const byGame = new Map();
@@ -658,6 +664,8 @@ function renderLedger(){
   const el = document.getElementById("p-ledger");
   const s = S.summary || {};
   const L = S.ledger || [];
+  const publishedBankroll = s.starting_bankroll !== null && s.starting_bankroll !== undefined;
+  const ledgerStart = publishedBankroll ? Number(s.starting_bankroll) : localBankroll();
   const scaleFixAt = Date.parse("2026-08-28T00:00:00Z");
   const legacy = L.filter(b => b.placed_at && Date.parse(b.placed_at) < scaleFixAt);
   let h = `<div class="panel-head"><div><h2>Bet Ledger</h2>
@@ -670,8 +678,8 @@ function renderLedger(){
   h += `<div class="two"><div>
     <div class="tablewrap" style="padding:16px 18px 6px">
       <div style="font:600 10.5px/1 'Public Sans',sans-serif;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px">Bankroll</div>
-      ${sparkline(s.curve, s.starting_bankroll || 0)}
-      <p style="color:var(--ink-3);font-size:12px;margin:8px 0 12px">Dashed line is the starting bankroll of ${money(s.starting_bankroll)}.</p>
+      ${sparkline(s.curve, ledgerStart)}
+      <p style="color:var(--ink-3);font-size:12px;margin:8px 0 12px">${publishedBankroll?`Dashed line is the starting bankroll of ${money(ledgerStart)}.`:`Your local bankroll is ${money(ledgerStart)}. The public deployment does not publish private bankroll or wager-history records.`}</p>
     </div></div><div>`;
 
   const byMkt = s.by_market || {}, byTier = s.by_tier || {};
@@ -694,7 +702,7 @@ function renderLedger(){
   h += `</div></div>`;
 
   if (!L.length){
-    h += `<div class="empty" style="margin-top:18px">The ledger is empty. It fills itself the first time the model qualifies a bet.</div>`;
+    h += `<div class="empty" style="margin-top:18px">Auto-ledger records are kept out of this public site. Suggested stake sizing still works from the bankroll saved in this browser; change it under Bankroll &amp; Stakes.</div>`;
   } else {
     h += `<div class="tablewrap" style="margin-top:18px"><table><thead><tr>
       <th>Date</th><th>Game</th><th>Pick</th><th class="r">Price</th><th class="r">Stake</th>
@@ -1113,9 +1121,56 @@ function renderSimulator(){
   run();
 }
 
+/* ======================================================= bankroll settings */
+function renderSettings(){
+  const el = document.getElementById("p-settings");
+  const s = stakingSettings();
+  el.innerHTML = `<div class="panel-head"><div><h2>Bankroll &amp; stake sizing</h2>
+    <p>These values are stored only in this browser. They change suggested stake amounts, never FPI inputs, projections, edges, tiers, or the public model feed.</p></div></div>
+    <div class="settings-grid">
+      <div class="settings-card">
+        <h3>Bankroll</h3>
+        <label class="setting-row"><span>Available bankroll<small>The balance to size the next slate from.</small></span><input id="set-bankroll" type="number" min="0" step="10" value="${s.bankroll}"></label>
+        <label class="setting-row"><span>Staking system<small>Fractional Kelly is the conservative default.</small></span><select id="set-system">
+          <option value="kelly"${s.system==="kelly"?" selected":""}>Fractional Kelly</option>
+          <option value="flat"${s.system==="flat"?" selected":""}>Flat stake</option>
+          <option value="percent"${s.system==="percent"?" selected":""}>Percent of bankroll</option>
+        </select></label>
+        <label class="setting-row"><span>Kelly fraction<small>25% means quarter Kelly.</small></span><input id="set-kelly" type="number" min="0" max="100" step="5" value="${(s.kelly_fraction*100).toFixed(0)}"><b>%</b></label>
+        <label class="setting-row"><span>Flat stake<small>Used only with Flat stake.</small></span><input id="set-flat" type="number" min="0" step="0.5" value="${s.flat_stake}"></label>
+        <label class="setting-row"><span>Bankroll per play<small>Used only with Percent of bankroll.</small></span><input id="set-percent" type="number" min="0" max="100" step="0.25" value="${(s.bankroll_pct*100).toFixed(2)}"><b>%</b></label>
+      </div>
+      <div class="settings-card">
+        <h3>Safety rails</h3>
+        <label class="setting-row"><span>Maximum per play<small>Always enforced, under every system.</small></span><input id="set-max-play" type="number" min="0" max="100" step="0.5" value="${(s.max_stake_pct*100).toFixed(1)}"><b>%</b></label>
+        <label class="setting-row"><span>Maximum per slate<small>If needed, all suggested stakes are reduced proportionally.</small></span><input id="set-max-slate" type="number" min="0" max="100" step="1" value="${(s.max_slate_exposure_pct*100).toFixed(0)}"><b>%</b></label>
+        <label class="setting-row"><span>Minimum stake<small>Smaller calculated amounts become no bet.</small></span><input id="set-min" type="number" min="0" step="0.5" value="${s.min_stake}"></label>
+        <label class="setting-row"><span>Round to<small>Suggested stake increment.</small></span><input id="set-round" type="number" min="0.01" step="0.25" value="${s.round_to}"></label>
+        <div class="settings-preview"><span>Current setup</span><b>${money(s.bankroll)} · ${esc(STAKING.description(s,sym()))}</b><small>${pct(s.max_stake_pct,0)} max per play · ${pct(s.max_slate_exposure_pct,0)} max per slate</small></div>
+      </div>
+    </div>
+    <div class="settings-actions"><button type="button" class="iconbtn primary" id="save-staking">Save on this device</button><button type="button" class="iconbtn" id="reset-staking">Restore model defaults</button><span class="settings-status" id="settings-status"></span></div>
+    <div class="note settings-note"><b>Kept separate on purpose.</b> Edge thresholds, FPI weights, confidence floors, market blending, and model safety filters still live in the tested pipeline. Changing those in a browser after the board was built would make the displayed math inconsistent.</div>`;
+
+  document.getElementById("save-staking").onclick = () => {
+    const read = id => Number(document.getElementById(id).value);
+    S.staking = STAKING.normalise({bankroll:read("set-bankroll"),system:document.getElementById("set-system").value,
+      kelly_fraction:read("set-kelly")/100,flat_stake:read("set-flat"),bankroll_pct:read("set-percent")/100,
+      max_stake_pct:read("set-max-play")/100,max_slate_exposure_pct:read("set-max-slate")/100,
+      min_stake:read("set-min"),round_to:read("set-round")}, stakingDefaults());
+    const ok = STAKING.save(STAKING_KEY, S.staking);
+    renderKpis(); renderSettings();
+    document.getElementById("settings-status").textContent = ok ? "Saved locally." : "Browser storage is blocked.";
+  };
+  document.getElementById("reset-staking").onclick = () => {
+    STAKING.clear(STAKING_KEY); S.staking = STAKING.normalise(null, stakingDefaults());
+    renderKpis(); renderSettings(); document.getElementById("settings-status").textContent = "Defaults restored.";
+  };
+}
+
 function renderPanels(){
   ({best:renderBest, board:renderBoard, schedule:renderSchedule, ledger:renderLedger,
-    sim:renderSimulator, ratings:renderRatings, history:renderHistory, health:renderHealth}[S.tab] || renderBest)();
+    sim:renderSimulator, ratings:renderRatings, history:renderHistory, health:renderHealth, settings:renderSettings}[S.tab] || renderBest)();
   postHeight();
 }
 

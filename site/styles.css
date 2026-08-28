@@ -190,3 +190,17 @@ footer{color:var(--faint);font-size:11px;margin-top:22px;padding-top:12px;border
 }
 
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* Browser-local bankroll and stake controls */
+.settings-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.settings-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+.settings-card h3{margin:0 0 10px;font:600 13px/1.3 var(--mono);letter-spacing:.03em}
+.setting-row{display:grid;grid-template-columns:minmax(150px,1fr) minmax(100px,140px) auto;align-items:center;gap:8px;padding:10px 0;border-top:1px solid var(--line)}
+.setting-row>span{font-weight:600;color:var(--ink);font-size:12px}.setting-row small{display:block;margin-top:2px;color:var(--faint);font-weight:400;line-height:1.35}
+.setting-row input,.setting-row select{width:100%;box-sizing:border-box;background:var(--panel2);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:8px 9px;font:600 12px/1.2 var(--mono)}
+.setting-row>b{color:var(--faint);font:600 11px/1 var(--mono)}
+.settings-preview{margin-top:12px;padding:11px 12px;border:1px solid var(--line);border-radius:9px;background:var(--panel2)}
+.settings-preview span,.settings-preview small{display:block;color:var(--faint);font-size:10.5px}.settings-preview b{display:block;margin:3px 0;font:600 14px/1.3 var(--mono)}
+.settings-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:14px}.settings-actions .primary{background:var(--accent);border-color:var(--accent);color:var(--on-flag)}
+.settings-status{color:var(--good);font:600 11px/1.3 var(--mono)}.settings-note{margin-top:14px}
+@media(max-width:720px){.settings-grid{grid-template-columns:1fr}.setting-row{grid-template-columns:minmax(130px,1fr) minmax(88px,120px) auto}}
