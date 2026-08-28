@@ -161,6 +161,39 @@ def test_probabilities(cfg: dict) -> None:
     check("round-trip prob -> american -> prob",
           approx(M.american_to_prob(M.prob_to_american(0.62)), 0.62, 0.001))
 
+    anchored = M.blend_to_market(0.0, -40.0, cfg)
+    check("a 40-point market is treated as a rating-scale warning, not a coin flip",
+          anchored["market_mu"] == 40.0 and anchored["mu"] > 30.0,
+          str(anchored))
+    check("extreme raw spread disagreement is smoothly capped",
+          abs(anchored["gap"]) <= (cfg["model"]["projection_blend"]
+                                    * cfg["model"]["max_spread_disagreement"] + 0.01),
+          str(anchored))
+    ordinary = M.blend_to_market(8.0, -10.0, cfg)
+    check("ordinary disagreement keeps its direction and useful size",
+          ordinary["gap"] < 0 and abs(ordinary["gap"]) > 0.8,
+          str(ordinary))
+    compressed = M.compress_edge(0.20, cfg)
+    check("a claimed 20% edge is displayed below the configured ceiling",
+          0 < compressed < cfg["model"]["edge_compression"], f"{compressed:.4f}")
+    check("small edges survive compression",
+          abs(M.compress_edge(0.02, cfg) - 0.02) < 0.001,
+          f'{M.compress_edge(0.02, cfg):.4f}')
+
+    fitted = B.fit_projection_scale([
+        {"market_mu": x, "mu_raw": 2.0+0.2*x+(0.5 if i%2 else -0.5),
+         "market_total": 50+x/10, "proj_total_raw": 40+0.4*(50+x/10)}
+        for i,x in enumerate(range(-20,21,5))])
+    check("slate de-bias detects a narrow raw rating scale",
+          fitted["margin"]["enabled"] and approx(fitted["margin"]["slope"],0.2,0.02),
+          str(fitted["margin"]))
+    sample = {"market_mu":20.0,"mu_raw":6.5,"mu":14.0,"market_total":52.0,
+              "proj_total_raw":61.0,"proj_total":57.0,"proj_home_pts":35.5,
+              "proj_away_pts":21.5}
+    clean = B.debias_projection(sample,fitted,cfg)
+    check("only game-specific residual survives the board-wide scale correction",
+          abs(clean["gap"]) < 1.0 and clean["debias_enabled"], str(clean))
+
 
 def test_staking(cfg: dict) -> None:
     print("\n[staking]")
@@ -176,6 +209,9 @@ def test_staking(cfg: dict) -> None:
     huge = M.stake_for(0.99, 200, 500.0, cfg)
     check("absurd probability still capped",
           huge <= 500.0 * cfg["bankroll"]["max_stake_pct"] + 1e-6, f"C${huge}")
+    compressed_stake = M.stake_for(0.99, 200, 500.0, cfg, edge=0.02)
+    check("stake sizing uses the conservative action edge when supplied",
+          compressed_stake < huge, f"C${compressed_stake} vs C${huge}")
     check("EV is negative on a no-edge bet", M.expected_value(0.50, -110) < 0)
     check("EV is positive on a real edge", M.expected_value(0.60, -110) > 0)
 
@@ -294,6 +330,18 @@ def test_pricing_pipeline(cfg: dict) -> None:
           [c for c in cands if c["market"] == "ATS" and c["side"] == "home"][0]["edge"] > 0)
     check("model likes the over on a total it projects above",
           [c for c in cands if c["market"] == "TOTAL" and c["side"] == "over"][0]["edge"] > 0)
+    check("every priced row keeps raw edge but caps the displayed edge",
+          all("edge_raw" in c and abs(c["edge"]) < cfg["model"]["edge_compression"]
+              for c in cands))
+    for c in cands:
+        c["projection"] = {"market_mu": 7.0, "mu": 10.0, "mu_raw": 12.0,
+                           "market_total": 52.5, "proj_total": 55.0,
+                           "proj_total_raw": 58.0}
+    health = B.model_health(cands, {"H": 5.0, "A": -5.0}, cfg, {"healthy": True})
+    check("model health audits the edge ceiling and one projection per game",
+          health["status"] == "healthy" and health["sample_games"] == 1
+          and health["max_displayed_edge"] <= cfg["model"]["edge_compression"],
+          str(health))
 
     guarded = B.correlation_guard(B.apply_filters(cands, cfg), cfg)
     playable = [c for c in guarded if c["tier"] != "PASS"]
@@ -567,357 +615,4 @@ def test_is_priceable() -> None:
     today = dt.date(2026, 9, 10)
     upcoming = {"completed": False, "postponed": False, "canceled": False,
                "date_utc": "2026-09-12T19:00Z"}
-    check("a normal upcoming game is priceable", B.is_priceable(upcoming, today))
-    check("a completed game is not", not B.is_priceable({**upcoming, "completed": True}, today))
-    check("a postponed game is not", not B.is_priceable({**upcoming, "postponed": True}, today))
-    check("a canceled game is not", not B.is_priceable({**upcoming, "canceled": True}, today))
-    check("a game with no date is not", not B.is_priceable({**upcoming, "date_utc": ""}, today))
-    check("yesterday's still-live game stays priceable (grace window)",
-          B.is_priceable({**upcoming, "date_utc": "2026-09-09T19:00Z"}, today))
-    check("a game from well in the past is not",
-          not B.is_priceable({**upcoming, "date_utc": "2026-08-01T19:00Z"}, today))
-    check("a stale cached line beyond the lookahead is not actionable",
-          not B.is_priceable({**upcoming, "date_utc": "2026-10-01T19:00Z"}, today, 10))
-
-
-def test_espn_odds_parser() -> None:
-    print("\n[ESPN odds parser — real prices only]")
-    block = {
-        "provider": {"name": "DraftKings"}, "spread": -5.5, "overUnder": 53.5,
-        "awayTeamOdds": {}, "homeTeamOdds": {},
-        "moneyline": {
-            "home": {"close": {"odds": "-218"}},
-            "away": {"close": {"odds": "+180"}},
-        },
-        "pointSpread": {
-            "home": {"close": {"line": "-5.5", "odds": "-112"}},
-            "away": {"close": {"line": "+5.5", "odds": "-108"}},
-        },
-        "total": {
-            "over": {"close": {"line": "o53.5", "odds": "-108"}},
-            "under": {"close": {"line": "u53.5", "odds": "-112"}},
-        },
-    }
-    o = E.parse_odds(block)
-    check("reads current nested spread prices", o["spread_price_home"] == -112 and o["spread_price_away"] == -108)
-    check("reads current nested total prices", o["over_price"] == -108 and o["under_price"] == -112)
-    check("reads current nested moneylines", o["ml_home"] == -218 and o["ml_away"] == 180)
-    check("marks complete markets verified", set(o["verified_markets"]) == {"ML", "ATS", "TOTAL"})
-
-    missing = E.parse_odds({"provider": {"name": "Test"}, "spread": -3.5, "overUnder": 50.5})
-    check("never invents -110 when prices are absent",
-          all(missing[k] is None for k in ("spread_price_home", "spread_price_away", "over_price", "under_price")))
-    check("line-only payload has no verified market", missing["verified_markets"] == [])
-    check("EVEN is American +100, not 50", E._num("EVEN") == 100.0)
-
-    flat_games = [{"odds": {"verified_markets": ["ATS"], "spread_price_home": -110,
-                              "spread_price_away": -110}} for _ in range(12)]
-    check("flat-price tripwire catches a repeated placeholder regression",
-          E.odds_health(flat_games)["flat_price_warning"] is True)
-
-
-def test_build_schedule() -> None:
-    """
-    The season-wide schedule the model never guesses on: real games, grouped by
-    week, with odds shown only when ESPN actually posted them.
-    """
-    print("\n[schedule builder — no guessing]")
-    rows = [
-        {"game_id": "1", "date": "2026-09-05T19:00Z", "week": 2,
-         "away": "A", "home": "H", "away_name": "Away U", "home_name": "Home U",
-         "away_score": None, "home_score": None, "completed": False, "neutral": False,
-         "postponed": False, "canceled": False, "status": "Sat",
-         "odds": {"spread_home": -3.5, "spread_price_home": -110, "spread_price_away": -110,
-                  "total": 51.0, "over_price": -110, "under_price": -110,
-                  "ml_home": -160, "ml_away": 140, "book": "DraftKings",
-                  "verified_markets": ["ML", "ATS", "TOTAL"]}},
-        {"game_id": "2", "date": "2026-10-03T19:00Z", "week": 6,
-         "away": "C", "home": "D", "away_name": "C U", "home_name": "D U",
-         "away_score": None, "home_score": None, "completed": False, "neutral": False,
-         "postponed": False, "canceled": False, "status": "Sat", "odds": None},
-    ]
-    sched = B.build_schedule(rows)
-    check("groups into the right number of weeks", len(sched) == 2, f"{len(sched)}")
-    wk2 = next(w for w in sched if w["week"] == "2")
-    wk6 = next(w for w in sched if w["week"] == "6")
-    check("weeks are ordered numerically", [w["week"] for w in sched] == ["2", "6"])
-    check("a game with a real line shows the real line",
-          wk2["rows"][0]["spread_home"] == -3.5)
-    check("a future week with no posted odds shows null, never a guess",
-          wk6["rows"][0]["spread_home"] is None and wk6["rows"][0]["total"] is None)
-    check("has_odds flag matches reality", wk2["rows"][0]["has_odds"] is True
-          and wk6["rows"][0]["has_odds"] is False)
-    check("week summary counts games with odds correctly",
-          wk2["with_odds"] == 1 and wk6["with_odds"] == 0)
-
-    unscheduled = B.build_schedule([{**rows[0], "week": None}])
-    check("a game with no week goes to 'Unscheduled' rather than being dropped",
-          unscheduled[0]["week"] == "Unscheduled")
-
-
-def test_threshold_window(cfg: dict) -> None:
-    """
-    The bug that silenced the entire 2026 opening slate.
-
-    Two guards act on the same quantity in opposite directions. The
-    confidence-aware tier floor demands a bigger model/market disagreement
-    when data is thin; the hard safety ceiling rejects disagreements above a limit.
-    Edge rises monotonically with that disagreement, so if the ceiling lands
-    below the floor the window is empty and nothing can qualify at any price --
-    and an empty board looks exactly like a model that simply had no opinion.
-    """
-    print("\n[threshold window — the silent dead zone]")
-    import json as _j
-    broken = _j.loads(_j.dumps(cfg))
-    broken["filters"]["guard_headroom"] = 1.0            # rails applied literally
-    broken["filters"]["max_thin_data_raw_market_prob_gap"] = 0.12
-    broken["filters"]["max_thin_data_spread_gap"] = 4.0
-
-    conf = min(M.confidence_score(0, 0, True, broken), B.snapshot_confidence(1))
-    w = M.threshold_window(broken, conf, thin=True)
-    check("season-opener window is detected as infeasible", w["feasible"] is False, str(w))
-    check("it names which rail is doing the blocking", len(w["blocked_by"]) > 0,
-          str(w["blocked_by"]))
-    check("a LEAN demands more disagreement than the ceiling allows",
-          w["lean_requires_raw_gap"] > w["raw_gap_ceiling"],
-          f'{w["lean_requires_raw_gap"]} vs {w["raw_gap_ceiling"]}')
-
-    # With headroom on, the ceiling is lifted above the floor by construction.
-    fixed = _j.loads(_j.dumps(cfg))
-    ceil = B.raw_gap_ceiling(fixed, conf, True)
-    floor = M.raw_gap_for_edge(M.edge_floor(fixed, conf, "lean"), fixed)
-    check("headroom lifts the ceiling above the LEAN floor", ceil > floor,
-          f"ceiling {ceil:.3f} vs floor {floor:.3f}")
-    sp_ceil = B.spread_gap_ceiling(fixed, conf, True, "ATS")
-    sp_floor = M.spread_gap_for_edge(M.edge_floor(fixed, conf, "lean"), fixed)
-    check("the points-space rail gets the same guarantee", sp_ceil > sp_floor,
-          f"ceiling {sp_ceil:.2f}pts vs floor {sp_floor:.2f}pts")
-
-    # End to end: a real disagreement must now be able to reach the board.
-    def priced(mu, c):
-        g = {"game_id": "X", "date_utc": "2026-08-29T19:00Z", "week": 1,
-             "home": {"abbr": "H", "name": "H"}, "away": {"abbr": "A", "name": "A"},
-             "odds": {"spread_home": -3.5, "spread_price_home": -110, "spread_price_away": -110,
-                      "total": 52.5, "over_price": -110, "under_price": -110,
-                      "ml_home": -170, "ml_away": 145, "book": "DraftKings",
-                      "verified_markets": ["ML", "ATS", "TOTAL"]}}
-        proj = {"mu": mu, "proj_total": 52.5, "proj_home_pts": 28.0,
-                "proj_away_pts": 24.5, "ratings_known": True}
-        return B.apply_filters(B.price_game(g, proj, c, conf), c, True)
-
-    live = [x for x in priced(-5.0, fixed) if x["market"] == "ATS"]
-    check("a genuine 8.5-point disagreement can now qualify",
-          any(x["tier"] != "PASS" for x in live),
-          str([(x["tier"], round(x["edge"], 3)) for x in live]))
-    dead = [x for x in priced(-5.0, broken) if x["market"] == "ATS"]
-    check("the same play was impossible before the fix",
-          all(x["tier"] == "PASS" for x in dead))
-
-    # The blind-spot case the rails exist for must still be rejected: an FCS
-    # opponent with no rating makes a 54-point favourite look like a coin flip.
-    blind = {"game_id": "U", "date_utc": "2026-09-04T00:00Z", "week": 1,
-             "home": {"abbr": "MIZ", "name": "Missouri"},
-             "away": {"abbr": "UAPB", "name": "Pine Bluff"},
-             "odds": {"spread_home": -54.5, "spread_price_home": -110,
-                      "spread_price_away": -110, "total": 60.5, "over_price": -110,
-                      "under_price": -110, "book": "DraftKings",
-                      "verified_markets": ["ATS", "TOTAL"]}}
-    bp = {"mu": 3.44, "proj_total": 55.0, "proj_home_pts": 31.3,
-          "proj_away_pts": 23.7, "ratings_known": True}
-    got = B.apply_filters(B.price_game(blind, bp, fixed, conf), fixed, True)
-    ats = [x for x in got if x["market"] == "ATS"]
-    check("headroom does NOT reopen the FCS spread blind spot",
-          all(x["tier"] == "PASS" for x in ats),
-          str([(x["market"], x["tier"]) for x in ats]))
-
-    # FCS classification is a separate data-integrity layer.  It must run even
-    # when ordinary price/edge logic happened to pass every row already.
-    check("ordinary pricing still returns every available FCS market",
-          {x["market"] for x in got} == {"ATS", "TOTAL"})
-    guarded = B.fcs_guard(got, "MIZ", "UAPB", {"MIZ"}, fixed)
-    check("fcs_guard kills every market on a non-FBS game",
-          all(x["tier"] == "PASS" for x in guarded),
-          str([(x["market"], x["tier"]) for x in guarded]))
-    check("and says why", all("FBS participant" in (x.get("filtered") or "") for x in guarded))
-
-
-def test_diagnose_board(cfg: dict) -> None:
-    """An empty board must say which kind of empty it is."""
-    print("\n[board diagnosis]")
-    d = B.diagnose_board([], cfg)
-    check("an empty board still produces a diagnosis", "headline" in d)
-    check("it reports zero qualified", d["qualified"] == 0)
-
-    board = [{"matchup": "A @ H", "market": "ATS", "pick": "H -3.5", "tier": "PASS",
-              "edge": 0.02, "confidence": 0.45},
-             {"matchup": "C @ D", "market": "ML", "pick": "D ML", "tier": "PASS",
-              "edge": 0.01, "confidence": 0.45, "filtered": "price outside allowed range"}]
-    d = B.diagnose_board(board, cfg)
-    check("it counts each distinct rejection reason", len(d["reasons"]) == 2, str(d["reasons"]))
-    check("near misses exclude rail-rejected lines",
-          [m["matchup"] for m in d["near_misses"]] == ["A @ H"], str(d["near_misses"]))
-    check("near misses report how far short they fell",
-          d["near_misses"][0]["short_by"] > 0)
-
-    won = B.diagnose_board([{"matchup": "A @ H", "market": "ATS", "pick": "H -3", "tier": "GOOD",
-                             "edge": 0.09, "confidence": 0.9}], cfg)
-    check("a board with a play says so", won["qualified"] == 1 and "cleared" in won["headline"])
-
-
-def test_slates_and_fcs() -> None:
-    """
-    ESPN's 2026 'Week 1' is 143 games across two separate weekends, and its
-    calendar has no Week 0 at all. Splitting recovers the real slates without
-    inventing a numbering ESPN doesn't publish.
-    """
-    print("\n[slate splitting + FCS classification]")
-    def row(gid, date, wk, away="A", home="H"):
-        return {"game_id": gid, "date": f"{date}T19:00Z", "week": wk, "away": away, "home": home,
-                "away_name": away, "home_name": home, "away_score": None, "home_score": None,
-                "completed": False, "neutral": False, "postponed": False, "canceled": False,
-                "status": "Sat", "odds": None}
-    rows = ([row(f"a{i}", "2026-08-29", 1) for i in range(6)]
-            + [row(f"b{i}", "2026-09-03", 1) for i in range(6)]
-            + [row(f"c{i}", "2026-09-05", 1) for i in range(128)])
-    sched = B.build_schedule(rows)
-    check("one ESPN week splits into its two real weekends", len(sched) == 2, str(len(sched)))
-    check("the opening slate is separated out", sched[0]["games"] == 6, str(sched[0]["games"]))
-    check("the main slate keeps the rest", sched[1]["games"] == 134, str(sched[1]["games"]))
-    check("both slates keep the week ESPN assigned", {s["week"] for s in sched} == {"1"})
-    check("labels carry the date range", "Aug 29" in sched[0]["label"], sched[0]["label"])
-    check("a single-weekend week is not split",
-          len(B.build_schedule([row(f"d{i}", "2026-09-12", 2) for i in range(60)])) == 1)
-
-    # FCS classification: an FCS school that HOSTS a buy game used to be
-    # promoted to FBS by the old "is it ever the home team" rule.
-    games = []
-    fbs_names = [f"F{i}" for i in range(12)]
-    for i, t in enumerate(fbs_names):           # a full round-robin-ish season
-        for j, u in enumerate(fbs_names):
-            if i < j:
-                games.append({"home": {"abbr": t}, "away": {"abbr": u}})
-    games.append({"home": {"abbr": "NDSU"}, "away": {"abbr": "F0"}})   # FCS team hosting
-    games.append({"home": {"abbr": "F1"}, "away": {"abbr": "UAPB"}})   # FCS visitor
-    fbs = B.fbs_teams(games)
-    check("an FCS school that hosts a buy game is still classified FCS",
-          "NDSU" not in fbs, str(sorted(fbs)))
-    check("an FCS visitor is classified FCS", "UAPB" not in fbs)
-    check("real FBS teams are all kept", all(t in fbs for t in fbs_names))
-
-    sparse = [{"home": {"abbr": "X"}, "away": {"abbr": "Y"}}]
-    check("with too little schedule cached it falls back instead of calling everyone FCS",
-          B.fbs_teams(sparse) == {"X"})
-
-    tagged = B.build_schedule([row("z", "2026-09-05", 1, away="UAPB", home="MIZ")], {"MIZ"})
-    check("the schedule tags the non-FBS side", tagged[0]["rows"][0]["away_fcs"] is True)
-    check("and leaves the FBS side untagged", tagged[0]["rows"][0]["home_fcs"] is False)
-    check("FCS games are shown, never dropped", tagged[0]["games"] == 1)
-
-
-def test_postponed_status_parsing() -> None:
-    print("\n[postponed/canceled status parsing]")
-    import pipeline.espn as E
-    ev = {
-        "id": "999", "date": "2026-09-05T19:00Z", "season": {"year": 2026, "type": 2},
-        "week": {"number": 2},
-        "competitions": [{
-            "neutralSite": False, "conferenceCompetition": False,
-            "venue": {"fullName": "X Stadium", "indoor": False, "address": {}},
-            "status": {"type": {"completed": False, "state": "pre",
-                                "name": "STATUS_POSTPONED", "shortDetail": "Postponed"}},
-            "competitors": [
-                {"homeAway": "home", "score": "0",
-                 "team": {"id": "1", "abbreviation": "H", "displayName": "Home"}},
-                {"homeAway": "away", "score": "0",
-                 "team": {"id": "2", "abbreviation": "A", "displayName": "Away"}},
-            ],
-            "odds": [],
-        }],
-    }
-    g = E.parse_event(ev, ["DraftKings"])
-    check("a postponed game is flagged", g["postponed"] is True)
-    check("a postponed game is not marked canceled", g["canceled"] is False)
-
-
-def test_rest_days() -> None:
-    print("\n[schedule-derived rest days]")
-    games = [
-        {"game_id": "1", "date_utc": "2026-09-05T19:00Z", "completed": True,
-         "home": {"abbr": "H"}, "away": {"abbr": "A"}},
-        {"game_id": "2", "date_utc": "2026-09-12T19:00Z", "completed": True,
-         "home": {"abbr": "H"}, "away": {"abbr": "B"}},
-        {"game_id": "3", "date_utc": "2026-09-26T19:00Z", "completed": False,
-         "home": {"abbr": "A"}, "away": {"abbr": "H"}},
-    ]
-    r = B.rest_days(games)
-    check("normal week is 7 days rest", r.get("2:home") == 7, str(r.get("2:home")))
-    check("bye week is 14 days rest", r.get("3:away") == 14, str(r.get("3:away")))
-    check("first game of the year has no rest number", "1:home" not in r)
-
-
-def test_merge() -> None:
-    print("\n[merge safety]")
-    old = [{"game_id": "1", "date_utc": "2026-09-05T19:00Z", "completed": True,
-            "home_score": 28, "away_score": 24,
-            "odds": {"spread_home": -6.5, "spread_price_home": -108,
-                     "spread_price_away": -112, "total": 51.0,
-                     "verified_markets": ["ATS"]}}]
-    fresh = [{"game_id": "1", "date_utc": "2026-09-05T19:00Z", "completed": True,
-              "home_score": None, "away_score": None, "odds": {}}]
-    m = B.merge_games(old, fresh)
-    check("a blank refresh never erases the closing line",
-          m[0]["odds"].get("spread_home") == -6.5)
-    check("a blank refresh never erases the final score", m[0]["home_score"] == 28)
-
-    legacy = [{**old[0], "odds": {"spread_home": -6.5,
-                                    "spread_price_home": -110, "spread_price_away": -110}}]
-    upcoming = [{**fresh[0], "completed": False}]
-    cleaned = B.merge_games(legacy, upcoming)
-    check("legacy unverified cached odds are discarded", cleaned[0]["odds"] == {})
-
-    records = {"bad": {"result": "Pending"},
-               "good": {"result": "Pending", "odds_verified": True},
-               "settled": {"result": "Win"}}
-    kept, removed = ST.clean_unverified_pending(records)
-    check("migration drops only unverified pending records",
-          removed == 1 and set(kept) == {"good", "settled"})
-
-
-def main() -> int:
-    with open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-                           "config", "settings.json"), encoding="utf-8") as fh:
-        cfg = json.load(fh)
-    print("=" * 62)
-    print("ncaaf-edge offline test suite")
-    print("=" * 62)
-    test_ratings(cfg)
-    test_probabilities(cfg)
-    test_staking(cfg)
-    test_tiers(cfg)
-    test_grading_and_ledger(cfg)
-    test_pricing_pipeline(cfg)
-    test_fcs_guard(cfg)
-    test_predictions_module()
-    test_market_picks()
-    test_snapshot_confidence()
-    test_is_priceable()
-    test_espn_odds_parser()
-    test_build_schedule()
-    test_threshold_window(cfg)
-    test_diagnose_board(cfg)
-    test_slates_and_fcs()
-    test_postponed_status_parsing()
-    test_calibration(cfg)
-    test_weekly_cap(cfg)
-    test_rest_days()
-    test_merge()
-    print("\n" + "=" * 62)
-    if FAILS:
-        print(f"{len(FAILS)} FAILED: " + ", ".join(FAILS))
-        return 1
-    print("all checks passed")
-    return 0
-
-
-if __name__ == "__main__":
-    sys.exit(main())
+    check("a normal upcoming game is priceable", B.is_price

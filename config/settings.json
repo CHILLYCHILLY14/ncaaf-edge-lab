@@ -16,11 +16,19 @@
   },
   "tiers": {
     "_note": "Edge = model probability minus the break-even probability implied by the price you are getting.",
-    "best_bet": 0.08,
-    "good": 0.05,
+    "best_bet": 0.07,
+    "good": 0.045,
     "lean": 0.03
   },
   "model": {
+    "projection_blend": 0.50,
+    "_projection_blend_note": "Fraction of the model's disagreement with the posted line that survives into the actionable projection. College markets are softer than the NFL, so half survives, but the market remains the scale anchor.",
+    "max_spread_disagreement": 12.0,
+    "_max_spread_disagreement_note": "Raw spread disagreements are squeezed through a tanh curve before projection_blend is applied. This stops an early-season rating-scale miss from turning a 40-point favourite into a coin flip while preserving ordinary 2-6 point opinions.",
+    "total_projection_blend": 0.55,
+    "max_total_disagreement": 14.0,
+    "edge_compression": 0.095,
+    "_edge_compression_note": "Displayed/actionable probability edge is squeezed through 9.5% * tanh(raw/9.5%). Small edges remain useful; a bogus 20% edge is shown near the ceiling instead of presented as a real 20% advantage. Raw edge remains in the data for auditing.",
     "market_blend": 0.5,
     "_market_blend_note": "Weight given to the de-vigged market probability. Higher = more humble. The market is a consensus of everyone with money on the line; a single rating model should not assume it knows better.",
     "max_model_prob": 0.85,

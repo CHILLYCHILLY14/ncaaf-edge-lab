@@ -75,6 +75,56 @@ def devig(p_a: float, p_b: float) -> tuple[float, float]:
 
 
 # --------------------------------------------------------------------------- #
+# Market scale anchoring
+# --------------------------------------------------------------------------- #
+
+def blend_to_market(mu_model: float, market_spread_home: float | None, cfg: dict) -> dict:
+    """Put the rating projection in the market's units before pricing it.
+
+    College ratings are especially vulnerable in August: FBS/FCS crossover,
+    roster turnover and a prior-season ridge solve can all be directionally
+    useful while still operating on a much narrower scale than a posted
+    30-50 point spread.  A raw five-point projection against -40 is not a
+    credible 45-point opinion.  It is a scale warning.
+
+    The posted line is therefore the anchor.  Ordinary disagreement survives;
+    extreme disagreement is squeezed smoothly and remains visible as gap_raw.
+    """
+    m = cfg["model"]
+    if market_spread_home is None:
+        return {"mu": round(mu_model, 2), "mu_raw": round(mu_model, 2),
+                "market_mu": None, "gap": None, "gap_raw": None,
+                "anchored": False}
+    market_mu = -float(market_spread_home)
+    raw_gap = float(mu_model) - market_mu
+    ceiling = float(m.get("max_spread_disagreement", 12.0))
+    squeezed = ceiling * math.tanh(raw_gap / ceiling) if ceiling > 0 else raw_gap
+    kept = min(1.0, max(0.0, float(m.get("projection_blend", 0.50))))
+    mu = market_mu + kept * squeezed
+    return {"mu": round(mu, 2), "mu_raw": round(mu_model, 2),
+            "market_mu": round(market_mu, 2), "gap": round(mu - market_mu, 2),
+            "gap_raw": round(raw_gap, 2), "anchored": True}
+
+
+def blend_total_to_market(proj_total: float, market_total: float | None, cfg: dict) -> dict:
+    """Totals twin of blend_to_market, with a slightly softer market anchor."""
+    m = cfg["model"]
+    if market_total is None:
+        return {"total": round(proj_total, 1), "total_raw": round(proj_total, 1),
+                "market_total": None, "gap": None, "gap_raw": None,
+                "anchored": False}
+    market_total = float(market_total)
+    raw_gap = float(proj_total) - market_total
+    ceiling = float(m.get("max_total_disagreement", 14.0))
+    squeezed = ceiling * math.tanh(raw_gap / ceiling) if ceiling > 0 else raw_gap
+    kept = min(1.0, max(0.0, float(m.get("total_projection_blend", 0.55))))
+    total = market_total + kept * squeezed
+    return {"total": round(total, 1), "total_raw": round(proj_total, 1),
+            "market_total": market_total, "gap": round(total - market_total, 2),
+            "gap_raw": round(raw_gap, 2), "anchored": True}
+
+
+# --------------------------------------------------------------------------- #
 # Discrete margin distribution
 # --------------------------------------------------------------------------- #
 
@@ -145,8 +195,24 @@ def over_probability(proj_total: float, market_total: float, sd: float) -> tuple
 
 
 # --------------------------------------------------------------------------- #
-# Staking
+# Edge and staking
 # --------------------------------------------------------------------------- #
+
+def compress_edge(raw: float, cfg: dict) -> float:
+    """Squeeze implausibly large probability edges toward an honest ceiling."""
+    ceiling = float(cfg["model"].get("edge_compression") or 0.0)
+    if ceiling <= 0:
+        return float(raw)
+    return ceiling * math.tanh(float(raw) / ceiling)
+
+
+def expand_edge(edge: float, cfg: dict) -> float:
+    """Inverse of compress_edge for threshold/guard comparisons."""
+    ceiling = float(cfg["model"].get("edge_compression") or 0.0)
+    if ceiling <= 0:
+        return float(edge)
+    ratio = min(1.0 - 1e-12, max(-1.0 + 1e-12, float(edge) / ceiling))
+    return ceiling * math.atanh(ratio)
 
 def kelly_fraction(p: float, american: float) -> float:
     """Full-Kelly fraction of bankroll. Negative means no bet."""
@@ -164,8 +230,14 @@ def expected_value(p: float, american: float, p_push: float = 0.0) -> float:
     return p * b - p_lose
 
 
-def stake_for(p: float, american: float, bankroll: float, cfg: dict) -> float:
+def stake_for(p: float, american: float, bankroll: float, cfg: dict,
+              edge: float | None = None) -> float:
     bk = cfg["bankroll"]
+    if edge is not None:
+        # Kelly is dangerously sensitive to overconfidence. Reconstruct the
+        # probability from the conservative action edge, not the raw model
+        # probability that triggered the compression and uncertainty reserve.
+        p = american_to_prob(american) + max(0.0, float(edge))
     f = kelly_fraction(min(p, cfg["model"]["max_model_prob"]), american) * float(bk["kelly_fraction"])
     f = min(f, float(bk["max_stake_pct"]))
     raw = f * bankroll
@@ -266,7 +338,8 @@ def raw_gap_for_edge(edge: float, cfg: dict, price: float = -110.0) -> float:
     if blend >= 1.0:
         return float("inf")
     breakeven = american_to_prob(price)
-    raw = (edge + breakeven - blend * 0.5) / (1.0 - blend)
+    raw_edge = expand_edge(edge, cfg)
+    raw = (raw_edge + breakeven - blend * 0.5) / (1.0 - blend)
     return raw - 0.5
 
 
@@ -297,7 +370,8 @@ def spread_gap_for_edge(edge: float, cfg: dict, price: float = -110.0,
             denom = pw + pl
             raw = pw / denom if denom else 0.5
             for r in (raw, 1.0 - raw):
-                best = max(best, (1 - blend) * r + blend * 0.5 - breakeven)
+                raw_edge = (1 - blend) * r + blend * 0.5 - breakeven
+                best = max(best, compress_edge(raw_edge, cfg))
         return best
 
     if edge_at(hi) < edge:

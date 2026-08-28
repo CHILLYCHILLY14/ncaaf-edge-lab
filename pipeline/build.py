@@ -15,6 +15,7 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import math
 import os
 import sys
 
@@ -327,13 +328,96 @@ def project(g: dict, rat: dict, hfa: float, score_rat: dict, league: float,
     pts_away = league + so_a["off"] - so_h["def"]
     proj_total = pts_home + pts_away + float(o.get("total_adj", 0.0))
 
+    odds = g.get("odds") or {}
+    anchored = M.blend_to_market(mu, odds.get("spread_home"), cfg)
+    anchored_total = M.blend_total_to_market(proj_total, odds.get("total"), cfg)
+    final_mu, final_total = anchored["mu"], anchored_total["total"]
+    final_home = (final_total + final_mu) / 2.0
+    final_away = (final_total - final_mu) / 2.0
+
     return {
-        "mu": round(mu, 2),
-        "proj_total": round(proj_total, 1),
-        "proj_home_pts": round(pts_home, 1),
-        "proj_away_pts": round(pts_away, 1),
+        **anchored,
+        "proj_total": final_total,
+        "proj_total_raw": anchored_total["total_raw"],
+        "market_total": anchored_total["market_total"],
+        "total_gap": anchored_total["gap"],
+        "total_gap_raw": anchored_total["gap_raw"],
+        "proj_home_pts": round(final_home, 1),
+        "proj_away_pts": round(final_away, 1),
+        "score_home": int(final_home + 0.5),
+        "score_away": int(final_away + 0.5),
         "ratings_known": known,
     }
+
+
+def fit_projection_scale(projections: list[dict]) -> dict:
+    """Fit the raw model to the posted board and isolate game-specific residuals.
+
+    In August the rating solve is intentionally narrow. Without this board-level
+    check, that scale mismatch looks like the same opinion on every large
+    favourite: take the underdog. Regressing raw projections on market margins
+    identifies the systematic component; only the residual is allowed to become
+    an actionable disagreement.
+    """
+    def fit(xs: list[float], ys: list[float]) -> dict:
+        if len(xs) < 8 or len(xs) != len(ys):
+            return {"enabled": False, "n": len(xs), "intercept": 0.0,
+                    "slope": 1.0, "residual_sd": None}
+        mx, my = sum(xs)/len(xs), sum(ys)/len(ys)
+        vx = sum((x-mx)**2 for x in xs)
+        if vx <= 1e-9:
+            return {"enabled": False, "n": len(xs), "intercept": 0.0,
+                    "slope": 1.0, "residual_sd": None}
+        slope = sum((x-mx)*(y-my) for x,y in zip(xs,ys))/vx
+        intercept = my - slope*mx
+        residuals = [y-(intercept+slope*x) for x,y in zip(xs,ys)]
+        rsd = math.sqrt(sum(r*r for r in residuals)/len(residuals))
+        return {"enabled": True, "n": len(xs), "intercept": round(intercept, 4),
+                "slope": round(slope, 4), "residual_sd": round(rsd, 3)}
+
+    mp = [(float(p["market_mu"]), float(p["mu_raw"])) for p in projections
+          if p.get("market_mu") is not None and p.get("mu_raw") is not None]
+    tp = [(float(p["market_total"]), float(p["proj_total_raw"])) for p in projections
+          if p.get("market_total") is not None and p.get("proj_total_raw") is not None]
+    return {"margin": fit([x for x,_ in mp], [y for _,y in mp]),
+            "total": fit([x for x,_ in tp], [y for _,y in tp])}
+
+
+def debias_projection(proj: dict, fit: dict, cfg: dict) -> dict:
+    """Replace systematic board-wide scale error with market-centred residuals."""
+    out = dict(proj)
+    mfit = fit.get("margin") or {}
+    if mfit.get("enabled") and proj.get("market_mu") is not None:
+        market = float(proj["market_mu"])
+        expected = float(mfit["intercept"]) + float(mfit["slope"]) * market
+        residual = float(proj["mu_raw"]) - expected
+        ceiling = float(cfg["model"].get("max_spread_disagreement", 12.0))
+        squeezed = ceiling * math.tanh(residual/ceiling) if ceiling > 0 else residual
+        kept = float(cfg["model"].get("projection_blend", 0.5))
+        out["mu"] = round(market + kept*squeezed, 2)
+        out["gap"] = round(out["mu"]-market, 2)
+        out["debias_expected_mu"] = round(expected, 2)
+        out["debias_residual"] = round(residual, 2)
+        out["debias_enabled"] = True
+
+    tfit = fit.get("total") or {}
+    if tfit.get("enabled") and proj.get("market_total") is not None:
+        market_total = float(proj["market_total"])
+        expected_total = float(tfit["intercept"]) + float(tfit["slope"]) * market_total
+        residual_total = float(proj["proj_total_raw"]) - expected_total
+        ceiling = float(cfg["model"].get("max_total_disagreement", 14.0))
+        squeezed = ceiling * math.tanh(residual_total/ceiling) if ceiling > 0 else residual_total
+        kept = float(cfg["model"].get("total_projection_blend", 0.55))
+        out["proj_total"] = round(market_total + kept*squeezed, 1)
+        out["total_gap"] = round(out["proj_total"]-market_total, 2)
+        out["debias_expected_total"] = round(expected_total, 2)
+        out["debias_total_residual"] = round(residual_total, 2)
+
+    home = (float(out["proj_total"]) + float(out["mu"]))/2.0
+    away = (float(out["proj_total"]) - float(out["mu"]))/2.0
+    out["proj_home_pts"], out["proj_away_pts"] = round(home,1), round(away,1)
+    out["score_home"], out["score_away"] = int(home+0.5), int(away+0.5)
+    return out
 
 
 def snapshot_confidence(snapshots: int) -> float:
@@ -436,6 +520,8 @@ def price_game(g: dict, proj: dict, cfg: dict, conf: float) -> list[dict]:
     for c in out:
         c["odds_verified"] = True
         c["raw_market_gap"] = abs(c["raw_model_prob"] - c["market_fair_prob"])
+        c["edge_raw"] = c["edge"]
+        c["edge"] = M.compress_edge(c["edge_raw"], cfg)
         c["action_edge"] = M.risk_adjusted_edge(c["edge"], cfg, conf)
         c["tier"] = M.tier_for(c["edge"], cfg, conf)
     return out
@@ -612,298 +698,4 @@ def diagnose_board(board: list[dict], cfg: dict) -> dict:
         "reasons": reasons,
         "window": window,
         "near_misses": [{
-            "matchup": c["matchup"], "market": c["market"], "pick": c["pick"],
-            "edge": round(c["edge"], 4),
-            "action_edge": round(c.get("action_edge", c["edge"]), 4),
-            "needed": window["lean_edge_floor"],
-            "short_by": round(window["lean_edge_floor"] - c["edge"], 4),
-        } for c in near],
-    }
-
-
-def market_picks(cands: list[dict]) -> list[dict]:
-    """
-    Reduce a game's priced candidates to the model's actual pick per market.
-
-    price_game() returns BOTH sides of every market (home and away, over and
-    under) because the Full Board is meant to show the whole picture. But that
-    makes both sides unsuitable for measuring accuracy in aggregate: home and
-    away are complementary outcomes on the same game, so summing wins across
-    both sides is a tautology -- exactly one of them wins every non-push game,
-    so the aggregate win rate is forced toward 50% regardless of whether the
-    model is any good. This keeps only the side with the larger edge per
-    market -- the side the model would actually take -- which is what "was the
-    model's pick right?" has to mean for the answer to carry information.
-    """
-    by_market: dict[str, dict] = {}
-    for c in cands:
-        cur = by_market.get(c["market"])
-        if cur is None or c["edge"] > cur["edge"]:
-            by_market[c["market"]] = c
-    return list(by_market.values())
-
-
-def correlation_guard(cands: list[dict], cfg: dict) -> list[dict]:
-    """
-    One angle per game.
-
-    Taking a team's moneyline and its spread is close to taking the same bet
-    twice: the outcomes are ~85% correlated, so the pair carries roughly double
-    the variance the Kelly sizing assumed. Keep the best edge, demote the rest to
-    a note rather than a wager.
-    """
-    limit = int(cfg["filters"].get("max_bets_per_game") or 1)
-    by_game: dict[str, list[dict]] = {}
-    for c in cands:
-        by_game.setdefault(c["game_id"], []).append(c)
-    keep = []
-    for gid, rows in by_game.items():
-        playable = [r for r in rows if r["tier"] != "PASS"]
-        playable.sort(key=lambda r: (M.TIER_RANK[r["tier"]],
-                                     -r.get("action_edge", r["edge"])))
-        for i, r in enumerate(playable):
-            if i >= limit:
-                r["tier"] = "PASS"
-                r["filtered"] = "correlated with a stronger play on the same game"
-        keep.extend(rows)
-    return keep
-
-
-def weekly_cap(cands: list[dict], cfg: dict) -> list[dict]:
-    """
-    Cap how many bets a single week can produce, best edges first.
-
-    A 3% threshold against a full Saturday slate will qualify dozens of games.
-    Betting all of them is not more edge, it is more variance and more exposure
-    to the one thing every bet shares -- the model being wrong in the same
-    direction all day. The cap is the difference between a staking plan and a
-    spray.
-    """
-    limit = int(cfg["filters"].get("max_plays_per_week") or 0)
-    if limit <= 0:
-        return cands
-    by_week: dict[str, list[dict]] = {}
-    for c in cands:
-        if c["tier"] == "PASS":
-            continue
-        by_week.setdefault(str(c.get("week") or (c.get("game_date") or "")[:10]), []).append(c)
-    for wk, rows in by_week.items():
-        rows.sort(key=lambda r: (M.TIER_RANK[r["tier"]],
-                                 -r.get("action_edge", r["edge"])))
-        for r in rows[limit:]:
-            r["tier"] = "PASS"
-            r["filtered"] = f"outside the top {limit} plays for this week"
-    return cands
-
-
-# --------------------------------------------------------------------------- #
-
-def main() -> int:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--full", action="store_true", help="full-season backfill")
-    ap.add_argument("--no-bet", action="store_true", help="price only, do not log bets")
-    args = ap.parse_args()
-
-    cfg = load_cfg()
-    ovr = load_overrides()
-    season = int(cfg["season"])
-    prior_season = int(cfg["prior_season"])
-    group = int(cfg["data"]["espn_group"])
-    prio = cfg["data"]["odds_provider_priority"]
-
-    today = dt.date.today()
-    print(f"== ncaaf-edge build {store.now_iso()} (season {season}) ==")
-
-    # 1. Prior season -- fetched once, then cached forever.
-    prior_games = store.load(f"history_{prior_season}.json", [])
-    if not prior_games:
-        print(f"-- backfilling {prior_season} season (one time, a few minutes)")
-        prior_games = espn.fetch_season(prior_season, group, prio)
-        store.save(f"history_{prior_season}.json", prior_games)
-    print(f"   prior season games: {len(prior_games)}")
-
-    # 2. Current season.
-    cache = store.load(f"games_{season}.json", [])
-    if args.full or not cache:
-        print("-- full season fetch")
-        fresh = espn.fetch_range(dt.date(season, 8, 1),
-                                 max(today + dt.timedelta(days=int(cfg["data"]["lookahead_days"])),
-                                     dt.date(season + 1, 1, 31)),
-                                 group, prio)
-    else:
-        lo = today - dt.timedelta(days=int(cfg["data"]["lookback_days"]))
-        hi = today + dt.timedelta(days=int(cfg["data"]["lookahead_days"]))
-        print(f"-- rolling fetch {lo} .. {hi}")
-        fresh = espn.fetch_range(lo, hi, group, prio)
-    games = merge_games(cache, fresh)
-    store.save(f"games_{season}.json", games)
-    print(f"   current season games: {len(games)} ({sum(1 for g in games if g.get('completed'))} final)")
-
-    # 3. Odds snapshots (this is what makes CLV possible).
-    raw_lines = store.load("lines.json", {})
-    lines, removed_lines = store.clean_unverified_lines(raw_lines)
-    lines = store.record_lines(lines, games)
-    store.save("lines.json", lines)
-
-    # Recover closing lines for finals the scoreboard has already stripped.
-    ledg, removed_bets = store.clean_unverified_pending(store.load("ledger.json", {}))
-    for bet in ledg.values():
-        if bet.get("result") == "Pending" and not store.closer(lines, bet["game_id"]):
-            rec = espn.odds_from_summary(bet["game_id"], prio)
-            if rec:
-                lines.setdefault(bet["game_id"], []).append({"ts": store.now_iso(), **rec})
-    store.save("lines.json", lines)
-
-    # 4. Ratings, solved from results.
-    prior_rat, _ = R.solve_margin_ratings(prior_games, cfg)
-    preseason = R.regress_to_prior(prior_rat, float(cfg["ratings"]["prior_regression"]))
-    rat, hfa = R.solve_margin_ratings(games, cfg, prior=preseason)
-    if not any(g.get("completed") for g in games):
-        rat, hfa = preseason, float(cfg["model"]["home_field_fallback"])
-    score_rat, league, home_bump = R.solve_scoring_ratings(games + prior_games, cfg)
-    played = R.games_played(games)
-    form = R.ats_form(games)
-    rests = rest_days(games)
-    fbs = fbs_teams(games)
-    print(f"   ratings: {len(rat)} teams | home field {hfa:.2f} pts | league avg {league:.1f} pts")
-    print(f"   FBS home participants this season: {len(fbs)} teams")
-
-    # 5. Price the board.
-    # Postponed/canceled games are excluded from pricing -- there is no market
-    # forming around a game that isn't going to be played as scheduled, and
-    # pricing one would just be noise on the board.
-    board: list[dict] = []
-    lookahead = int(cfg["data"]["lookahead_days"])
-    upcoming = [g for g in games if is_priceable(g, today, lookahead)]
-    odds_health = espn.odds_health(upcoming)
-    for g in upcoming:
-        has_odds = espn.has_priced_market(g.get("odds"))
-        conf = M.confidence_score(played.get(g["home"]["abbr"], 0),
-                                  played.get(g["away"]["abbr"], 0), has_odds, cfg)
-        # Weakest link, not a product. Sample size and line-observation count are
-        # two unrelated reasons to be unsure; multiplying them compounds a penalty
-        # neither one justifies alone, and in the opening week that product pushed
-        # confidence under the 0.35 floor in tier_for(), pinning the thresholds at
-        # their harshest setting for reasons that had nothing to do with the model.
-        conf = min(conf, snapshot_confidence(store.line_move(lines, g["game_id"]).get("snapshots", 0)))
-        proj = project(g, rat, hfa, score_rat, league, home_bump, rests, ovr, cfg)
-        if not proj["ratings_known"]:
-            conf = min(conf, 0.4)
-        cands = apply_filters(price_game(g, proj, cfg, conf), cfg, odds_health["healthy"])
-        cands = fcs_guard(cands, g["home"]["abbr"], g["away"]["abbr"], fbs, cfg)
-        for c in cands:
-            c["projection"] = proj
-        board.extend(cands)
-    board = weekly_cap(correlation_guard(board, cfg), cfg)
-    board.sort(key=lambda c: (M.TIER_RANK[c["tier"]],
-                              -c.get("action_edge", c["edge"])))
-    print(f"   priced {len(upcoming)} upcoming games -> {len(board)} market lines")
-
-    board_diagnosis = diagnose_board(board, cfg)
-    if board_diagnosis["qualified"] == 0:
-        print(f"   NO QUALIFIED PLAYS -- {board_diagnosis['headline']}")
-        for reason, n in board_diagnosis["reasons"].items():
-            print(f"      {n:>4} x {reason}")
-        if not board_diagnosis["window"]["feasible"]:
-            print("      WARNING: thresholds and safety rails overlap to zero -- "
-                  "nothing could have qualified at any price. Raise guard_headroom.")
-
-    # 6. Log qualified bets, then grade finals.
-    starting = float(cfg["bankroll"]["starting"])
-    opened = 0
-    if not args.no_bet:
-        for c in board:
-            if c["tier"] == "PASS":
-                continue
-            bankroll = (starting if cfg["bankroll"]["size_off"] == "starting"
-                        else ledger.bankroll_from(ledg, starting))
-            if ledger.open_bet(ledg, c, bankroll, cfg):
-                opened += 1
-    graded = ledger.grade_all(ledg, {g["game_id"]: g for g in games}, lines)
-    store.save("ledger.json", ledg)
-    print(f"   ledger: +{opened} new, {graded} graded, {len(ledg)} total")
-
-    # 6b. Log EVERY priced market (bet or not) to the full prediction record.
-    # This is what makes calibration and accuracy trustworthy: the ledger alone
-    # is a biased sample (you only bet where the model disagrees most with the
-    # market, which is where it's most likely to be wrong), while this records
-    # what the model said about every game it ever priced.
-    # Reduce to the model's actual pick per market before logging -- board
-    # can carry both complementary sides of a market (home ATS + away ATS,
-    # over + under) when both happen to pass the filters, and logging both
-    # would make aggregate win-rate mathematically forced toward 50% (one
-    # side always wins, the other always loses, however good the model is).
-    preds, removed_predictions = store.clean_unverified_pending(store.load("predictions.json", {}))
-    logged = 0
-    by_game: dict[str, list[dict]] = {}
-    for c in board:
-        by_game.setdefault(c["game_id"], []).append(c)
-    for cands in by_game.values():
-        for c in market_picks(cands):
-            if P.log_prediction(preds, c):
-                logged += 1
-    pred_graded = P.grade_all(preds, {g["game_id"]: g for g in games})
-    store.save("predictions.json", preds)
-    print(f"   predictions: +{logged} new, {pred_graded} graded, {len(preds)} total")
-
-    # 7. Emit the site payload.
-    os.makedirs(SITE_DATA, exist_ok=True)
-    summary = ledger.summarise(ledg, starting)
-    meta = {
-        "generated_at": store.now_iso(),
-        "season": season,
-        "home_field_advantage": round(hfa, 2),
-        "home_scoring_bump": round(home_bump, 2),
-        "league_avg_points": round(league, 1),
-        "games_final": sum(1 for g in games if g.get("completed")),
-        "games_upcoming": len(upcoming),
-        "settings": cfg,
-        "brier": ledger.brier(ledg),
-        "odds_health": odds_health,
-        "board_diagnosis": board_diagnosis,
-        "data_repair": {
-            "unverified_line_snapshots_removed": removed_lines,
-            "unverified_pending_bets_removed": removed_bets,
-            "unverified_pending_predictions_removed": removed_predictions,
-        },
-    }
-
-    def write(name: str, payload) -> None:
-        with open(os.path.join(SITE_DATA, name), "w", encoding="utf-8") as fh:
-            json.dump(payload, fh, separators=(",", ":"), default=str)
-
-    write("meta.json", meta)
-    write("board.json", [{**c, "line_move": store.line_move(lines, c["game_id"])} for c in board])
-    write("ledger.json", sorted(ledg.values(), key=lambda b: (b.get("game_date") or ""), reverse=True))
-    write("summary.json", {**summary, "calibration": ledger.calibration(ledg)})
-    write("model_history.json", P.summarise(preds))
-    write("ratings.json", sorted(
-        [{"team": t,
-          "rating": round(rat[t], 2),
-          "off": round((score_rat.get(t) or {}).get("off", 0.0), 2),
-          "def": round((score_rat.get(t) or {}).get("def", 0.0), 2),
-          "games": played.get(t, 0),
-          "ats": form.get(t)}
-         for t in rat],
-        key=lambda r: -r["rating"]))
-    game_rows = [{
-        "game_id": g["game_id"], "date": g.get("date_utc"), "week": g.get("week"),
-        "away": g["away"]["abbr"], "home": g["home"]["abbr"],
-        "away_name": g["away"]["name"], "home_name": g["home"]["name"],
-        "away_score": g.get("away_score"), "home_score": g.get("home_score"),
-        "completed": g.get("completed"), "neutral": g.get("neutral"),
-        "postponed": g.get("postponed"), "canceled": g.get("canceled"),
-        "status": g.get("status_detail"), "odds": g.get("odds") or None,
-    } for g in games]
-    write("games.json", game_rows)
-    write("schedule.json", build_schedule(game_rows, fbs))
-
-    print(f"   wrote {SITE_DATA}")
-    roi_txt = "n/a" if summary["roi"] is None else f"{summary['roi'] * 100:.1f}%"
-    print(f"== bankroll {cfg['currency_symbol']}{summary['current_bankroll']} "
-          f"| {summary['settled']} settled | ROI {roi_txt} ==")
-    return 0
-
-
-if __name__ == "__main__":
-    sys.exit(main())
+            "matc
