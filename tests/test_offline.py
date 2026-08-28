@@ -109,6 +109,53 @@ def test_ratings(cfg: dict) -> None:
     check("week 1 home field stays near the configured prior",
           approx(wk1_hfa, cfg["model"]["home_field_fallback"], 1.0), f"{wk1_hfa:.2f}")
 
+    fpi = {
+        "T00": {"fpi": 20.0, "fpi_rank": 1, "offense": 11.0,
+                "defense": 8.0, "special_teams": 1.0},
+        "T01": {"fpi": -10.0, "fpi_rank": 100, "offense": -4.0,
+                "defense": -5.0, "special_teams": -1.0},
+    }
+    preseason, audit = R.blend_preseason_ratings({"T00": 4.0, "T01": -4.0}, fpi, 0.65)
+    check("FPI broadens the preseason prior without replacing the internal solve",
+          preseason["T00"] > 4.0 and audit["T00"]["source"] == "FPI + internal",
+          str(preseason))
+    score_prior = R.blend_scoring_priors(
+        {"T00": {"off": 2.0, "def": 1.0}, "T01": {"off": -2.0, "def": -1.0}},
+        fpi, 0.65)
+    check("FPI unit components feed the scoring prior",
+          score_prior["T00"]["off"] > score_prior["T01"]["off"]
+          and score_prior["T00"]["def"] > score_prior["T01"]["def"])
+
+    one = make_season(n_teams=2, weeks=1, seed=19)[0]
+    anchored_prior = {"T00": 12.0, "T01": -12.0, "IDLE": 3.0}
+    updated, _ = R.solve_margin_ratings(one, cfg, prior=anchored_prior)
+    check("current-season ridge stays centred on the preseason prior",
+          "IDLE" in updated and abs(updated["T00"] - updated["T01"]) > 8.0,
+          str(updated))
+
+
+def test_fpi_parser() -> None:
+    print("\n[ESPN FPI]")
+    payload = {"items": [{
+        "team": {"$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/college-football/seasons/2026/teams/194?lang=en"},
+        "season": 2026, "lastUpdated": "2026-07-21T08:00Z",
+        "predictives": [
+            {"name": "fpi", "value": 28.676}, {"name": "fpirank", "value": 1},
+            {"name": "epaoffense", "value": 14.607},
+            {"name": "epadefense", "value": 13.836},
+            {"name": "epaspecialteams", "value": 0.232},
+        ],
+    }]}
+    games = [{"home": {"id": "194", "abbr": "OSU", "name": "Ohio State"},
+              "away": {"id": "153", "abbr": "UNC", "name": "North Carolina"}}]
+    parsed = E.parse_power_index(payload, games)
+    check("FPI team refs join to cached schedule ids",
+          parsed["teams"]["OSU"]["fpi_rank"] == 1
+          and approx(parsed["teams"]["OSU"]["fpi"], 28.676, 1e-9), str(parsed))
+    check("FPI parser keeps unit components and timestamp",
+          approx(parsed["teams"]["OSU"]["offense"], 14.607, 1e-9)
+          and parsed["last_updated"] == "2026-07-21T08:00Z")
+
 
 def test_probabilities(cfg: dict) -> None:
     print("\n[probability conversion]")
@@ -939,6 +986,7 @@ def main() -> int:
     print("ncaaf-edge offline test suite")
     print("=" * 62)
     test_ratings(cfg)
+    test_fpi_parser()
     test_probabilities(cfg)
     test_staking(cfg)
     test_tiers(cfg)

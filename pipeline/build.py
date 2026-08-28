@@ -930,18 +930,44 @@ def main() -> int:
                 lines.setdefault(bet["game_id"], []).append({"ts": store.now_iso(), **rec})
     store.save("lines.json", lines)
 
-    # 4. Ratings, solved from results.
+    # 4. Ratings.  ESPN's current-season FPI supplies the roster/recruiting/
+    # coaching information a score-only solve cannot know in August.  It is
+    # cached in compact form so a temporary endpoint failure never erases the
+    # prior; our own prior-season solve remains the independent second input.
+    fpi_cache_name = f"fpi_{season}.json"
+    fpi_data = store.load(fpi_cache_name, {})
+    try:
+        fresh_fpi = espn.parse_power_index(espn.power_index(season), games)
+        if len(fresh_fpi.get("teams") or {}) >= 50:
+            fpi_data = fresh_fpi
+            store.save(fpi_cache_name, fpi_data)
+    except espn.EspnError as exc:
+        print(f"   FPI refresh unavailable; using cached prior ({exc})")
+    fpi_teams = fpi_data.get("teams") or {}
+
+    # Ratings, solved from results around the blended preseason prior.
     prior_rat, _ = R.solve_margin_ratings(prior_games, cfg)
-    preseason = R.regress_to_prior(prior_rat, float(cfg["ratings"]["prior_regression"]))
+    internal_preseason = R.regress_to_prior(
+        prior_rat, float(cfg["ratings"]["prior_regression"]))
+    preseason, rating_audit = R.blend_preseason_ratings(
+        internal_preseason, fpi_teams, float(cfg["ratings"].get("fpi_weight", 0.0)))
     rat, hfa = R.solve_margin_ratings(games, cfg, prior=preseason)
     if not any(g.get("completed") for g in games):
         rat, hfa = preseason, float(cfg["model"]["home_field_fallback"])
-    score_rat, league, home_bump = R.solve_scoring_ratings(games + prior_games, cfg)
+    prior_score, prior_league, prior_home_bump = R.solve_scoring_ratings(prior_games, cfg)
+    preseason_score = R.blend_scoring_priors(
+        prior_score, fpi_teams,
+        float(cfg["ratings"].get("fpi_scoring_weight",
+                                 cfg["ratings"].get("fpi_weight", 0.0))))
+    score_rat, league, home_bump = R.solve_scoring_ratings(
+        games, cfg, prior=preseason_score, prior_league=prior_league,
+        prior_home_bump=prior_home_bump)
     played = R.games_played(games)
     form = R.ats_form(games)
     rests = rest_days(games)
     fbs = fbs_teams(games)
     print(f"   ratings: {len(rat)} teams | home field {hfa:.2f} pts | league avg {league:.1f} pts")
+    print(f"   ESPN FPI: {len(fpi_teams)} mapped teams | updated {fpi_data.get('last_updated') or 'n/a'}")
     print(f"   FBS home participants this season: {len(fbs)} teams")
 
     # 5. Price the board.
@@ -956,8 +982,16 @@ def main() -> int:
                                                rests, ovr, cfg) for g in upcoming}
     scale_fit = fit_projection_scale(list(base_projections.values()))
     mf, tf = scale_fit["margin"], scale_fit["total"]
-    print(f"   slate de-bias: margin slope {mf['slope']:.3f}, residual {mf['residual_sd']} pts | "
-          f"total slope {tf['slope']:.3f}, residual {tf['residual_sd']} pts")
+    # A market-derived scale rescue is only a last resort when the independent
+    # preseason prior is unavailable. Applying it on top of healthy FPI ratings
+    # would regress each slate to the same prices we are trying to challenge and
+    # mechanically erase nearly every possible play.
+    use_scale_rescue = len(fpi_teams) < 50
+    mf["applied"] = bool(use_scale_rescue and mf.get("enabled"))
+    tf["applied"] = bool(use_scale_rescue and tf.get("enabled"))
+    print(f"   scale audit: margin slope {mf['slope']:.3f}, residual {mf['residual_sd']} pts | "
+          f"total slope {tf['slope']:.3f}, residual {tf['residual_sd']} pts | "
+          f"market-derived rescue {'on' if use_scale_rescue else 'off (FPI prior healthy)'}")
 
     for g in upcoming:
         has_odds = espn.has_priced_market(g.get("odds"))
@@ -969,7 +1003,8 @@ def main() -> int:
         # confidence under the 0.35 floor in tier_for(), pinning the thresholds at
         # their harshest setting for reasons that had nothing to do with the model.
         conf = min(conf, snapshot_confidence(store.line_move(lines, g["game_id"]).get("snapshots", 0)))
-        proj = debias_projection(base_projections[g["game_id"]], scale_fit, cfg)
+        proj = (debias_projection(base_projections[g["game_id"]], scale_fit, cfg)
+                if use_scale_rescue else base_projections[g["game_id"]])
         if not proj["ratings_known"]:
             conf = min(conf, 0.4)
         cands = apply_filters(price_game(g, proj, cfg, conf), cfg, odds_health["healthy"])
@@ -1043,6 +1078,15 @@ def main() -> int:
         "settings": cfg,
         "brier": ledger.brier(ledg),
         "odds_health": odds_health,
+        "fpi": {
+            "available": bool(fpi_teams),
+            "teams": len(fpi_teams),
+            "last_updated": fpi_data.get("last_updated"),
+            "weight": float(cfg["ratings"].get("fpi_weight", 0.0)),
+            "scoring_weight": float(cfg["ratings"].get(
+                "fpi_scoring_weight", cfg["ratings"].get("fpi_weight", 0.0))),
+            "source": "ESPN College Football Power Index",
+        },
         "model_health": model_health(board, rat, cfg, odds_health),
         "slate_debias": scale_fit,
         "board_diagnosis": board_diagnosis,
@@ -1067,6 +1111,9 @@ def main() -> int:
           "rating": round(rat[t], 2),
           "off": round((score_rat.get(t) or {}).get("off", 0.0), 2),
           "def": round((score_rat.get(t) or {}).get("def", 0.0), 2),
+          "fpi": (rating_audit.get(t) or {}).get("fpi"),
+          "fpi_rank": (rating_audit.get(t) or {}).get("fpi_rank"),
+          "rating_source": (rating_audit.get(t) or {}).get("source"),
           "games": played.get(t, 0),
           "ats": form.get(t)}
          for t in rat],

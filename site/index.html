@@ -729,22 +729,25 @@ function renderRatings(){
   });
   const th = (key,label,cls="") =>
     `<th class="sortable ${cls}" data-sort="${key}">${esc(label)}${k===key?(dir<0?" ↓":" ↑"):""}</th>`;
+  const fpi = (S.meta || {}).fpi || {};
   let h = `<div class="panel-head"><div><h2>Power Ratings</h2>
-    <p>Solved from results, not typed in. A rating is points better than an average FBS team on a neutral field, so the gap between two ratings is a projected margin. Early in the season these sit close to zero on purpose — with little evidence, the honest estimate is "average".</p></div></div>`;
+    <p>The 2026 preseason base blends current ESPN FPI with this model's independent, regressed 2025 result ratings. Current-season results then update that prior automatically. A rating is neutral-field points above or below an average FBS team.</p></div>
+    <span class="pill">${fpi.available?`${esc(fpi.teams)} FPI teams · ${pct(fpi.weight,0)} weight`:"FPI fallback mode"}</span></div>`;
   if (!R.length){ el.innerHTML = h + `<div class="empty">Ratings appear after the first pipeline run.</div>`; return; }
   h += `<div class="tablewrap"><table><thead><tr>
     <th class="r" style="width:48px">#</th>${th("team","Team")}${th("rating","Rating","r")}
-    ${th("off","Offence","r")}${th("def","Defence","r")}${th("games","GP","r")}${th("ats","ATS L5","r")}
+    ${th("fpi","ESPN FPI","r")}${th("off","Offence","r")}${th("def","Defence","r")}${th("games","GP","r")}${th("ats","ATS L5","r")}
     </tr></thead><tbody>` + R.map((r,i) => `<tr>
       <td class="r num" style="color:var(--ink-3)">${i+1}</td>
       <td style="font-weight:600">${esc(r.team)}</td>
       <td class="r num" style="font-weight:600;color:${r.rating>0?"var(--good)":r.rating<0?"var(--bad)":""}">${r.rating>0?"+":""}${r.rating.toFixed(1)}</td>
+      <td class="r num" style="color:var(--ink-3)">${r.fpi===null||r.fpi===undefined?"—":`${r.fpi>0?"+":""}${Number(r.fpi).toFixed(1)}${r.fpi_rank?` <small>#${Number(r.fpi_rank).toFixed(0)}</small>`:""}`}</td>
       <td class="r num">${r.off>0?"+":""}${(r.off??0).toFixed(1)}</td>
       <td class="r num">${r.def>0?"+":""}${(r.def??0).toFixed(1)}</td>
       <td class="r num" style="color:var(--ink-3)">${r.games||0}</td>
       <td class="r num" style="color:var(--ink-3)">${r.ats?`${r.ats.w}–${r.ats.l}${r.ats.p?"–"+r.ats.p:""}`:"—"}</td>
     </tr>`).join("") + `</tbody></table></div>
-    <p style="color:var(--ink-3);font-size:12px;margin-top:10px"><b>Offence</b> and <b>defence</b> are points per game above or below league average, opponent-adjusted; defence is stated so that positive is good. ATS record is shown as context only — the model deliberately does not bet on it, because a team's spread record is the market's residual and chasing it is chasing noise.</p>`;
+    <p style="color:var(--ink-3);font-size:12px;margin-top:10px"><b>Model rating</b> is the blended number used for projections; <b>ESPN FPI</b> is shown separately for audit. Offence and defence include FPI's preseason unit components and update from current results; positive defence is good. ATS record is context only and never drives a bet.</p>`;
   el.innerHTML = h;
   el.querySelectorAll("[data-sort]").forEach(t => t.onclick = () => {
     const key = t.dataset.sort;
@@ -779,8 +782,10 @@ function renderHealth(){
   </div>`;
 
   const db = (m.slate_debias||{}).margin||{};
-  if (db.enabled){
+  if (db.applied){
     h += `<div class="health-intro"><b>Slate scale correction is on.</b> Before any edge was computed, the raw 2026 ratings were regressed on the posted spreads. The board-wide component was removed (raw slope <span class="mono">${num(db.slope,4)}</span>); only the game-specific residual remains (typical residual <span class="mono">${num(db.residual_sd,2)} pts</span>). This prevents a compressed rating range from turning every large favourite into a fake underdog edge.</div>`;
+  } else if ((m.fpi||{}).available){
+    h += `<div class="health-intro"><b>Independent 2026 prior active.</b> ESPN FPI contributes ${pct((m.fpi||{}).weight,0)} of the preseason rating and this model's regressed 2025 solve contributes the rest. The board is not regressed back onto the same sportsbook spreads it is evaluating, so genuine game-level disagreement can survive.</div>`;
   }
 
   const dots = mh.scatter || [];
@@ -839,6 +844,8 @@ function renderHealth(){
          ["Margin std dev",(mm.margin_sd??"—")+" pts"],["Total std dev",(mm.total_sd??"—")+" pts"],
          ["Key numbers",mm.use_key_numbers?"on":"off"],["Kelly fraction",pct(bb.kelly_fraction,0)],
          ["Max stake",pct(bb.max_stake_pct,0)+" of bankroll"],["Ridge lambda",rr.ridge_lambda??"—"],
+         ["ESPN FPI margin weight",pct(rr.fpi_weight,0)],["ESPN FPI scoring weight",pct(rr.fpi_scoring_weight,0)],
+         ["Current prior strength",rr.current_season_prior_strength??"—"],
          ["Recency half-life",(rr.recency_halflife_games??"—")+" games"],["Solved home field",(m.home_field_advantage??"—")+" pts"],
          ["Actionable lookahead",(dd.lookahead_days??"—")+" days"],["Max spread gap",(ff.max_spread_projection_gap??"—")+" pts"],
          ["Thin-data spread gap",(ff.max_thin_data_spread_gap??"—")+" pts"]]

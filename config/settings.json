@@ -50,12 +50,20 @@
   },
   "ratings": {
     "ridge_lambda": 18.0,
+    "current_season_prior_strength": 6.0,
+    "_current_season_prior_strength_note": "Bayesian weight retained on the preseason prior while current-season results accumulate. Roughly six team-games of evidence; strong enough to stabilize September, light enough for October results to take over.",
     "mov_cap": 28,
     "recency_halflife_games": 14.0,
     "prior_season_weight": 0.35,
     "_prior_season_weight_note": "How much last season's solved ratings carry into this season's preseason prior (regression to the mean).",
     "prior_regression": 0.62,
     "_prior_regression_note": "Fraction of last season's rating retained as the preseason prior. 0.62 ~ typical year-over-year correlation in CFB.",
+    "fpi_weight": 0.85,
+    "_fpi_weight_note": "Share of the preseason margin prior taken from current-season ESPN FPI. The other 15% remains this model's regressed prior-season solve, so FPI keeps its correct point scale without simply replacing the independent model.",
+    "fpi_scoring_weight": 0.35,
+    "_fpi_scoring_weight_note": "Lower weight for FPI's offense/defense/special-teams components in the totals model. Unit splits are more uncertain than the headline FPI rating, so the internal scoring solve retains the majority weight.",
+    "scoring_prior_games": 40.0,
+    "home_scoring_prior_games": 120.0,
     "_recency_note": "Half-life in team-games (x7 = days). 14 means a game from ~3 months ago counts half as much as this week's."
   },
   "markets": {

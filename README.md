@@ -15,7 +15,9 @@ It replaces a spreadsheet that needed the whole week's games, every line, and
 every final score typed in by hand.
 
 ```
-ESPN public API  ──►  ratings solved from results  ──►  edges + tiers
+ESPN scores + 2026 FPI ──► independent preseason prior ──► results update
+                                                               │
+Sportsbook prices ─────────────────────────────────────► edges + tiers
                                                           │
                           state/ (line history, bet ledger, game cache)
                                                           │
@@ -25,12 +27,19 @@ ESPN public API  ──►  ratings solved from results  ──►  edges + tier
 
 ## What it does that the spreadsheet couldn't
 
-**Power ratings solve themselves.** The workbook shipped with hand-typed sample
-ratings and a note telling you to replace them weekly from SP+ or FPI. Here they
-are solved from actual results by ridge-regularised least squares on margin of
-victory, so strength of schedule falls out of the maths instead of being a fudge
-factor, and they update every time a game goes final. Home-field advantage is
-solved too rather than assumed.
+**Power ratings have a real 2026 preseason foundation.** Current-season ESPN
+FPI supplies a neutral-field team rating plus offensive, defensive and special-
+teams components. It contributes 85% of the preseason margin prior; this
+model's own regressed 2025 result solve contributes 15%, so the lab preserves
+FPI's correct points scale without merely copying ESPN. The more uncertain unit
+components carry a lower 35% weight in the totals model. Current-season
+results then update that prior by ridge-regularised least squares on margin of
+victory. Strength of schedule is handled structurally and home-field advantage
+is solved too.
+
+The FPI feed is cached after every successful refresh. If ESPN is temporarily
+unavailable, the last verified 2026 snapshot remains in use rather than silently
+falling back to zero-strength teams.
 
 **Key numbers.** Football margins are not a bell curve — games land on 3 and 7
 far more often than a normal distribution predicts. The spreadsheet used
@@ -71,8 +80,8 @@ the time, you will see it there.
 
 | Grade | Action edge | Meaning |
 |---|---|---|
-| **BEST BET** | ≥ 8% | The model's strongest disagreements with the market |
-| **GOOD** | ≥ 5% | Worth a standard stake |
+| **BEST BET** | ≥ 7% | The model's strongest disagreements with the market |
+| **GOOD** | ≥ 4.5% | Worth a standard stake |
 | **LEAN** | ≥ 3% | Small stake, or a watch |
 | **AVOID** | below or hard stop | Visible for audit, never logged or staked |
 
@@ -170,9 +179,10 @@ Nothing here is a guarantee. Bet only what you can afford to lose.
 
 ## Data source
 
-ESPN's public JSON feed — free and no key. It carries the full FBS schedule,
-live and final scores, and a single sportsbook's pregame line. DraftKings is
-preferred when ESPN exposes it; incomplete two-sided markets are ignored.
+ESPN's public JSON feeds — free and no key. They carry current-season FPI and
+its unit components, the full FBS schedule, live and final scores, and a single
+sportsbook's pregame line. DraftKings is preferred when ESPN exposes it;
+incomplete two-sided markets are ignored.
 
 The main limitation is that single book: there is no line shopping, no
 multi-book consensus, and no way to spot the outlier price that is usually where

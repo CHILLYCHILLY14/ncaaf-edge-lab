@@ -4,6 +4,10 @@ on:
   push:
     branches: [ main ]
 
+concurrency:
+  group: ncaaf-edge-pages
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -14,11 +18,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Stage public site without private wager history
+        run: |
+          mkdir -p _public_site/data
+          cp -R site/. _public_site/
+          printf '[]\n' > _public_site/data/ledger.json
+          printf '{}\n' > _public_site/data/model_history.json
+          printf '{"starting_bankroll":null,"current_bankroll":null,"wins":0,"losses":0,"pushes":0,"settled":0,"pending":0,"roi":null,"pnl":null}\n' > _public_site/data/summary.json
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'site'
+          path: '_public_site'
       
       - name: Deploy to GitHub Pages
         id: deployment

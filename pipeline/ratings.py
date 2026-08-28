@@ -38,7 +38,8 @@ import numpy as np
 
 def _ridge_solve(rows: list[tuple[dict[int, float], float, float]],
                  n_params: int, lam: float,
-                 unpenalised: tuple[int, ...] = ()) -> np.ndarray:
+                 unpenalised: tuple[int, ...] = (),
+                 prior_mean: dict[int, float] | None = None) -> np.ndarray:
     """
     Solve (X'WX + lam*I) b = X'Wy without ever materialising a dense X.
 
@@ -60,6 +61,14 @@ def _ridge_solve(rows: list[tuple[dict[int, float], float, float]],
     for c in unpenalised:
         pen[c] = 0.0
     A += np.diag(pen)
+    # Ordinary ridge is a Gaussian prior centred on zero.  When a genuine
+    # preseason prior is available (our own prior-season solve blended with
+    # ESPN FPI), centre that same stabilising penalty on the prior instead.
+    # This prevents the first current-season result from collapsing every team
+    # back toward average simply because the schedule is still sparse.
+    for col, value in (prior_mean or {}).items():
+        if 0 <= col < n_params and col not in unpenalised:
+            b[col] += pen[col] * float(value)
     try:
         return np.linalg.solve(A, b)
     except np.linalg.LinAlgError:
@@ -110,7 +119,11 @@ def solve_margin_ratings(games: list[dict], cfg: dict,
     if not played:
         return (dict(prior or {}), float(cfg["model"]["home_field_fallback"]))
 
-    teams = sorted({g["home"]["abbr"] for g in played} | {g["away"]["abbr"] for g in played})
+    teams = sorted(
+        {g["home"]["abbr"] for g in played}
+        | {g["away"]["abbr"] for g in played}
+        | set((prior or {}).keys())
+    )
     idx = {t: i for i, t in enumerate(teams)}
     hfa_col = len(teams)
     n_params = len(teams) + 1
@@ -125,16 +138,11 @@ def solve_margin_ratings(games: list[dict], cfg: dict,
             coefs[hfa_col] = 1.0
         rows.append((coefs, float(margin), float(w)))
 
-    # Anchor each rating to its preseason prior rather than to zero. Early in the
-    # year that is the difference between "we know nothing" and "we know what we
-    # knew in August", which is a lot.
-    if prior:
-        prior_w = float(r["prior_season_weight"]) * max(1.0, len(played) / 40.0)
-        for t, p in prior.items():
-            if t in idx:
-                rows.append(({idx[t]: 1.0}, float(p), prior_w))
-
-    beta = _ridge_solve(rows, n_params, lam, unpenalised=(hfa_col,))
+    prior_mean = ({idx[t]: float(p) for t, p in (prior or {}).items() if t in idx}
+                  if prior else None)
+    current_lam = float(r.get("current_season_prior_strength", lam)) if prior else lam
+    beta = _ridge_solve(rows, n_params, current_lam,
+                        unpenalised=(hfa_col,), prior_mean=prior_mean)
     # Shrink the solved home-field number toward the configured fallback in
     # proportion to how many non-neutral games it was estimated from. In week 1
     # a raw solve can land anywhere; by November it should stand on its own.
@@ -149,7 +157,11 @@ def solve_margin_ratings(games: list[dict], cfg: dict,
     return ({t: v - mean for t, v in ratings.items()}, hfa)
 
 
-def solve_scoring_ratings(games: list[dict], cfg: dict) -> tuple[dict[str, dict], float, float]:
+def solve_scoring_ratings(games: list[dict], cfg: dict,
+                          prior: dict[str, dict] | None = None,
+                          prior_league: float | None = None,
+                          prior_home_bump: float | None = None
+                          ) -> tuple[dict[str, dict], float, float]:
     """
     Offence / defence ratings for the totals model.
 
@@ -166,12 +178,25 @@ def solve_scoring_ratings(games: list[dict], cfg: dict) -> tuple[dict[str, dict]
               and g.get("away_score") is not None
               and g["home"]["abbr"] and g["away"]["abbr"]]
     if not played:
-        return ({}, 27.5, 1.2)
+        return (dict(prior or {}), float(prior_league or 27.5),
+                float(prior_home_bump or 1.2))
 
     pts = [g["home_score"] for g in played] + [g["away_score"] for g in played]
-    league = float(np.mean(pts))
+    observed_league = float(np.mean(pts))
+    if prior_league is None:
+        league = observed_league
+    else:
+        # One Saturday should not redefine the scoring environment.  Forty
+        # prior games is enough ballast to make the transition smooth while
+        # allowing the current season to take over quickly.
+        k = float(r.get("scoring_prior_games", 40.0))
+        league = (len(played) * observed_league + k * float(prior_league)) / (len(played) + k)
 
-    teams = sorted({g["home"]["abbr"] for g in played} | {g["away"]["abbr"] for g in played})
+    teams = sorted(
+        {g["home"]["abbr"] for g in played}
+        | {g["away"]["abbr"] for g in played}
+        | set((prior or {}).keys())
+    )
     off = {t: i for i, t in enumerate(teams)}
     dfn = {t: i + len(teams) for i, t in enumerate(teams)}
     home_col = 2 * len(teams)
@@ -186,10 +211,22 @@ def solve_scoring_ratings(games: list[dict], cfg: dict) -> tuple[dict[str, dict]
         rows.append(({off[a]: 1.0, dfn[h]: -1.0},
                      float(g["away_score"]) - league, float(w)))
 
-    beta = _ridge_solve(rows, n_params, lam, unpenalised=(home_col,))
+    prior_mean = None
+    if prior:
+        prior_mean = {}
+        for team, values in prior.items():
+            if team in off:
+                prior_mean[off[team]] = float(values.get("off") or 0.0)
+                prior_mean[dfn[team]] = float(values.get("def") or 0.0)
+    current_lam = float(r.get("current_season_prior_strength", lam)) if prior else lam
+    beta = _ridge_solve(rows, n_params, current_lam,
+                        unpenalised=(home_col,), prior_mean=prior_mean)
     bump = float(beta[home_col])
     if not (-3.0 <= bump <= 6.0):
-        bump = 1.2
+        bump = float(prior_home_bump or 1.2)
+    elif prior_home_bump is not None:
+        k = float(r.get("home_scoring_prior_games", 120.0))
+        bump = (len(played) * bump + k * float(prior_home_bump)) / (len(played) + k)
 
     out = {}
     for t in teams:
@@ -200,6 +237,86 @@ def solve_scoring_ratings(games: list[dict], cfg: dict) -> tuple[dict[str, dict]
 def regress_to_prior(last_season: dict[str, float], factor: float) -> dict[str, float]:
     """Carry last year's solved ratings into this year's preseason prior."""
     return {t: v * factor for t, v in last_season.items()}
+
+
+def _centred(values: dict[str, float]) -> dict[str, float]:
+    if not values:
+        return {}
+    mean = sum(values.values()) / len(values)
+    return {team: float(value) - mean for team, value in values.items()}
+
+
+def blend_preseason_ratings(internal: dict[str, float], fpi: dict[str, dict],
+                            fpi_weight: float) -> tuple[dict[str, float], dict[str, dict]]:
+    """Blend independent 2026 FPI with the model's regressed 2025 solve.
+
+    FPI is already expressed in neutral-field points, the same units as this
+    rating model.  It supplies the roster/recruiting/coaching information our
+    score-only ridge solve cannot know in August; the internal component keeps
+    the result from becoming an ESPN copy.
+    """
+    weight = min(1.0, max(0.0, float(fpi_weight)))
+    internal_c = _centred({t: float(v) for t, v in internal.items()})
+    fpi_raw = {t: float(row["fpi"]) for t, row in fpi.items()
+               if row.get("fpi") is not None}
+    fpi_c = _centred(fpi_raw)
+    teams = sorted(set(internal_c) | set(fpi_c))
+    out: dict[str, float] = {}
+    audit: dict[str, dict] = {}
+    for team in teams:
+        own = internal_c.get(team)
+        espn = fpi_c.get(team)
+        if own is None:
+            value, source = espn, "ESPN FPI"
+        elif espn is None:
+            value, source = own, "internal prior"
+        else:
+            value = (1.0 - weight) * own + weight * espn
+            source = "FPI + internal"
+        if value is None:
+            continue
+        out[team] = float(value)
+        audit[team] = {
+            "internal_prior": own,
+            "fpi": fpi_raw.get(team),
+            "fpi_centered": espn,
+            "fpi_rank": (fpi.get(team) or {}).get("fpi_rank"),
+            "source": source,
+        }
+    return _centred(out), audit
+
+
+def blend_scoring_priors(internal: dict[str, dict], fpi: dict[str, dict],
+                         fpi_weight: float) -> dict[str, dict]:
+    """Use FPI's offensive/defensive/ST components in preseason totals.
+
+    Half of special-teams value is assigned to each scoring side so the two
+    components still sum to the headline team-strength contribution.
+    """
+    weight = min(1.0, max(0.0, float(fpi_weight)))
+    own_off = _centred({t: float(v.get("off") or 0.0) for t, v in internal.items()})
+    own_def = _centred({t: float(v.get("def") or 0.0) for t, v in internal.items()})
+    fpi_off, fpi_def = {}, {}
+    for team, row in fpi.items():
+        off, dfn = row.get("offense"), row.get("defense")
+        if off is None or dfn is None:
+            continue
+        st = float(row.get("special_teams") or 0.0)
+        fpi_off[team] = float(off) + st / 2.0
+        fpi_def[team] = float(dfn) + st / 2.0
+    fpi_off, fpi_def = _centred(fpi_off), _centred(fpi_def)
+
+    out = {}
+    for team in sorted(set(own_off) | set(fpi_off)):
+        if team in own_off and team in fpi_off:
+            off = (1.0 - weight) * own_off[team] + weight * fpi_off[team]
+            dfn = (1.0 - weight) * own_def[team] + weight * fpi_def[team]
+        elif team in fpi_off:
+            off, dfn = fpi_off[team], fpi_def[team]
+        else:
+            off, dfn = own_off[team], own_def[team]
+        out[team] = {"off": float(off), "def": float(dfn)}
+    return out
 
 
 def games_played(games: list[dict]) -> dict[str, int]:

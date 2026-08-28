@@ -21,18 +21,17 @@ on:
         type: boolean
         default: false
 
-permissions:
-  contents: write
-  pages: write
-  id-token: write
+permissions: {}
 
 concurrency:
-  group: ncaaf-edge
+  group: ncaaf-edge-pages
   cancel-in-progress: false
 
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -64,19 +63,37 @@ jobs:
         run: |
           git config user.name  "ncaaf-edge bot"
           git config user.email "actions@github.com"
-          git add -A state site/data NCAAF_Edge_Model.xlsx
+          # Public model/cache allowlist. Bankroll, wager/forecast history and
+          # workbook records are deliberately never staged by the scheduled bot.
+          git add -A -- \
+            state/fpi_*.json state/games_*.json state/history_*.json \
+            state/lines.json \
+            site/data/board.json site/data/games.json site/data/meta.json \
+            site/data/ratings.json site/data/schedule.json
           git diff --staged --quiet || git commit -m "refresh $(date -u +'%Y-%m-%d %H:%M UTC')"
           # Another run may have pushed while this one was working.
           git pull --rebase --autostash origin ${{ github.ref_name }} || true
           git push
 
+      - name: Stage public site without private wager history
+        run: |
+          mkdir -p _public_site/data
+          cp -R site/. _public_site/
+          printf '[]\n' > _public_site/data/ledger.json
+          printf '{}\n' > _public_site/data/model_history.json
+          printf '{"starting_bankroll":null,"current_bankroll":null,"wins":0,"losses":0,"pushes":0,"settled":0,"pending":0,"roi":null,"pnl":null}\n' > _public_site/data/summary.json
+
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: _public_site
 
   publish:
     needs: refresh
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
