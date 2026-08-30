@@ -51,12 +51,12 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/23.png",
    "name": "San Jos\u00e9 State Spartans",
    "rank": 99,
-   "record": "0-0"
+   "record": "0-1"
   },
-  "away_score": 3,
+  "away_score": 26,
   "broadcast": "NBC",
   "canceled": false,
-  "completed": false,
+  "completed": true,
   "conference_game": false,
   "date_utc": "2026-08-29T19:00Z",
   "game_id": "401864494",
@@ -68,18 +68,18 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/30.png",
    "name": "USC Trojans",
    "rank": 14,
-   "record": "0-0"
+   "record": "1-0"
   },
-  "home_score": 28,
+  "home_score": 42,
   "indoor": false,
   "neutral": false,
   "odds": {},
   "postponed": false,
   "season": 2026,
   "season_type": 2,
-  "state": "in",
-  "status_detail": "7:15 - 3rd",
-  "status_name": "STATUS_IN_PROGRESS",
+  "state": "post",
+  "status_detail": "Final",
+  "status_name": "STATUS_FINAL",
   "venue": "Los Angeles Memorial Coliseum",
   "venue_city": "Los Angeles",
   "venue_state": "CA",
@@ -94,12 +94,12 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/152.png",
    "name": "NC State Wolfpack",
    "rank": 99,
-   "record": "0-0"
+   "record": "0-1"
   },
-  "away_score": 0,
+  "away_score": 8,
   "broadcast": "ESPN",
   "canceled": false,
-  "completed": false,
+  "completed": true,
   "conference_game": true,
   "date_utc": "2026-08-29T19:30Z",
   "game_id": "401858202",
@@ -111,18 +111,18 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/258.png",
    "name": "Virginia Cavaliers",
    "rank": 99,
-   "record": "0-0"
+   "record": "1-0"
   },
-  "home_score": 17,
+  "home_score": 34,
   "indoor": false,
   "neutral": false,
   "odds": {},
   "postponed": false,
   "season": 2026,
   "season_type": 2,
-  "state": "in",
-  "status_detail": "Halftime",
-  "status_name": "STATUS_HALFTIME",
+  "state": "post",
+  "status_detail": "Final",
+  "status_name": "STATUS_FINAL",
   "venue": "Scott Stadium",
   "venue_city": "Charlottesville",
   "venue_state": "VA",
@@ -137,12 +137,12 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/55.png",
    "name": "Jacksonville State Gamecocks",
    "rank": 99,
-   "record": "0-0"
+   "record": "0-1"
   },
-  "away_score": 0,
+  "away_score": 7,
   "broadcast": "CBSSN",
   "canceled": false,
-  "completed": false,
+  "completed": true,
   "conference_game": false,
   "date_utc": "2026-08-29T21:30Z",
   "game_id": "401864577",
@@ -154,9 +154,9 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2449.png",
    "name": "North Dakota State Bison",
    "rank": 99,
-   "record": "0-0"
+   "record": "1-0"
   },
-  "home_score": 0,
+  "home_score": 33,
   "indoor": true,
   "neutral": false,
   "odds": {
@@ -179,9 +179,9 @@
   "postponed": false,
   "season": 2026,
   "season_type": 2,
-  "state": "pre",
-  "status_detail": "8/29 - 5:30 PM EDT",
-  "status_name": "STATUS_SCHEDULED",
+  "state": "post",
+  "status_detail": "Final",
+  "status_name": "STATUS_FINAL",
   "venue": "Fargodome",
   "venue_city": "Fargo",
   "venue_state": "ND",
@@ -196,12 +196,12 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/16.png",
    "name": "Sacramento State Hornets",
    "rank": 99,
-   "record": "0-0"
+   "record": "0-1"
   },
-  "away_score": 0,
+  "away_score": 17,
   "broadcast": "ESPN+",
   "canceled": false,
-  "completed": false,
+  "completed": true,
   "conference_game": true,
   "date_utc": "2026-08-29T22:30Z",
   "game_id": "401866408",
@@ -213,9 +213,9 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2199.png",
    "name": "Eastern Michigan Eagles",
    "rank": 99,
-   "record": "0-0"
+   "record": "1-0"
   },
-  "home_score": 0,
+  "home_score": 28,
   "indoor": false,
   "neutral": false,
   "odds": {
@@ -238,9 +238,9 @@
   "postponed": false,
   "season": 2026,
   "season_type": 2,
-  "state": "pre",
-  "status_detail": "8/29 - 6:30 PM EDT",
-  "status_name": "STATUS_SCHEDULED",
+  "state": "post",
+  "status_detail": "Final",
+  "status_name": "STATUS_FINAL",
   "venue": "Rynearson Stadium",
   "venue_city": "Ypsilanti",
   "venue_state": "MI",
@@ -255,12 +255,12 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/62.png",
    "name": "Hawai'i Rainbow Warriors",
    "rank": 99,
-   "record": "0-0"
+   "record": "0-1"
   },
-  "away_score": 0,
+  "away_score": 27,
   "broadcast": "ACC Network",
   "canceled": false,
-  "completed": false,
+  "completed": true,
   "conference_game": false,
   "date_utc": "2026-08-29T23:00Z",
   "game_id": "401858201",
@@ -272,9 +272,9 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/24.png",
    "name": "Stanford Cardinal",
    "rank": 99,
-   "record": "0-0"
+   "record": "1-0"
   },
-  "home_score": 0,
+  "home_score": 37,
   "indoor": false,
   "neutral": false,
   "odds": {
@@ -297,9 +297,9 @@
   "postponed": false,
   "season": 2026,
   "season_type": 2,
-  "state": "pre",
-  "status_detail": "8/29 - 7:00 PM EDT",
-  "status_name": "STATUS_SCHEDULED",
+  "state": "post",
+  "status_detail": "Final",
+  "status_name": "STATUS_FINAL",
   "venue": "Stanford Stadium",
   "venue_city": "Stanford",
   "venue_state": "CA",
@@ -314,12 +314,12 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/166.png",
    "name": "New Mexico State Aggies",
    "rank": 99,
-   "record": "0-0"
+   "record": "0-1"
   },
-  "away_score": 0,
+  "away_score": 17,
   "broadcast": "CW",
   "canceled": false,
-  "completed": false,
+  "completed": true,
   "conference_game": false,
   "date_utc": "2026-08-29T23:00Z",
   "game_id": "401864570",
@@ -331,9 +331,9 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/52.png",
    "name": "Florida State Seminoles",
    "rank": 99,
-   "record": "0-0"
+   "record": "1-0"
   },
-  "home_score": 0,
+  "home_score": 34,
   "indoor": false,
   "neutral": false,
   "odds": {
@@ -356,9 +356,9 @@
   "postponed": false,
   "season": 2026,
   "season_type": 2,
-  "state": "pre",
-  "status_detail": "8/29 - 7:00 PM EDT",
-  "status_name": "STATUS_SCHEDULED",
+  "state": "post",
+  "status_detail": "Final",
+  "status_name": "STATUS_FINAL",
   "venue": "Doak Campbell Stadium",
   "venue_city": "Tallahassee",
   "venue_state": "FL",
@@ -395,29 +395,13 @@
   "home_score": 0,
   "indoor": true,
   "neutral": false,
-  "odds": {
-   "book": "DraftKings",
-   "details": "UNLV -4",
-   "ml_away": 150.0,
-   "ml_home": -180.0,
-   "over_price": -112.0,
-   "spread_home": -4.0,
-   "spread_price_away": -115.0,
-   "spread_price_home": -105.0,
-   "total": 55.5,
-   "under_price": -108.0,
-   "verified_markets": [
-    "ATS",
-    "TOTAL",
-    "ML"
-   ]
-  },
+  "odds": {},
   "postponed": false,
   "season": 2026,
   "season_type": 2,
-  "state": "pre",
-  "status_detail": "8/29 - 10:00 PM EDT",
-  "status_name": "STATUS_SCHEDULED",
+  "state": "in",
+  "status_detail": "8:51 - 2nd",
+  "status_name": "STATUS_IN_PROGRESS",
   "venue": "Allegiant Stadium",
   "venue_city": "Las Vegas",
   "venue_state": "NV",
@@ -785,7 +769,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2029.png",
    "name": "Arkansas-Pine Bluff Golden Lions",
    "rank": 99,
-   "record": "0-0"
+   "record": "1-0"
   },
   "away_score": 0,
   "broadcast": "SEC Network",
@@ -1078,7 +1062,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/23.png",
    "name": "San Jos\u00e9 State Spartans",
    "rank": 99,
-   "record": "0-0"
+   "record": "0-1"
   },
   "away_score": 0,
   "broadcast": "ESPN+",
@@ -1095,7 +1079,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2199.png",
    "name": "Eastern Michigan Eagles",
    "rank": 99,
-   "record": "0-0"
+   "record": "1-0"
   },
   "home_score": 0,
   "indoor": false,
@@ -1137,7 +1121,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/282.png",
    "name": "Indiana State Sycamores",
    "rank": 99,
-   "record": "0-0"
+   "record": "0-1"
   },
   "away_score": 0,
   "broadcast": "BTN",
@@ -1195,7 +1179,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2448.png",
    "name": "North Carolina A&T Aggies",
    "rank": 99,
-   "record": "0-0"
+   "record": "0-1"
   },
   "away_score": 0,
   "broadcast": "ESPN+",
@@ -1446,7 +1430,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/24.png",
    "name": "Stanford Cardinal",
    "rank": 99,
-   "record": "0-0"
+   "record": "1-0"
   },
   "home_score": 0,
   "indoor": false,
@@ -1505,7 +1489,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/30.png",
    "name": "USC Trojans",
    "rank": 14,
-   "record": "0-0"
+   "record": "1-0"
   },
   "home_score": 0,
   "indoor": false,
@@ -1515,12 +1499,12 @@
    "details": "USC -23.5",
    "ml_away": 1400.0,
    "ml_home": -3200.0,
-   "over_price": -108.0,
+   "over_price": -115.0,
    "spread_home": -23.5,
    "spread_price_away": -112.0,
    "spread_price_home": -108.0,
    "total": 51.5,
-   "under_price": -112.0,
+   "under_price": -105.0,
    "verified_markets": [
     "ATS",
     "TOTAL",
@@ -1959,7 +1943,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2803.png",
    "name": "Bryant Bulldogs",
    "rank": 99,
-   "record": "0-0"
+   "record": "1-0"
   },
   "away_score": 0,
   "broadcast": "CBSSN",
@@ -2370,7 +2354,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2546.png",
    "name": "Southeast Missouri State Redhawks",
    "rank": 99,
-   "record": "0-0"
+   "record": "1-0"
   },
   "away_score": 0,
   "broadcast": "ESPN+",
@@ -3017,7 +3001,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2643.png",
    "name": "The Citadel Bulldogs",
    "rank": 99,
-   "record": "0-0"
+   "record": "0-1"
   },
   "away_score": 0,
   "broadcast": "ESPN+",
@@ -3211,7 +3195,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2449.png",
    "name": "North Dakota State Bison",
    "rank": 99,
-   "record": "0-0"
+   "record": "1-0"
   },
   "home_score": 0,
   "indoor": true,
@@ -3370,7 +3354,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2453.png",
    "name": "North Alabama Lions",
    "rank": 99,
-   "record": "0-0"
+   "record": "1-0"
   },
   "away_score": 0,
   "broadcast": "SEC Network",
@@ -3487,7 +3471,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2016.png",
    "name": "Alcorn State Braves",
    "rank": 99,
-   "record": "0-0"
+   "record": "1-0"
   },
   "away_score": 0,
   "broadcast": "ESPN+",
@@ -3605,7 +3589,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2450.png",
    "name": "Norfolk State Spartans",
    "rank": 99,
-   "record": "0-0"
+   "record": "1-0"
   },
   "away_score": 0,
   "broadcast": "ESPN+",
@@ -3780,7 +3764,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2000.png",
    "name": "Abilene Christian Wildcats",
    "rank": 99,
-   "record": "0-0"
+   "record": "0-1"
   },
   "away_score": 0,
   "broadcast": "FS1",
@@ -3896,7 +3880,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/304.png",
    "name": "Idaho State Bengals",
    "rank": 99,
-   "record": "0-0"
+   "record": "1-0"
   },
   "away_score": 0,
   "broadcast": "CBSSN",
@@ -4191,7 +4175,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2198.png",
    "name": "Eastern Kentucky Colonels",
    "rank": 99,
-   "record": "0-0"
+   "record": "0-1"
   },
   "away_score": 0,
   "broadcast": "ESPN+",
@@ -4208,7 +4192,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/55.png",
    "name": "Jacksonville State Gamecocks",
    "rank": 99,
-   "record": "0-0"
+   "record": "0-1"
   },
   "home_score": 0,
   "indoor": false,
@@ -4545,7 +4529,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2678.png",
    "name": "VMI Keydets",
    "rank": 99,
-   "record": "0-0"
+   "record": "0-1"
   },
   "away_score": 0,
   "broadcast": "ACC Network",
@@ -4837,7 +4821,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2261.png",
    "name": "Hampton Pirates",
    "rank": 99,
-   "record": "0-0"
+   "record": "1-0"
   },
   "away_score": 0,
   "broadcast": "BTN",
@@ -4895,7 +4879,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2571.png",
    "name": "South Dakota State Jackrabbits",
    "rank": 99,
-   "record": "0-0"
+   "record": "1-0"
   },
   "away_score": 0,
   "broadcast": "BTN",
@@ -4954,7 +4938,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2320.png",
    "name": "Lamar Cardinals",
    "rank": 99,
-   "record": "0-0"
+   "record": "1-0"
   },
   "away_score": 0,
   "broadcast": "ESPN+",
@@ -5030,7 +5014,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/166.png",
    "name": "New Mexico State Aggies",
    "rank": 99,
-   "record": "0-0"
+   "record": "0-1"
   },
   "home_score": 0,
   "indoor": false,
@@ -5072,7 +5056,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2464.png",
    "name": "Northern Arizona Lumberjacks",
    "rank": 99,
-   "record": "0-0"
+   "record": "1-0"
   },
   "away_score": 0,
   "broadcast": "ESPN+",
@@ -5131,7 +5115,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2502.png",
    "name": "Portland State Vikings",
    "rank": 99,
-   "record": "0-0"
+   "record": "0-1"
   },
   "away_score": 0,
   "broadcast": "USA Net",
@@ -5189,7 +5173,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2415.png",
    "name": "Morgan State Bears",
    "rank": 99,
-   "record": "0-0"
+   "record": "1-0"
   },
   "away_score": 0,
   "broadcast": "ESPN+",
@@ -5264,7 +5248,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/62.png",
    "name": "Hawai'i Rainbow Warriors",
    "rank": 99,
-   "record": "0-0"
+   "record": "0-1"
   },
   "home_score": 0,
   "indoor": false,
@@ -5382,7 +5366,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/16.png",
    "name": "Sacramento State Hornets",
    "rank": 99,
-   "record": "0-0"
+   "record": "0-1"
   },
   "home_score": 0,
   "indoor": false,
@@ -5735,7 +5719,7 @@
    "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/52.png",
    "name": "Florida State Seminoles",
    "rank": 99,
-   "record": "0-0"
+   "record": "1-0"
   },
   "home_score": 0,
   "indoor": false,
