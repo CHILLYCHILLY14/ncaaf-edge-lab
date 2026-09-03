@@ -272,6 +272,7 @@ footer b{color:var(--ink-2)}
   </footer>
 </main>
 
+<script src="ledger.js"></script>
 <script src="sim.js"></script>
 <script src="staking.js"></script>
 <script>
@@ -283,7 +284,7 @@ const DATA_BASE = (() => {
   return "./data/";
 })();
 const FILES = ["meta", "summary", "board", "ledger", "ratings", "model_history", "schedule", "games"];
-const S = { meta:null, summary:null, board:[], ledger:[], ratings:[], model_history:null, schedule:[], games:[], tab:"best", staking:null,
+const S = { meta:null, summary:null, board:[], ledger:[], myLedger:[], ratings:[], model_history:null, schedule:[], games:[], tab:"best", staking:null,
             filters:{tier:"PLAYS", market:"ALL", q:""}, sort:{key:"rating", dir:-1}, schedWeek:null, slateIndex:null,
             sim:{ready:false,gameId:"",away:"",home:"",neutral:false,spread:"",total:"",iterations:10000} };
 
@@ -299,6 +300,7 @@ async function load(){
 
 /* ================================================================= helpers */
 const cfg = () => (S.meta && S.meta.settings) || {};
+const LEDGER = window.NCAAFEdgeLedger;
 const STAKING = window.EdgeStaking;
 const STAKING_KEY = "ncaaf-edge.staking.v1";
 const stakingDefaults = () => {
@@ -312,6 +314,11 @@ const stakingSettings = () => {
   return S.staking;
 };
 const localBankroll = () => Number(stakingSettings().bankroll||0);
+const myLedgerSummary = () => LEDGER
+  ? LEDGER.summarise(S.myLedger||[], localBankroll())
+  : {starting_bankroll:localBankroll(),current_bankroll:localBankroll(),pnl:0,pending:0,settled:0,at_risk:0};
+const stakeBankroll = () => Number(myLedgerSummary().current_bankroll||0);
+const isTracked = row => LEDGER && (S.myLedger||[]).some(entry => LEDGER.keyOf(entry) === LEDGER.keyOf(row));
 const sym = () => (cfg().currency_symbol || "$");
 const pct = (v,d=1) => v === null || v === undefined || isNaN(v) ? "—" : (v*100).toFixed(d) + "%";
 const sgn = (v,d=1) => v === null || v === undefined || isNaN(v) ? "—" : (v>=0?"+":"") + (v*100).toFixed(d) + "%";
@@ -404,20 +411,19 @@ function renderStamp(){
 }
 
 function renderKpis(){
-  const s = S.summary || {};
-  const roll = localBankroll();
+  const ledger = myLedgerSummary();
   const allPlays = S.board.filter(b => b.tier !== "PASS");
   const board = slateRows();
   const plays = board.filter(b => b.tier !== "PASS");
   const best = plays.filter(b => b.tier === "BEST BET").length;
   const cls = v => v === null || v === undefined ? "" : (v > 0 ? "pos" : v < 0 ? "neg" : "");
-  const rec = `${s.wins||0}–${s.losses||0}` + (s.pushes ? `–${s.pushes}` : "");
+  const rec = `${ledger.wins||0}–${ledger.losses||0}` + (ledger.pushes ? `–${ledger.pushes}` : "");
   const k = [
     ["This slate", String(plays.length), `${new Set(board.map(b=>b.game_id)).size} games priced`, plays.length ? "flagc" : ""],
     ["All qualified", String(allPlays.length), `${allPlays.filter(b=>b.tier==="BEST BET").length} best bets`, allPlays.length ? "flagc" : ""],
-    ["Bankroll", money(roll), "saved on this device", ""],
-    ["Settled", String(s.settled||0), `${rec} · ${s.pending||0} pending`, ""],
-    ["ROI", sgn(s.roi), s.roi==null?"no settled bets":`${money(s.pnl)} P/L`, cls(s.roi)],
+    ["Bankroll", money(ledger.current_bankroll), "saved on this device", ""],
+    ["Settled", String(ledger.settled||0), `${rec} · ${ledger.pending||0} pending`, ""],
+    ["ROI", sgn(ledger.roi), ledger.roi==null?"no settled bets":`${money(ledger.pnl)} P/L`, cls(ledger.roi)],
     ["Model scale", String((S.meta.model_health||{}).status||"—").toUpperCase(), `max edge ${pct((S.meta.model_health||{}).max_displayed_edge)}`, (S.meta.model_health||{}).status==="healthy"?"pos":""],
   ];
   document.getElementById("kpis").innerHTML = k.map(([a,b,c,cl]) =>
@@ -429,7 +435,7 @@ const TABS = [
   ["board","Full Board", () => S.board.length],
   ["schedule","Schedule", () => S.schedule.reduce((n,w) => n + w.games, 0)],
   ["sim","Simulator", () => null],
-  ["ledger","Auto Ledger", () => S.ledger.length],
+  ["ledger","My Ledger", () => S.myLedger.length],
   ["ratings","Power Ratings", () => S.ratings.length],
   ["history","Model History", () => (S.model_history||{}).total_logged ?? null],
   ["health","Model Health", () => null],
@@ -471,7 +477,16 @@ function why(b){
 }
 
 function stake(b){
-  return STAKING ? STAKING.suggestedStake(b, stakingSettings(), localBankroll(), (cfg().model||{}).max_model_prob) : 0;
+  return STAKING ? STAKING.suggestedStake(b, stakingSettings(), stakeBankroll(), (cfg().model||{}).max_model_prob) : 0;
+}
+
+function ledgerButton(row, plannedStake){
+  if (!row || row.tier === "PASS")
+    return `<button type="button" class="iconbtn" disabled title="The model passed on this wager">–</button>`;
+  if (isTracked(row)) return `<span class="tracked">✓ In ledger</span>`;
+  const suggested = plannedStake == null ? stake(row) : Number(plannedStake);
+  const amount = suggested > 0 ? suggested : Number(stakingSettings().min_stake || 1);
+  return `<button type="button" class="iconbtn" data-add="${esc(row.game_id)}:${esc(row.market)}:${esc(row.side)}" data-default-stake="${amount.toFixed(2)}">+ Ledger</button>`;
 }
 
 function renderWhyEmpty(){
@@ -534,7 +549,7 @@ function renderBest(){
   const board = slateRows();
   const plays = board.filter(b => b.tier !== "PASS")
     .sort((a,b) => RANK[a.tier]-RANK[b.tier] || actionEdge(b)-actionEdge(a));
-  const planned = STAKING ? STAKING.plan(plays, stakingSettings(), localBankroll(), (cfg().model||{}).max_model_prob) : plays.map(stake);
+  const planned = STAKING ? STAKING.plan(plays, stakingSettings(), stakeBankroll(), (cfg().model||{}).max_model_prob) : plays.map(stake);
   const el = document.getElementById("p-best");
   const nearby = S.schedule.map((s,i)=>({s,i})).filter(x => (x.s.with_odds||0)>0).slice(0,5);
   let h = `<div class="slate-strip">${nearby.map(({s,i}) => `<button class="slate-chip" data-slate="${i}" aria-pressed="${i===S.slateIndex}">
@@ -556,6 +571,7 @@ function renderBest(){
         <b class="play-edge">${sgn(actionEdge(b))} edge</b>
         <em class="play-note">${esc(warn || (b.confidence<.8?"early-season confidence reserve applied":"model and market checked"))}</em>
         <b class="play-stake">${st?money(st):"—"}</b>
+        <span class="play-track">${ledgerButton(b,st)}</span>
       </div>`;
     }).join("") + `<p class="plays-foot">${esc(STAKING?STAKING.description(stakingSettings(),sym()):"Staking")} · capped at ${pct(stakingSettings().max_stake_pct,0)} per play and ${pct(stakingSettings().max_slate_exposure_pct,0)} per slate. Change this under Bankroll & Stakes. Re-check the price before betting.</p></div>`;
   }
@@ -603,7 +619,7 @@ function renderBoard(){
       <th>Tier</th><th>Game</th><th>Mkt</th><th>Pick</th><th class="r">Price</th>
       <th class="r">Model</th><th class="r">Fair</th><th class="r">Break-even</th>
       <th class="r">Action edge</th><th class="r">EV</th><th class="r">Stake</th>
-      <th class="r">Conf.</th><th class="r">Move</th><th>Note</th></tr></thead><tbody>` +
+      <th class="r">Conf.</th><th class="r">Move</th><th>Note</th><th>Track</th></tr></thead><tbody>` +
       rows.map(b => {
         const tc = TIERCLS[b.tier];
         const lm = b.line_move || {};
@@ -624,6 +640,7 @@ function renderBoard(){
           <td class="r num" style="color:var(--ink-3)">${b.confidence===null||b.confidence===undefined?"—":pct(b.confidence,0)}</td>
           <td class="r num" style="color:var(--ink-3)">${mv===null||mv===undefined?"—":(mv>0?"+":"")+mv}</td>
           <td style="color:var(--ink-3);font-size:11.5px;min-width:180px">${b.filtered?esc(b.filtered):(b.warning?esc(b.warning):"—")}</td>
+          <td>${ledgerButton(b,st)}</td>
         </tr>`;
       }).join("") + `</tbody></table></div>
       <p style="color:var(--ink-3);font-size:12px;margin-top:10px">${rows.length} of ${S.board.length} lines. <b>Fair</b> is the market's opinion with vig removed; <b>break-even</b> is what the offered price requires. Action edge also subtracts the model's selection haircut and uncertainty reserve.</p>`;
@@ -662,66 +679,42 @@ function sparkline(curve, start){
 
 function renderLedger(){
   const el = document.getElementById("p-ledger");
-  const s = S.summary || {};
-  const L = S.ledger || [];
-  const publishedBankroll = s.starting_bankroll !== null && s.starting_bankroll !== undefined;
-  const ledgerStart = publishedBankroll ? Number(s.starting_bankroll) : localBankroll();
-  const scaleFixAt = Date.parse("2026-08-28T00:00:00Z");
-  const legacy = L.filter(b => b.placed_at && Date.parse(b.placed_at) < scaleFixAt);
-  let h = `<div class="panel-head"><div><h2>Bet Ledger</h2>
-    <p>Every bet the model has ever qualified, logged at the number it was qualified at and graded once the game finished. Bets are never re-priced after the fact — that is the only way the record below means anything.</p></div></div>`;
+  const summary = myLedgerSummary();
+  const rows = (S.myLedger || []).slice().sort((a,b) => String(b.game_date||"").localeCompare(String(a.game_date||"")));
+  let h = `<div class="panel-head"><div><h2>My Ledger</h2>
+    <p>Only wagers you explicitly add appear here. The model record stays separate in Model History, so a recommendation is never treated as money you actually risked.</p></div>
+    <div class="ledger-tools"><button type="button" class="iconbtn" data-export="json">Export JSON</button><button type="button" class="iconbtn" data-export="csv">Export CSV</button><label class="iconbtn importbtn">Import JSON<input id="ledger-import" type="file" accept="application/json,.json" hidden></label>${rows.length?`<button type="button" class="iconbtn danger" data-clear-ledger>Clear ledger</button>`:""}</div></div>`;
 
-  if (legacy.length){
-    h += `<div class="note"><b>Pre-correction records preserved.</b> ${legacy.length} pending call${legacy.length===1?" was":"s were"} logged before the 2026 slate-scale correction. They remain here so the history is not rewritten, but their old edge and stake figures are audit records—not current recommendations.</div>`;
+  const kpis = [
+    ["Starting", money(summary.starting_bankroll)], ["Current", money(summary.current_bankroll)],
+    ["Staked", money(summary.staked)], ["P/L", money(summary.pnl)],
+    ["ROI", sgn(summary.roi)], ["Win rate", pct(summary.win_rate)],
+    ["Settled", summary.settled||0], ["Pending", summary.pending||0],
+  ];
+  h += `<div class="kpis ledger-kpis">${kpis.map(([key,value]) => `<div class="kpi"><div class="k">${esc(key)}</div><div class="v">${esc(value)}</div></div>`).join("")}</div>`;
+
+  if (summary.curve.length > 1){
+    h += `<div class="tablewrap" style="padding:16px 18px 6px;margin:18px 0">
+      ${sparkline(summary.curve, summary.starting_bankroll)}
+      <p style="color:var(--ink-3);font-size:12px;margin:8px 0 12px">Bankroll after each settled bet. The dashed line is where you started.</p></div>`;
   }
 
-  h += `<div class="two"><div>
-    <div class="tablewrap" style="padding:16px 18px 6px">
-      <div style="font:600 10.5px/1 'Public Sans',sans-serif;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px">Bankroll</div>
-      ${sparkline(s.curve, ledgerStart)}
-      <p style="color:var(--ink-3);font-size:12px;margin:8px 0 12px">${publishedBankroll?`Dashed line is the starting bankroll of ${money(ledgerStart)}.`:`Your local bankroll is ${money(ledgerStart)}. The public deployment does not publish private bankroll or wager-history records.`}</p>
-    </div></div><div>`;
-
-  const byMkt = s.by_market || {}, byTier = s.by_tier || {};
-  const blk = (title, obj, order) => {
-    const keys = order ? order.filter(k => obj[k]) : Object.keys(obj);
-    if (!keys.length) return "";
-    return `<div class="tablewrap" style="margin-bottom:14px"><table style="min-width:0">
-      <thead><tr><th>${esc(title)}</th><th class="r">N</th><th class="r">W–L–P</th><th class="r">P/L</th><th class="r">ROI</th></tr></thead>
-      <tbody>${keys.map(k => {
-        const r = obj[k];
-        return `<tr><td style="font-weight:600">${esc(k)}</td>
-          <td class="r num">${r.bets}</td>
-          <td class="r num">${r.wins}–${r.losses}${r.pushes?"–"+r.pushes:""}</td>
-          <td class="r num ${r.pnl>0?"pos":r.pnl<0?"neg":""}">${money(r.pnl)}</td>
-          <td class="r num ${r.roi>0?"pos":r.roi<0?"neg":""}">${sgn(r.roi)}</td></tr>`;
-      }).join("")}</tbody></table></div>`;
-  };
-  h += blk("By market", byMkt, ["ATS","ML","TOTAL"]) + blk("By tier", byTier, ["BEST BET","GOOD","LEAN"]);
-  if (!Object.keys(byMkt).length) h += `<div class="note">Breakdowns by market and tier appear once bets settle. Tier ROI is the one to watch: if <b>LEAN</b> is out-earning <b>BEST BET</b>, the thresholds are mislabelled and want retuning in <span class="mono">config/settings.json</span>.</div>`;
-  h += `</div></div>`;
-
-  if (!L.length){
-    h += `<div class="empty" style="margin-top:18px">Auto-ledger records are kept out of this public site. Suggested stake sizing still works from the bankroll saved in this browser; change it under Bankroll &amp; Stakes.</div>`;
-  } else {
-    h += `<div class="tablewrap" style="margin-top:18px"><table><thead><tr>
+  h += rows.length ? `<div class="tablewrap"><table><thead><tr>
       <th>Date</th><th>Game</th><th>Pick</th><th class="r">Price</th><th class="r">Stake</th>
-      <th>Result</th><th class="r">P/L</th><th class="r">Edge</th><th>Tier</th>
-      <th class="r">Close</th><th class="r">CLV</th></tr></thead><tbody>` +
-      L.map(b => `<tr>
+      <th class="r">Edge</th><th>Tier</th><th>Result</th><th class="r">P/L</th><th></th></tr></thead><tbody>` +
+      rows.map(b => `<tr>
         <td class="num" style="white-space:nowrap;font-size:12px;color:var(--ink-3)">${esc(day(b.game_date))}</td>
         <td class="matchup">${esc(b.matchup)}${b.final_score?`<small>${esc(b.final_score)}</small>`:""}</td>
         <td class="pick">${esc(b.pick)}</td>
         <td class="r num">${esc(price(b.price))}</td>
-        <td class="r num">${money(b.stake)}</td>
-        <td><span class="res ${esc(b.result)}">${esc(b.result)}</span></td>
-        <td class="r num ${b.pnl>0?"pos":b.pnl<0?"neg":""}">${b.pnl===null||b.pnl===undefined?"—":money(b.pnl)}</td>
+        <td class="r"><input class="ledger-stake" data-ledger-stake="${esc(b.id)}" type="number" min="0.5" step="0.5" value="${Number(b.stake||0).toFixed(2)}" aria-label="Stake for ${esc(b.pick)}" ${b.result?"disabled":""}></td>
         <td class="r num">${sgn(b.edge)}</td>
-        <td><span class="tier ${TIERCLS[b.tier]}">${esc(b.tier)}</span></td>
-        <td class="r num" style="color:var(--ink-3)">${b.closing_line===null||b.closing_line===undefined?(b.closing_price?esc(price(b.closing_price)):"—"):esc(b.closing_line)}</td>
-        <td class="r num ${b.clv_prob>0?"pos":b.clv_prob<0?"neg":""}">${b.clv_prob===null||b.clv_prob===undefined?"—":sgn(b.clv_prob,1)}</td>
-      </tr>`).join("") + `</tbody></table></div>`;
-  }
+        <td><span class="tier ${TIERCLS[b.tier]}">${esc(tierLabel(b.tier))}</span></td>
+        <td><span class="res ${esc(b.result||"Pending")}">${esc(b.result||"Pending")}</span></td>
+        <td class="r num ${b.pnl>0?"pos":b.pnl<0?"neg":""}">${b.pnl===null||b.pnl===undefined?"—":money(b.pnl)}</td>
+        <td><button type="button" class="removebet" data-remove="${esc(b.id)}">Remove</button></td>
+      </tr>`).join("") + `</tbody></table></div>`
+    : `<div class="empty">No wagers in My Ledger. Click <b>+ Ledger</b> beside any LEAN, GOOD or BEST BET after you place it.</div>`;
   el.innerHTML = h;
 }
 
@@ -1125,12 +1118,13 @@ function renderSimulator(){
 function renderSettings(){
   const el = document.getElementById("p-settings");
   const s = stakingSettings();
+  const ledger = myLedgerSummary();
   el.innerHTML = `<div class="panel-head"><div><h2>Bankroll &amp; stake sizing</h2>
     <p>These values are stored only in this browser. They change suggested stake amounts, never FPI inputs, projections, edges, tiers, or the public model feed.</p></div></div>
     <div class="settings-grid">
       <div class="settings-card">
         <h3>Bankroll</h3>
-        <label class="setting-row"><span>Available bankroll<small>The balance to size the next slate from.</small></span><input id="set-bankroll" type="number" min="0" step="10" value="${s.bankroll}"></label>
+        <label class="setting-row"><span>Bankroll before tracked bets<small>Settled My Ledger P/L is added automatically.</small></span><input id="set-bankroll" type="number" min="0" step="10" value="${s.bankroll}"></label>
         <label class="setting-row"><span>Staking system<small>Fractional Kelly is the conservative default.</small></span><select id="set-system">
           <option value="kelly"${s.system==="kelly"?" selected":""}>Fractional Kelly</option>
           <option value="flat"${s.system==="flat"?" selected":""}>Flat stake</option>
@@ -1146,7 +1140,7 @@ function renderSettings(){
         <label class="setting-row"><span>Maximum per slate<small>If needed, all suggested stakes are reduced proportionally.</small></span><input id="set-max-slate" type="number" min="0" max="100" step="1" value="${(s.max_slate_exposure_pct*100).toFixed(0)}"><b>%</b></label>
         <label class="setting-row"><span>Minimum stake<small>Smaller calculated amounts become no bet.</small></span><input id="set-min" type="number" min="0" step="0.5" value="${s.min_stake}"></label>
         <label class="setting-row"><span>Round to<small>Suggested stake increment.</small></span><input id="set-round" type="number" min="0.01" step="0.25" value="${s.round_to}"></label>
-        <div class="settings-preview"><span>Current setup</span><b>${money(s.bankroll)} · ${esc(STAKING.description(s,sym()))}</b><small>${pct(s.max_stake_pct,0)} max per play · ${pct(s.max_slate_exposure_pct,0)} max per slate</small></div>
+        <div class="settings-preview"><span>Current setup</span><b>${money(ledger.current_bankroll)} now · ${esc(STAKING.description(s,sym()))}</b><small>${pct(s.max_stake_pct,0)} max per play · ${pct(s.max_slate_exposure_pct,0)} max per slate</small></div>
       </div>
     </div>
     <div class="settings-actions"><button type="button" class="iconbtn primary" id="save-staking">Save on this device</button><button type="button" class="iconbtn" id="reset-staking">Restore model defaults</button><span class="settings-status" id="settings-status"></span></div>
@@ -1168,9 +1162,63 @@ function renderSettings(){
   };
 }
 
+function saveMyLedger(){
+  if (LEDGER && !LEDGER.save(S.myLedger))
+    window.alert("This browser blocked local ledger storage. Export your ledger to keep a copy.");
+}
+function downloadLedger(name, text, type){
+  const blob = new Blob([text], {type});
+  const anchor = document.createElement("a");
+  anchor.href = URL.createObjectURL(blob); anchor.download = name;
+  document.body.appendChild(anchor); anchor.click();
+  const url = anchor.href; anchor.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+function refreshLedgerViews(){ renderKpis(); renderTabs(); renderPanels(); }
+function bindLedgerActions(){
+  if (!LEDGER) return;
+  document.querySelectorAll("[data-add]").forEach(button => button.onclick = () => {
+    const id = button.dataset.add;
+    const row = S.board.find(candidate => `${candidate.game_id}:${candidate.market}:${candidate.side}` === id);
+    if (!row || isTracked(row)) return;
+    const stakeAmount = Number(button.dataset.defaultStake);
+    if (!isFinite(stakeAmount) || stakeAmount <= 0){ window.alert("Enter the stake you actually placed."); return; }
+    S.myLedger.push(LEDGER.entryFrom(row, stakeAmount)); saveMyLedger(); refreshLedgerViews();
+  });
+  document.querySelectorAll("[data-remove]").forEach(button => button.onclick = () => {
+    if (!window.confirm("Remove this wager from My Ledger?")) return;
+    S.myLedger = S.myLedger.filter(row => row.id !== button.dataset.remove);
+    saveMyLedger(); refreshLedgerViews();
+  });
+  document.querySelectorAll("[data-export]").forEach(button => button.onclick = () => {
+    if (button.dataset.export === "csv") downloadLedger("ncaaf-edge-ledger.csv", LEDGER.toCSV(S.myLedger), "text/csv");
+    else downloadLedger("ncaaf-edge-ledger.json", JSON.stringify({schema:LEDGER.SCHEMA,exported_at:new Date().toISOString(),entries:S.myLedger}, null, 2), "application/json");
+  });
+  const input = document.getElementById("ledger-import");
+  if (input) input.onchange = async () => {
+    try{
+      const parsed = JSON.parse(await input.files[0].text());
+      const merged = LEDGER.merge(S.myLedger, Array.isArray(parsed) ? parsed : (parsed.entries || []));
+      const settled = LEDGER.settleAll(merged.entries, S.games || []);
+      S.myLedger = settled.entries; saveMyLedger(); window.alert(`${merged.added} wager(s) imported.`); refreshLedgerViews();
+    }catch(_){ window.alert("That file is not a valid NCAAF Edge ledger export."); }
+  };
+  const clear = document.querySelector("[data-clear-ledger]");
+  if (clear) clear.onclick = () => {
+    if (!window.confirm("Clear every wager from this browser ledger? Export first if you need a backup.")) return;
+    S.myLedger = []; saveMyLedger(); refreshLedgerViews();
+  };
+  document.querySelectorAll("[data-ledger-stake]").forEach(input => input.onchange = () => {
+    const row = S.myLedger.find(entry => entry.id === input.dataset.ledgerStake);
+    const amount = Number(input.value);
+    if (!row || row.result || !isFinite(amount) || amount <= 0){ input.value = Number(row&&row.stake||0).toFixed(2); return; }
+    row.stake = Math.round(amount * 100) / 100; saveMyLedger(); renderKpis();
+  });
+}
+
 function renderPanels(){
   ({best:renderBest, board:renderBoard, schedule:renderSchedule, ledger:renderLedger,
     sim:renderSimulator, ratings:renderRatings, history:renderHistory, health:renderHealth, settings:renderSettings}[S.tab] || renderBest)();
+  bindLedgerActions();
   postHeight();
 }
 
@@ -1210,6 +1258,12 @@ async function boot(force){
     document.getElementById("kpis").innerHTML = "";
     renderTabs();
     return;
+  }
+  S.myLedger = LEDGER ? LEDGER.load() : [];
+  if (LEDGER){
+    const settled = LEDGER.settleAll(S.myLedger, S.games || []);
+    S.myLedger = settled.entries;
+    if (settled.changed) LEDGER.save(S.myLedger);
   }
   renderStamp(); renderKpis(); renderTabs(); renderPanels();
 }
