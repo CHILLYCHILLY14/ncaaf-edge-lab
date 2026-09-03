@@ -82,7 +82,7 @@ the time, you will see it there.
 |---|---|---|
 | **BEST BET** | ≥ 7% | The model's strongest disagreements with the market |
 | **GOOD** | ≥ 4.5% | Worth a standard stake |
-| **LEAN** | ≥ 3% | Small stake, or a watch |
+| **LEAN** | ≥ 2.5% | Small stake, or a watch |
 | **AVOID** | below or hard stop | Visible for audit, never logged or staked |
 
 Raw edge is model probability minus the break-even probability of the offered

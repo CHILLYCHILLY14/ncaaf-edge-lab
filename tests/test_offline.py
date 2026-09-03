@@ -978,6 +978,15 @@ def test_merge() -> None:
           removed == 1 and set(kept) == {"good", "settled"})
 
 
+def test_site_defaults_to_all_qualified() -> None:
+    print("\n[site visibility]")
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    with open(os.path.join(root, "site", "index.html"), encoding="utf-8") as fh:
+        html = fh.read()
+    check("What to bet defaults to all upcoming qualified plays",
+          "allPlays:true" in html and "data-all-plays" in html)
+
+
 def main() -> int:
     with open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                            "config", "settings.json"), encoding="utf-8") as fh:
@@ -1007,6 +1016,7 @@ def main() -> int:
     test_weekly_cap(cfg)
     test_rest_days()
     test_merge()
+    test_site_defaults_to_all_qualified()
     print("\n" + "=" * 62)
     if FAILS:
         print(f"{len(FAILS)} FAILED: " + ", ".join(FAILS))

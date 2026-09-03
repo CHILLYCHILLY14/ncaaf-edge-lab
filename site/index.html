@@ -285,7 +285,7 @@ const DATA_BASE = (() => {
 })();
 const FILES = ["meta", "summary", "board", "ledger", "ratings", "model_history", "schedule", "games"];
 const S = { meta:null, summary:null, board:[], ledger:[], myLedger:[], ratings:[], model_history:null, schedule:[], games:[], tab:"best", staking:null,
-            filters:{tier:"PLAYS", market:"ALL", q:""}, sort:{key:"rating", dir:-1}, schedWeek:null, slateIndex:null,
+            filters:{tier:"PLAYS", market:"ALL", q:""}, sort:{key:"rating", dir:-1}, schedWeek:null, slateIndex:null, allPlays:true,
             sim:{ready:false,gameId:"",away:"",home:"",neutral:false,spread:"",total:"",iterations:10000} };
 
 async function load(){
@@ -377,6 +377,7 @@ function slateRows(){
 function setSlate(i){
   if (!S.schedule.length) return;
   S.slateIndex = Math.max(0,Math.min(S.schedule.length-1,i));
+  S.allPlays = false;
   renderStamp(); renderKpis(); renderTabs(); renderPanels();
 }
 
@@ -546,15 +547,17 @@ function renderWhyEmpty(){
 
 function renderBest(){
   const slate = activeSlate();
-  const board = slateRows();
+  const slateBoard = slateRows();
+  const board = S.allPlays ? S.board : slateBoard;
   const plays = board.filter(b => b.tier !== "PASS")
     .sort((a,b) => RANK[a.tier]-RANK[b.tier] || actionEdge(b)-actionEdge(a));
   const planned = STAKING ? STAKING.plan(plays, stakingSettings(), stakeBankroll(), (cfg().model||{}).max_model_prob) : plays.map(stake);
   const el = document.getElementById("p-best");
   const nearby = S.schedule.map((s,i)=>({s,i})).filter(x => (x.s.with_odds||0)>0).slice(0,5);
-  let h = `<div class="slate-strip">${nearby.map(({s,i}) => `<button class="slate-chip" data-slate="${i}" aria-pressed="${i===S.slateIndex}">
+  let h = `<div class="slate-strip"><button class="slate-chip" data-all-plays aria-pressed="${S.allPlays}">
+      <b>All upcoming</b><span>${S.board.filter(b=>b.tier!=="PASS").length} qualified plays</span></button>${nearby.map(({s,i}) => `<button class="slate-chip" data-slate="${i}" aria-pressed="${!S.allPlays&&i===S.slateIndex}">
       <b>${esc(s.date_range)}</b><span>${esc(s.games)} games · ${slateRowsFor(s).filter(b=>b.tier!=="PASS").length} plays</span></button>`).join("")}</div>`;
-  h += `<div class="panel-head"><div><h2>${plays.length} play${plays.length===1?"":"s"} · ${esc(slate?slate.date_range:"all upcoming")}</h2>
+  h += `<div class="panel-head"><div><h2>${plays.length} play${plays.length===1?"":"s"} · ${S.allPlays?"all upcoming":esc(slate?slate.date_range:"all upcoming")}</h2>
     <p>Only LEAN or better appears here. Projections are market-scaled, edges are compressed, and one correlated angle per game survives.</p></div>
     <div class="pill">${money(planned.reduce((n,v)=>n+v,0))} total at risk</div></div>`;
   if (!plays.length){
@@ -577,7 +580,7 @@ function renderBest(){
   }
 
   const byGame = new Map();
-  board.forEach(b => { const cur=byGame.get(b.game_id); if(!cur||actionEdge(b)>actionEdge(cur)) byGame.set(b.game_id,b); });
+  slateBoard.forEach(b => { const cur=byGame.get(b.game_id); if(!cur||actionEdge(b)>actionEdge(cur)) byGame.set(b.game_id,b); });
   const games = [...byGame.values()].sort((a,b)=>String(a.game_date).localeCompare(String(b.game_date)));
   if (games.length){
     h += `<div class="panel-head every-head"><h2>Every game on this slate</h2><span class="pill">${games.length} games</span></div>
@@ -588,6 +591,8 @@ function renderBest(){
         <td><span class="tier ${tc}">${esc(tierLabel(b.tier))}</span></td></tr>`}).join("")+`</tbody></table></div>`;
   }
   el.innerHTML = h;
+  const allButton = el.querySelector("[data-all-plays]");
+  if (allButton) allButton.onclick=()=>{S.allPlays=true;renderStamp();renderKpis();renderTabs();renderPanels();};
   el.querySelectorAll("[data-slate]").forEach(b => b.onclick=()=>setSlate(Number(b.dataset.slate)));
 }
 
