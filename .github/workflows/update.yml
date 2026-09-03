@@ -48,6 +48,7 @@ jobs:
           python -m tests.test_offline
           node tests/test_simulator.js
           node tests/test_staking.mjs
+          node tests/test_ledger.mjs
 
       - name: Refresh
         run: |
