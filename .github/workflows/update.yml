@@ -1,19 +1,13 @@
 name: Refresh model
 
-# Free on GitHub Actions for a public repo, and comfortably inside the free
-# minutes for a private one: each run takes well under a minute.
-#
-# Times are UTC. The schedule below is tuned for Eastern time:
-#   13:00 UTC = 09:00 ET   morning line check
-#   17:00 UTC = 13:00 ET   before the early kicks
-#   21:00 UTC = 17:00 ET   before the afternoon slate
-#   03:00 UTC = 23:00 ET   after the late games, to grade
-# GitHub's scheduler is best-effort and can run several minutes late. That is
-# fine for a model that reads a market, but do not treat it as a live feed.
+# Credential-free refresh using public data only. During the college football
+# weekend we refresh every two hours so posted lines and newly available prices
+# reach the board much sooner; Monday-Thursday use a lighter four-hour cadence.
+# Times are UTC and GitHub's scheduler is best-effort.
 on:
   schedule:
-    - cron: "0 13,17,21 * * *"
-    - cron: "0 3 * * *"
+    - cron: "17 */4 * * 1-4"
+    - cron: "17 */2 * * 5-0"
   workflow_dispatch:
     inputs:
       full:
