@@ -18,6 +18,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          # A queued deployment must include data committed by the refresh.
+          ref: main
 
       - name: Stage public site without private wager history
         run: |
