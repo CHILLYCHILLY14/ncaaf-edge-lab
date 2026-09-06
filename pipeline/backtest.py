@@ -100,7 +100,7 @@ def run(games: list[dict], cfg: dict, min_history: int = 60,
                 if c["tier"] == "PASS" or c.get("_won") is None:
                     continue
                 stake = M.stake_for(c["model_prob"], c["price"], bankroll, cfg,
-                                    edge=c.get("action_edge", c.get("edge")))
+                                    edge=c.get("action_edge", c.get("edge")), push_prob=c.get("push_prob", 0))
                 if stake <= 0:
                     continue
                 pnl = stake * (M.american_to_decimal(c["price"]) - 1.0) if c["_won"] else -stake

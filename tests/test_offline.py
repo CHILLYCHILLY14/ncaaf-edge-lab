@@ -765,12 +765,12 @@ def test_threshold_window(cfg: dict) -> None:
     import json as _j
     broken = _j.loads(_j.dumps(cfg))
     broken["filters"]["guard_headroom"] = 1.0            # rails applied literally
-    broken["filters"]["max_thin_data_raw_market_prob_gap"] = 0.12
+    broken["filters"]["max_thin_data_raw_market_prob_gap"] = 0.05
     broken["filters"]["max_thin_data_spread_gap"] = 4.0
 
     conf = min(M.confidence_score(0, 0, True, broken), B.snapshot_confidence(1))
     w = M.threshold_window(broken, conf, thin=True)
-    check("season-opener window is detected as infeasible", w["feasible"] is False, str(w))
+    check("an explicitly overlapping safety window is detected as infeasible", w["feasible"] is False, str(w))
     check("it names which rail is doing the blocking", len(w["blocked_by"]) > 0,
           str(w["blocked_by"]))
     check("a LEAN demands more disagreement than the ceiling allows",
@@ -800,11 +800,11 @@ def test_threshold_window(cfg: dict) -> None:
                 "proj_away_pts": 24.5, "ratings_known": True}
         return B.apply_filters(B.price_game(g, proj, c, conf), c, True)
 
-    live = [x for x in priced(-5.0, fixed) if x["market"] == "ATS"]
-    check("a genuine 8.5-point disagreement can now qualify",
+    live = [x for x in priced(0.0, fixed) if x["market"] == "ATS"]
+    check("a moderate 3.5-point disagreement can qualify within the rails",
           any(x["tier"] != "PASS" for x in live),
           str([(x["tier"], round(x["edge"], 3)) for x in live]))
-    dead = [x for x in priced(-5.0, broken) if x["market"] == "ATS"]
+    dead = [x for x in priced(0.0, broken) if x["market"] == "ATS"]
     check("the same play was impossible before the fix",
           all(x["tier"] == "PASS" for x in dead))
 

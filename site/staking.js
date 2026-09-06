@@ -83,7 +83,9 @@
       const dec = decimal(row.price);
       if (!dec) return 0;
       const ceiling = finite(maxModelProb, 0.85);
-      const p = clamp(row.model_prob, 0, ceiling);
+      const active = 1 - clamp(row.push_prob || 0, 0, 1);
+      if (!active) return 0;
+      const p = clamp(row.action_edge != null ? (1 + row.action_edge / active) / dec : row.model_prob, 0, ceiling);
       const fullKelly = Math.max(0, ((p * (dec - 1)) - (1 - p)) / (dec - 1));
       const confidenceScale = clamp(row.stake_multiplier == null ? 1 : row.stake_multiplier, 0, 1);
       raw = roll * fullKelly * s.kelly_fraction * confidenceScale;

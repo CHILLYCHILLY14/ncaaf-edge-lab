@@ -231,13 +231,13 @@ def expected_value(p: float, american: float, p_push: float = 0.0) -> float:
 
 
 def stake_for(p: float, american: float, bankroll: float, cfg: dict,
-              edge: float | None = None) -> float:
+              edge: float | None = None, push_prob: float = 0.0) -> float:
     bk = cfg["bankroll"]
     if edge is not None:
-        # Kelly is dangerously sensitive to overconfidence. Reconstruct the
-        # probability from the conservative action edge, not the raw model
-        # probability that triggered the compression and uncertainty reserve.
-        p = american_to_prob(american) + max(0.0, float(edge))
+        active = 1 - max(0.0, min(1.0, float(push_prob)))
+        if active <= 0:
+            return 0.0
+        p = (1 + max(0.0, float(edge)) / active) / american_to_decimal(american)
     f = kelly_fraction(min(p, cfg["model"]["max_model_prob"]), american) * float(bk["kelly_fraction"])
     f = min(f, float(bk["max_stake_pct"]))
     raw = f * bankroll
@@ -339,7 +339,7 @@ def raw_gap_for_edge(edge: float, cfg: dict, price: float = -110.0) -> float:
         return float("inf")
     breakeven = american_to_prob(price)
     raw_edge = expand_edge(edge, cfg)
-    raw = (raw_edge + breakeven - blend * 0.5) / (1.0 - blend)
+    raw = ((1 + raw_edge) / american_to_decimal(price) - blend * 0.5) / (1.0 - blend)
     return raw - 0.5
 
 
@@ -370,7 +370,7 @@ def spread_gap_for_edge(edge: float, cfg: dict, price: float = -110.0,
             denom = pw + pl
             raw = pw / denom if denom else 0.5
             for r in (raw, 1.0 - raw):
-                raw_edge = (1 - blend) * r + blend * 0.5 - breakeven
+                raw_edge = (1-pp) * (((1-blend)*r + blend*.5) * american_to_decimal(price) - 1)
                 best = max(best, compress_edge(raw_edge, cfg))
         return best
 
