@@ -22,3 +22,6 @@ assert.equal(plan.reduce((a,b)=>a+b,0),50,"slate exposure never exceeds its cap"
 const safe = S.normalise({bankroll:-10,kelly_fraction:4,max_stake_pct:-1,round_to:0});
 assert.equal(safe.bankroll,0); assert.equal(safe.kelly_fraction,1); assert.equal(safe.max_stake_pct,0); assert.equal(safe.round_to,.01);
 console.log("staking tests passed");
+
+assert.equal(S.suggestedStake(row,{...base,system:"flat",flat_stake:40},199,.85),9.5,"rounding cannot exceed the $9.95 cap");
+assert.equal(S.suggestedStake(row,{...base,system:"flat",min_stake:1},19,.85),0,"a cap below the minimum produces no stake");

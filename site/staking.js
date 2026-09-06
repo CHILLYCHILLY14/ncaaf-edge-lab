@@ -90,7 +90,8 @@
     }
 
     raw = Math.min(raw, roll * s.max_stake_pct);
-    const rounded = Math.round(raw / s.round_to) * s.round_to;
+    const capSteps = Math.floor((roll * s.max_stake_pct + 1e-9) / s.round_to);
+    const rounded = Math.min(Math.round(raw / s.round_to), capSteps) * s.round_to;
     return rounded + 1e-9 < s.min_stake ? 0 : Math.round(rounded * 100) / 100;
   }
 
