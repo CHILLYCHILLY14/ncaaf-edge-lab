@@ -1410,10 +1410,14 @@
    "reason": null,
    "captured_at": "2026-08-27T21:30:14+00:00",
    "version": "legacy",
-   "graded_at": null,
+   "graded_at": "2026-09-07T00:39:35.027252+00:00",
    "selected": true,
    "id": "call:NCAAF:401858437::ATS:away",
-   "result": "Pending"
+   "result": "Win",
+   "units": 0.925926,
+   "actual": null,
+   "final_home": 24.0,
+   "final_away": 10.0
   },
   "call:NCAAF:401858430::ATS:away": {
    "kind": "call",
@@ -2440,10 +2444,14 @@
    "reason": null,
    "captured_at": "2026-08-27T21:30:14+00:00",
    "version": "legacy",
-   "graded_at": null,
+   "graded_at": "2026-09-07T00:39:35.027252+00:00",
    "selected": true,
    "id": "call:NCAAF:401858437::ML:away",
-   "result": "Pending"
+   "result": "Loss",
+   "units": -1,
+   "actual": null,
+   "final_home": 24.0,
+   "final_away": 10.0
   },
   "call:NCAAF:401858423::ML:away": {
    "kind": "call",
@@ -7399,10 +7407,14 @@
    "reason": null,
    "captured_at": "2026-08-27T21:30:14+00:00",
    "version": "legacy",
-   "graded_at": null,
+   "graded_at": "2026-09-07T00:39:35.027252+00:00",
    "selected": true,
    "id": "call:NCAAF:401858437::TOTAL:over",
-   "result": "Pending"
+   "result": "Loss",
+   "units": -1,
+   "actual": null,
+   "final_home": 24.0,
+   "final_away": 10.0
   },
   "call:NCAAF:401858446::ATS:away": {
    "kind": "call",
@@ -8224,10 +8236,14 @@
    "reason": null,
    "captured_at": "2026-08-27T23:58:37+00:00",
    "version": "legacy",
-   "graded_at": null,
+   "graded_at": "2026-09-07T00:39:35.027252+00:00",
    "selected": false,
    "id": "call:NCAAF:401858437::TOTAL:under",
-   "result": "Pending"
+   "result": "Win",
+   "units": 0.909091,
+   "actual": null,
+   "final_home": 24.0,
+   "final_away": 10.0
   },
   "call:NCAAF:401856790::TOTAL:over": {
    "kind": "call",
@@ -16298,6 +16314,22 @@
    "market_total": 50.5,
    "id": "game:NCAAF:401864578:::",
    "captured_at": "2026-09-06T23:35:50.193854+00:00",
+   "result": "Pending",
+   "version": "2026-09-06-ev2"
+  },
+  "game:NCAAF:401858225:::": {
+   "kind": "game",
+   "league": "NCAAF",
+   "event_id": "401858225",
+   "start": "2026-09-17T23:30Z",
+   "matchup": "SYR @ PITT",
+   "margin": 10.05,
+   "total": 59.4,
+   "probability": 0.7671161627713692,
+   "market_spread": null,
+   "market_total": null,
+   "id": "game:NCAAF:401858225:::",
+   "captured_at": "2026-09-07T00:39:35.026094+00:00",
    "result": "Pending",
    "version": "2026-09-06-ev2"
   }
