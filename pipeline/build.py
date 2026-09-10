@@ -3,11 +3,11 @@ Orchestrator. Run this and the whole board rebuilds.
 
     python -m pipeline.build            # normal scheduled run (rolling window)
     python -m pipeline.build --full     # full-season backfill, rebuilds the cache
-    python -m pipeline.build --no-bet   # price everything, log nothing
+    python -m pipeline.build --no-bet   # legacy alias; wagers are always manual
 
 Sequence: refresh games -> snapshot odds -> re-solve ratings from results ->
-project every upcoming game -> price against the market -> tier -> log qualified
-bets -> grade finals -> write the JSON the site reads.
+project every upcoming game -> price against the market -> tier -> write the
+JSON the site reads. Wagers and bankroll settings stay in the browser only.
 """
 
 from __future__ import annotations
@@ -21,10 +21,40 @@ import math
 import os
 import sys
 
-from . import espn, ledger, model as M, predictions as P, ratings as R, store
+from . import espn, model as M, ratings as R, store
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE_DATA = os.path.join(ROOT, "site", "data")
+
+
+def public_ledger_summary() -> dict:
+    """Neutral payload for a site whose real ledger is browser-local only."""
+    return {
+        "starting_bankroll": None,
+        "current_bankroll": None,
+        "total_bets": 0,
+        "settled": 0,
+        "pending": 0,
+        "wins": 0,
+        "losses": 0,
+        "pushes": 0,
+        "win_rate": None,
+        "staked": 0,
+        "pnl": None,
+        "roi": None,
+        "avg_clv": None,
+        "clv_positive_rate": None,
+        "by_market": {},
+        "by_tier": {},
+        "by_week": {},
+        "curve": [],
+        "calibration": [],
+    }
+
+
+def public_settings(cfg: dict) -> dict:
+    """Model settings safe for audit, without bankroll or staking values."""
+    return {key: value for key, value in cfg.items() if key != "bankroll"}
 
 
 def load_cfg() -> dict:
@@ -895,7 +925,8 @@ def weekly_cap(cands: list[dict], cfg: dict) -> list[dict]:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--full", action="store_true", help="full-season backfill")
-    ap.add_argument("--no-bet", action="store_true", help="price only, do not log bets")
+    ap.add_argument("--no-bet", action="store_true",
+                    help="legacy compatibility; wagers are always browser-local")
     args = ap.parse_args()
 
     cfg = load_cfg()
@@ -939,14 +970,10 @@ def main() -> int:
     lines = store.record_lines(lines, games)
     store.save("lines.json", lines)
 
-    # Recover closing lines for finals the scoreboard has already stripped.
-    ledg, removed_bets = store.clean_unverified_pending(store.load("ledger.json", {}))
-    for bet in ledg.values():
-        if bet.get("result") == "Pending" and not store.closer(lines, bet["game_id"]):
-            rec = espn.odds_from_summary(bet["game_id"], prio)
-            if rec:
-                lines.setdefault(bet["game_id"], []).append({"ts": store.now_iso(), **rec})
-    store.save("lines.json", lines)
+    # Wagers are deliberately not loaded here. The manual ledger and bankroll
+    # settings live in browser localStorage and must never enter the public Git
+    # tree or a Pages artifact.
+    removed_bets = 0
 
     # 4. Ratings.  ESPN's current-season FPI supplies the roster/recruiting/
     # coaching information a score-only solve cannot know in August.  It is
@@ -1031,6 +1058,8 @@ def main() -> int:
         cands = fcs_guard(cands, g["home"]["abbr"], g["away"]["abbr"], fbs, cfg)
         for c in cands:
             c["projection"] = proj
+            c["season"] = g.get("season", season)
+            c["season_type"] = g.get("season_type", 2)
         board.extend(cands)
     board = weekly_cap(correlation_guard(board, cfg), cfg)
     board.sort(key=lambda c: (M.TIER_RANK[c["tier"]],
@@ -1046,47 +1075,18 @@ def main() -> int:
             print("      WARNING: thresholds and safety rails overlap to zero -- "
                   "nothing could have qualified at any price. Raise guard_headroom.")
 
-    # 6. Log qualified bets, then grade finals.
-    starting = float(cfg["bankroll"]["starting"])
-    opened = 0
-    if not args.no_bet:
-        for c in board:
-            if c["tier"] == "PASS":
-                continue
-            bankroll = (starting if cfg["bankroll"]["size_off"] == "starting"
-                        else ledger.bankroll_from(ledg, starting))
-            if ledger.open_bet(ledg, c, bankroll, cfg):
-                opened += 1
-    graded = ledger.grade_all(ledg, {g["game_id"]: g for g in games}, lines)
-    store.save("ledger.json", ledg)
-    print(f"   ledger: +{opened} new, {graded} graded, {len(ledg)} total")
+    # 6. Never create or grade wagers in the build. Users explicitly confirm
+    # bets in the browser-local manual ledger.
+    print("   ledger: manual browser confirmation; 0 automatic entries")
 
-    # 6b. Log EVERY priced market (bet or not) to the full prediction record.
-    # This is what makes calibration and accuracy trustworthy: the ledger alone
-    # is a biased sample (you only bet where the model disagrees most with the
-    # market, which is where it's most likely to be wrong), while this records
-    # what the model said about every game it ever priced.
-    # Reduce to the model's actual pick per market before logging -- board
-    # can carry both complementary sides of a market (home ATS + away ATS,
-    # over + under) when both happen to pass the filters, and logging both
-    # would make aggregate win-rate mathematically forced toward 50% (one
-    # side always wins, the other always loses, however good the model is).
-    preds, removed_predictions = store.clean_unverified_pending(store.load("predictions.json", {}))
-    logged = 0
-    by_game: dict[str, list[dict]] = {}
-    for c in board:
-        by_game.setdefault(c["game_id"], []).append(c)
-    for cands in by_game.values():
-        for c in market_picks(cands):
-            if P.log_prediction(preds, c):
-                logged += 1
-    pred_graded = P.grade_all(preds, {g["game_id"]: g for g in games})
-    store.save("predictions.json", preds)
-    print(f"   predictions: +{logged} new, {pred_graded} graded, {len(preds)} total")
+    # 6b. Public accuracy is game-only. Detailed market-call history, prices,
+    # hypothetical units and legacy imports are intentionally not persisted.
+    removed_predictions = 0
+    print("   accuracy history: current-season game forecasts only")
 
     # 7. Emit the site payload.
     os.makedirs(SITE_DATA, exist_ok=True)
-    summary = ledger.summarise(ledg, starting)
+    summary = public_ledger_summary()
     meta = {
         "generated_at": store.now_iso(),
         "season": season,
@@ -1095,8 +1095,8 @@ def main() -> int:
         "league_avg_points": round(league, 1),
         "games_final": sum(1 for g in games if g.get("completed")),
         "games_upcoming": len(upcoming),
-        "settings": cfg,
-        "brier": ledger.brier(ledg),
+        "settings": public_settings(cfg),
+        "brier": None,
         "odds_health": odds_health,
         "fpi": {
             "available": bool(fpi_teams),
@@ -1123,12 +1123,23 @@ def main() -> int:
 
     write("meta.json", meta)
     write("board.json", [{**c, "line_move": store.line_move(lines, c["game_id"])} for c in board])
-    write("ledger.json", sorted(ledg.values(), key=lambda b: (b.get("game_date") or ""), reverse=True))
-    write("summary.json", {**summary, "calibration": ledger.calibration(ledg)})
-    write("model_history.json", P.summarise(preds))
-    game_history.update(os.path.join(store.STATE_DIR, "model_accuracy.json"),
-                        os.path.join(SITE_DATA, "accuracy.json"), board, forecast_games,
-                        games, "NCAAF", historical=preds.values())
+    write("ledger.json", [])
+    write("summary.json", summary)
+    accuracy = game_history.update(os.path.join(store.STATE_DIR, "model_accuracy.json"),
+                                   os.path.join(SITE_DATA, "accuracy.json"), board,
+                                   forecast_games, games, "NCAAF", season=season,
+                                   game_only=True)
+    game_accuracy = accuracy.get("games") or {}
+    write("model_history.json", {
+        "game_only": True,
+        "scope": accuracy.get("scope") or {},
+        "total_logged": game_accuracy.get("logged", 0),
+        "settled": game_accuracy.get("graded", 0),
+        "pending": game_accuracy.get("pending", 0),
+        "winner": game_accuracy.get("winner") or {},
+        "ats": game_accuracy.get("ats") or {},
+        "totals": game_accuracy.get("totals") or {},
+    })
     write("ratings.json", sorted(
         [{"team": t,
           "rating": round(rat[t], 2),
@@ -1154,9 +1165,7 @@ def main() -> int:
     write("schedule.json", build_schedule(game_rows, fbs))
 
     print(f"   wrote {SITE_DATA}")
-    roi_txt = "n/a" if summary["roi"] is None else f"{summary['roi'] * 100:.1f}%"
-    print(f"== bankroll {cfg['currency_symbol']}{summary['current_bankroll']} "
-          f"| {summary['settled']} settled | ROI {roi_txt} ==")
+    print("== bankroll and wager history are browser-local ==")
     return 0
 
 

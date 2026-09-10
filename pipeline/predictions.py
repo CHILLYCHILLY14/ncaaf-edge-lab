@@ -36,6 +36,8 @@ def log_prediction(preds: dict, cand: dict) -> bool:
         "game_id": cand["game_id"],
         "logged_at": store.now_iso(),
         "game_date": cand["game_date"],
+        "season": cand.get("season"),
+        "season_type": cand.get("season_type"),
         "week": cand.get("week"),
         "matchup": cand["matchup"],
         "market": cand["market"],
@@ -135,7 +137,7 @@ def _brier(rows: list[dict]) -> float | None:
     return round(s / len(rows), 4)
 
 
-def summarise(preds: dict) -> dict:
+def summarise(preds: dict, season=None, season_type=None) -> dict:
     """
     The model's full track record, independent of what was ever staked.
 
@@ -144,7 +146,10 @@ def summarise(preds: dict) -> dict:
     selected sample of the same underlying question: when this model says X%,
     does X% actually happen?
     """
-    all_rows = list(preds.values())
+    unfiltered = list(preds.values())
+    all_rows = [p for p in unfiltered
+                if (season is None or str(p.get("season")) == str(season))
+                and (season_type is None or str(p.get("season_type")) == str(season_type))]
     settled = [p for p in all_rows if p.get("result") in ("Win", "Loss")]
     pending = [p for p in all_rows if p.get("result") == "Pending"]
 
@@ -185,6 +190,8 @@ def summarise(preds: dict) -> dict:
         row.pop("rows", None)
 
     return {
+        "scope": {"season": season, "season_type": season_type,
+                  "included": len(all_rows), "excluded": len(unfiltered) - len(all_rows)},
         "total_logged": len(all_rows),
         "settled": len(settled),
         "pending": len(pending),

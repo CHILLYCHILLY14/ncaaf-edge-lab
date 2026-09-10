@@ -9,6 +9,7 @@ def call(row, league, historical=False):
     captured = next((row.get(k) for k in ("first_seen", "logged_at", "tracked_at") if row.get(k)), None)
     return {"kind": "call", "league": league, "event_id": str(row.get("game_id") or ""),
             "start": row.get("game_date") or row.get("tipoff"), "matchup": row.get("matchup"),
+            "season": row.get("season"), "season_type": row.get("season_type"),
             "market": row.get("market"), "side": row.get("side"), "pick": row.get("pick"),
             "line": line, "price": row.get("price"), "book": row.get("book"),
             "probability": row.get("model_prob"), "tier": row.get("tier"),
@@ -24,6 +25,7 @@ def game(row, league):
     return {"kind": "game", "league": league, "event_id": str(row.get("game_id") or ""),
             "start": row.get("date_utc") or row.get("tipoff") or row.get("date"),
             "completed": row.get("completed"),
+            "season": row.get("season"), "season_type": row.get("season_type"),
             "matchup": row.get("matchup") or f'{away.get("abbr")} @ {home.get("abbr")}',
             "margin": p.get("mu", p.get("margin")), "total": p.get("proj_total", p.get("total")),
             "probability": row.get("p_home"),
@@ -37,25 +39,51 @@ def results(games):
                               "away_score": g.get("away_score", (g.get("away") or {}).get("score"))} for g in games}
 
 
-def update(state_path, output_path, candidates, forecast_games, all_games, league, historical=(), old_forecasts=None):
+def update(state_path, output_path, candidates, forecast_games, all_games, league,
+           historical=(), old_forecasts=None, season=None, season_type=2,
+           game_only=False):
     log = A.load(state_path)
-    # Import only a documented pregame timestamp, never reconstruct past picks.
-    A.record(log, [call(r, league, True) for r in (historical if not log.get("legacy_imported") else ())
-                   if any(r.get(k) for k in ("first_seen", "logged_at", "tracked_at"))])
-    if old_forecasts and not log.get("legacy_imported"):
-        for r in old_forecasts.values():
-            snap = r.get("first") or {}
-            if snap.get("ts"):
-                A.record(log, [{"kind": "game", "league": league, "event_id": r["game_id"],
-                                "start": r.get("date"), "matchup": r.get("matchup"),
-                                "margin": snap.get("model_margin"), "total": snap.get("model_total"),
-                                "probability": snap.get("p_home"), "market_spread": snap.get("market_spread"),
-                                "market_total": snap.get("market_total"), "captured_at": snap["ts"], "version": "legacy"}])
-    log["legacy_imported"] = True
-    A.record(log, [call(r, league) for r in candidates])
+    # Scope metadata does not alter a frozen prediction. Backfill it from the
+    # authoritative schedule before applying the current-season-only boundary.
+    game_scope = {str(g.get("game_id") or ""): g for g in all_games}
+    for row in log.get("records", {}).values():
+        source = game_scope.get(str(row.get("event_id") or ""))
+        if not source:
+            continue
+        if row.get("season") is None:
+            row["season"] = source.get("season")
+        if row.get("season_type") is None:
+            row["season_type"] = source.get("season_type")
+    if game_only:
+        log = {
+            "game_only": True,
+            "records": {
+                key: row for key, row in log.get("records", {}).items()
+                if row.get("kind") == "game"
+                and (season is None or str(row.get("season")) == str(season))
+                and (season_type is None or str(row.get("season_type")) == str(season_type))
+            },
+        }
+    else:
+        # Import only a documented pregame timestamp, never reconstruct past picks.
+        A.record(log, [call(r, league, True) for r in (historical if not log.get("legacy_imported") else ())
+                       if any(r.get(k) for k in ("first_seen", "logged_at", "tracked_at"))])
+        if old_forecasts and not log.get("legacy_imported"):
+            for r in old_forecasts.values():
+                snap = r.get("first") or {}
+                if snap.get("ts"):
+                    A.record(log, [{"kind": "game", "league": league, "event_id": r["game_id"],
+                                    "start": r.get("date"), "matchup": r.get("matchup"),
+                                    "margin": snap.get("model_margin"), "total": snap.get("model_total"),
+                                    "probability": snap.get("p_home"), "market_spread": snap.get("market_spread"),
+                                    "market_total": snap.get("market_total"), "captured_at": snap["ts"], "version": "legacy"}])
+        log["legacy_imported"] = True
+        A.record(log, [call(r, league) for r in candidates])
     A.record(log, [game(r, league) for r in forecast_games if r.get("projection")])
     A.settle(log, results(all_games))
     A.save(state_path, log)
-    output = A.report(log, f"{league} prediction accuracy")
+    output = A.report(log, f"{league} prediction accuracy",
+                      season=season, season_type=season_type,
+                      game_only=game_only)
     A.save(output_path, output)
     return output

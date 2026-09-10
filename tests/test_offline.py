@@ -537,11 +537,13 @@ def test_predictions_module() -> None:
     passed_cand = {"game_id": "1", "market": "ATS", "side": "home", "pick": "H -3.5",
                    "line": -3.5, "price": -110, "model_prob": 0.53, "market_fair_prob": 0.51,
                    "breakeven": 0.5238, "edge": 0.006, "tier": "PASS", "confidence": 0.9,
-                   "matchup": "A @ H", "game_date": "2026-09-05T19:00Z", "week": 2}
+                   "matchup": "A @ H", "game_date": "2026-09-05T19:00Z", "week": 2,
+                   "season": 2026, "season_type": 2}
     best_cand = {"game_id": "2", "market": "ML", "side": "home", "pick": "H ML",
                 "line": None, "price": -150, "model_prob": 0.68, "market_fair_prob": 0.58,
                 "breakeven": 0.60, "edge": 0.08, "tier": "BEST BET", "confidence": 1.0,
-                "matchup": "B @ H", "game_date": "2026-09-05T19:00Z", "week": 2}
+                "matchup": "B @ H", "game_date": "2026-09-05T19:00Z", "week": 2,
+                "season": 2026, "season_type": 2}
 
     check("logs a PASS-tier prediction, not just qualified bets",
           P.log_prediction(preds, passed_cand))
@@ -582,6 +584,9 @@ def test_predictions_module() -> None:
           "PASS" in summ["by_tier"] and "BEST BET" in summ["by_tier"])
     check("market breakdown present", "ATS" in summ["by_market"] and "ML" in summ["by_market"])
     check("week trend has an entry", len(summ["week_trend"]) >= 1)
+    scoped = P.summarise(preds, season=2026, season_type=2)
+    check("history can be scoped to the current regular season",
+          scoped["total_logged"] == 2 and scoped["scope"]["excluded"] == 1)
 
 
 def test_market_picks() -> None:

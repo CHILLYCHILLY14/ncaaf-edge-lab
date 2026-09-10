@@ -131,7 +131,7 @@ the included workflow refreshes everything four times a day for free.
 |---|---|
 | `python -m pipeline.build` | Normal refresh — rolling window of games |
 | `python -m pipeline.build --full` | Full-season backfill, rebuilds the cache |
-| `python -m pipeline.build --no-bet` | Price everything, log nothing |
+| `python -m pipeline.build --no-bet` | Legacy alias; builds never log wagers |
 | `python -m pipeline.backtest` | Walk-forward backtest on cached seasons |
 | `python -m pipeline.to_excel` | Regenerate the workbook |
 | `python -m tests.test_offline` | Full pipeline self-test, no network |

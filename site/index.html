@@ -283,8 +283,8 @@ const DATA_BASE = (() => {
   if (q) return q.replace(/\/?$/, "/");
   return "./data/";
 })();
-const FILES = ["meta", "summary", "board", "ledger", "ratings", "model_history", "schedule", "games"];
-const S = { meta:null, summary:null, board:[], ledger:[], myLedger:[], ratings:[], model_history:null, schedule:[], games:[], tab:"best", staking:null,
+const FILES = ["meta", "summary", "board", "ledger", "ratings", "model_history", "accuracy", "schedule", "games"];
+const S = { meta:null, summary:null, board:[], ledger:[], myLedger:[], ratings:[], model_history:null, accuracy:null, schedule:[], games:[], tab:"best", staking:null,
             filters:{tier:"PLAYS", market:"ALL", q:""}, sort:{key:"rating", dir:-1}, schedWeek:null, slateIndex:null, allPlays:true,
             sim:{ready:false,gameId:"",away:"",home:"",neutral:false,spread:"",total:"",iterations:10000} };
 
@@ -438,7 +438,7 @@ const TABS = [
   ["sim","Simulator", () => null],
   ["ledger","My Ledger", () => S.myLedger.length],
   ["ratings","Power Ratings", () => S.ratings.length],
-  ["history","Accuracy", () => (S.model_history||{}).total_logged ?? null],
+  ["history","Accuracy", () => ((S.accuracy||{}).games||{}).graded ?? null],
   ["health","Model Health", () => null],
   ["settings","Bankroll & Stakes", () => null],
 ];

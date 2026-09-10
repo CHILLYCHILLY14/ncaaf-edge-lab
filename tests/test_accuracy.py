@@ -100,6 +100,29 @@ class AccuracyTests(unittest.TestCase):
             path.write_text("invalid")
             with self.assertRaises(json.JSONDecodeError):A.load(path)
 
+    def test_report_can_scope_to_current_regular_season(self):
+        log = {"records": {
+            "old": {**call(event_id="old"), "id": "old", "season": 2025,
+                    "season_type": 2, "selected": True, "result": "Loss"},
+            "now": {**call(event_id="now"), "id": "now", "season": 2026,
+                    "season_type": 2, "selected": True, "result": "Win"},
+        }}
+        report = A.report(log, season=2026, season_type=2)
+        self.assertEqual(report["overall"]["wins"], 1)
+        self.assertEqual([row["id"] for row in report["records"]], ["now"])
+
+    def test_game_only_report_excludes_market_calls_and_unit_fields(self):
+        game = {"kind": "game", "league": "NCAAF", "event_id": "g1",
+                "start": START, "margin": 3, "total": 48,
+                "probability": .58, "season": 2026, "season_type": 2}
+        log = A.record({}, [call(season=2026, season_type=2), game], NOW)
+        report = A.report(log, season=2026, season_type=2, game_only=True)
+        self.assertTrue(report["game_only"])
+        self.assertNotIn("overall", report)
+        self.assertEqual({row["kind"] for row in report["records"]}, {"game"})
+        self.assertTrue(all("units" not in row and "price" not in row
+                            for row in report["records"]))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -74,7 +74,7 @@ jobs:
           git add state/model_accuracy.json site/data/accuracy.json
           git add -A -- \
             state/fpi_*.json state/games_*.json state/history_*.json \
-            state/lines.json state/predictions.json \
+            state/lines.json \
             site/data/board.json site/data/games.json site/data/meta.json \
             site/data/ratings.json site/data/schedule.json site/data/model_history.json
           git diff --staged --quiet || git commit -m "refresh $(date -u +'%Y-%m-%d %H:%M UTC')"
