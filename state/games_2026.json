@@ -4766,8 +4766,8 @@
    "ml_home": null,
    "over_price": -105.0,
    "spread_home": -57.5,
-   "spread_price_away": -112.0,
-   "spread_price_home": -108.0,
+   "spread_price_away": -105.0,
+   "spread_price_home": -115.0,
    "total": 63.5,
    "under_price": -115.0,
    "verified_markets": [
@@ -8684,8 +8684,8 @@
   "odds": {
    "book": "DraftKings",
    "details": "TEX -1.5",
-   "ml_away": -102.0,
-   "ml_home": -118.0,
+   "ml_away": 100.0,
+   "ml_home": -120.0,
    "over_price": -105.0,
    "spread_home": -1.5,
    "spread_price_away": -108.0,
