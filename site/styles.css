@@ -212,3 +212,8 @@ footer{color:var(--faint);font-size:11px;margin-top:22px;padding-top:12px;border
 .ledger-kpis{padding:0;margin:0 0 18px;max-width:none;border-bottom:1px solid var(--line)}
 .ledger-stake{width:82px;border:1px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:8px;padding:7px 8px;text-align:right;font:600 12px/1.2 var(--mono)}
 .ledger-stake:disabled{opacity:.7}
+
+.schedule-toolbar { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin:0 0 20px; }
+.schedule-toolbar label { font-size:14px; color:var(--ink-2); }
+.schedule-toolbar select { flex:1; min-width:220px; max-width:640px; padding:12px; border:1px solid var(--line); border-radius:8px; background:var(--surface); color:var(--ink); font:inherit; font-size:16px; }
+@media(max-width:600px) { .schedule-toolbar label { width:100%; } .schedule-toolbar select { width:100%; min-width:0; flex-basis:100%; } }

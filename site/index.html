@@ -285,15 +285,18 @@ const DATA_BASE = (() => {
 })();
 const FILES = ["meta", "summary", "board", "ledger", "ratings", "model_history", "accuracy", "schedule", "games"];
 const S = { meta:null, summary:null, board:[], ledger:[], myLedger:[], ratings:[], model_history:null, accuracy:null, schedule:[], games:[], tab:"best", staking:null,
-            filters:{tier:"PLAYS", market:"ALL", q:""}, sort:{key:"rating", dir:-1}, schedWeek:null, slateIndex:null, allPlays:true,
+            filters:{tier:"PLAYS", market:"ALL", q:""}, sort:{key:"rating", dir:-1}, slateIndex:null, slatePinned:false, allPlays:true,
             sim:{ready:false,gameId:"",away:"",home:"",neutral:false,spread:"",total:"",iterations:10000} };
 
 async function load(){
   if (window.__NCAAF_DATA__){ Object.assign(S, window.__NCAAF_DATA__); return true; }
   try{
+    const pinnedKey = S.slatePinned && S.slateIndex !== null ? scheduleKey(S.schedule[S.slateIndex]) : null;
     const res = await Promise.all(FILES.map(f =>
       fetch(DATA_BASE + f + ".json", {cache:"no-store"}).then(r => r.ok ? r.json() : null)));
     FILES.forEach((f,i) => { if (res[i] !== null) S[f] = res[i]; });
+    const pinnedIndex = pinnedKey ? S.schedule.findIndex(s => scheduleKey(s) === pinnedKey) : -1;
+    S.slateIndex = pinnedIndex >= 0 ? pinnedIndex : null;
     return !!S.meta;
   }catch(e){ return false; }
 }
@@ -337,14 +340,14 @@ function when(iso){
   if (!iso) return "—";
   const d = new Date(iso);
   if (isNaN(d)) return String(iso).slice(0,10);
-  return d.toLocaleString(undefined,{weekday:"short",month:"short",day:"numeric",
+  return d.toLocaleString(undefined,{timeZone:cfg().timezone||"America/Toronto",weekday:"short",month:"short",day:"numeric",
     hour:"numeric",minute:"2-digit"});
 }
 function day(iso){
   if (!iso) return "—";
   const d = new Date(iso);
   return isNaN(d) ? String(iso).slice(0,10)
-    : d.toLocaleDateString(undefined,{month:"short",day:"numeric"});
+    : d.toLocaleDateString(undefined,{timeZone:cfg().timezone||"America/Toronto",month:"short",day:"numeric"});
 }
 function ago(iso){
   if (!iso) return "—";
@@ -356,10 +359,11 @@ function ago(iso){
   return h < 24 ? h + (h===1?" hour ago":" hours ago") : Math.round(h/24) + "d ago";
 }
 
+function scheduleKey(s){ return s?.id || `${s?.season||"unknown"}:${s?.season_type||"unknown"}:${s?.week}:${s?.slate||1}`; }
 function defaultSlateIndex(){
   if (!S.schedule.length) return 0;
   const now = Date.now() - 12*60*60*1000;
-  const i = S.schedule.findIndex(s => (s.rows||[]).some(r => new Date(r.date).getTime() >= now));
+  const i = S.schedule.findIndex(s => (s.rows||[]).some(r => !r.completed && !r.canceled && !r.postponed && new Date(r.date).getTime() >= now));
   return i < 0 ? Math.max(0, S.schedule.length-1) : i;
 }
 function activeSlate(){
@@ -374,9 +378,10 @@ function slateRowsFor(slate){
 function slateRows(){
   return slateRowsFor(activeSlate());
 }
-function setSlate(i){
+function setSlate(i, pinned=true){
   if (!S.schedule.length) return;
   S.slateIndex = Math.max(0,Math.min(S.schedule.length-1,i));
+  S.slatePinned = pinned;
   S.allPlays = false;
   renderStamp(); renderKpis(); renderTabs(); renderPanels();
 }
@@ -404,7 +409,7 @@ function renderStamp(){
   document.getElementById("seasonline").textContent =
     `${m.season || ""} season`;
   const slate = activeSlate();
-  document.getElementById("slatecurrent").textContent = slate ? slate.date_range : "All upcoming";
+  document.getElementById("slatecurrent").textContent = slate ? `${slate.label}${slate.label.includes(slate.date_range)?"":" · "+slate.date_range}` : "All upcoming";
   document.getElementById("slateprev").disabled = !slate || S.slateIndex <= 0;
   document.getElementById("slatenext").disabled = !slate || S.slateIndex >= S.schedule.length-1;
   document.getElementById("stamp").innerHTML =
@@ -877,24 +882,15 @@ function renderSchedule(){
   const el = document.getElementById("p-schedule");
   const weeks = S.schedule || [];
   let h = `<div class="panel-head"><div><h2>Schedule</h2>
-    <p>The full season, however far out ESPN has announced it — not just the games close enough to have a market yet. A line only ever shows here once a book has actually posted it; a future week with no odds shows a dash, never an estimate.</p></div></div>`;
+    <p>Choose a regular-season week or postseason period. Dates use Eastern time. This selection also controls the board and scheduled simulator matchups; odds appear only when a sportsbook has posted them.</p></div></div>`;
   if (!weeks.length){ el.innerHTML = h + `<div class="empty">Schedule appears after the first pipeline run.</div>`; return; }
 
-  const key = w => `${w.week}|${w.slate||1}`;
-  if (S.schedWeek === null || !weeks.some(w => key(w) === S.schedWeek)){
-    const firstOpen = weeks.find(w => w.completed < w.games);
-    S.schedWeek = key(firstOpen || weeks[0]);
-  }
-  h += `<div class="filters">` + weeks.map(w => {
-    const done = w.completed === w.games && w.games > 0;
-    const dot = done ? "var(--good)" : (w.with_odds > 0 ? "var(--flag)" : "var(--ink-3)");
-    return `<button class="chipbtn" data-wk="${esc(key(w))}" aria-pressed="${S.schedWeek===key(w)}"
-      style="display:inline-flex;align-items:center;gap:6px">
-      <span style="width:6px;height:6px;border-radius:50%;background:${dot};display:inline-block"></span>
-      ${esc(w.label || ("Week " + w.week))}</button>`;
-  }).join("") + `</div>`;
-
-  const wk = weeks.find(w => key(w) === S.schedWeek);
+  const wk = activeSlate();
+  const phases = [...new Set(weeks.map(w => `${w.season||""} ${w.phase_label||"Schedule"}`.trim()))];
+  h += `<div class="schedule-toolbar"><label for="schedule-period">Week or postseason period</label><select id="schedule-period">` + phases.map(phase =>
+    `<optgroup label="${esc(phase)}">${weeks.map((w,i) => ({w,i})).filter(({w}) => `${w.season||""} ${w.phase_label||"Schedule"}`.trim() === phase).map(({w,i}) =>
+      `<option value="${i}" ${scheduleKey(w)===scheduleKey(wk)?"selected":""}>${esc(w.label)}${w.label.includes(w.date_range)?"":" · "+esc(w.date_range)} · ${w.games} games</option>`).join("")}</optgroup>`
+  ).join("") + `</select><button id="schedule-current" class="chipbtn">Current week</button></div>`;
   const fcsCount = wk.rows.filter(r => r.away_fcs || r.home_fcs).length;
   h += `<p style="color:var(--ink-3);font-size:12.5px;margin:-4px 0 12px">
     ${wk.games} game${wk.games===1?"":"s"} · ${wk.with_odds} with a posted line · ${wk.completed} final${
@@ -927,10 +923,8 @@ function renderSchedule(){
       </tr>`;
     }).join("") + `</tbody></table></div>`;
   el.innerHTML = h;
-  el.querySelectorAll("[data-wk]").forEach(b => b.onclick = () => {
-    S.schedWeek = b.dataset.wk;
-    renderSchedule();
-  });
+  document.getElementById("schedule-period").onchange = e => setSlate(Number(e.target.value));
+  document.getElementById("schedule-current").onclick = () => setSlate(defaultSlateIndex(), false);
 }
 
 function renderHistory(){
@@ -949,7 +943,9 @@ function renderSimulator(){
     names[g.away] = g.away_name || g.away;
     names[g.home] = g.home_name || g.home;
   });
-  const futureGames = (S.games||[]).filter(g => !g.completed && !g.canceled && !g.postponed &&
+  const slate = activeSlate();
+  const slateIds = new Set((slate?.rows||[]).map(g => String(g.game_id)));
+  const futureGames = (S.games||[]).filter(g => (!slate || slateIds.has(String(g.game_id))) && !g.completed && !g.canceled && !g.postponed &&
     ratings.has(g.away) && ratings.has(g.home)).sort((a,b) => String(a.date||"").localeCompare(String(b.date||"")));
   const state = S.sim;
 
@@ -962,7 +958,9 @@ function renderSimulator(){
     state.spread = o.spread_home ?? "";
     state.total = o.total ?? "";
   }
-  if (!state.ready){
+  if (!state.ready || state.slateId !== scheduleKey(slate)){
+    state.slateId = scheduleKey(slate);
+    state.gameId = ""; state.spread = ""; state.total = "";
     const first = futureGames.find(g => (g.odds||{}).verified_markets?.length) || futureGames[0];
     if (first) useGame(first);
     else if (S.ratings.length >= 2){ state.away=S.ratings[1].team; state.home=S.ratings[0].team; }
@@ -979,7 +977,7 @@ function renderSimulator(){
     <p>Run 10,000 repeat games from the same power ratings, scoring model, key-number distribution and uncertainty used by the board. Pick a scheduled game to load its line, or build any matchup yourself.</p></div></div>
     <div class="sim-layout">
       <div class="sim-box"><div class="sim-form">
-        <div class="sim-field wide"><label for="sim-game">Scheduled matchup</label><select id="sim-game">${gameOptions}</select></div>
+        <div class="sim-field wide"><label for="sim-game">Scheduled matchup · ${esc(slate?.label||"All games")}</label><select id="sim-game">${gameOptions}</select></div>
         <div class="sim-field"><label for="sim-away">Away team</label><select id="sim-away">${teamOptions(state.away)}</select></div>
         <div class="sim-field"><label for="sim-home">Home team</label><select id="sim-home">${teamOptions(state.home)}</select></div>
         <label class="sim-check"><input id="sim-neutral" type="checkbox" ${state.neutral?"checked":""}>Neutral site — remove home-field advantage</label>
@@ -1185,7 +1183,7 @@ document.getElementById("themebtn").onclick = () => {
 };
 document.getElementById("slateprev").onclick = () => setSlate((S.slateIndex??defaultSlateIndex())-1);
 document.getElementById("slatenext").onclick = () => setSlate((S.slateIndex??defaultSlateIndex())+1);
-document.getElementById("slatenow").onclick = () => setSlate(defaultSlateIndex());
+document.getElementById("slatenow").onclick = () => setSlate(defaultSlateIndex(), false);
 
 async function boot(force){
   applyTheme();

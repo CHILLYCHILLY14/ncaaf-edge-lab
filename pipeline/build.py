@@ -20,6 +20,7 @@ import json
 import math
 import os
 import sys
+from zoneinfo import ZoneInfo
 
 from . import espn, model as M, ratings as R, store
 
@@ -136,10 +137,16 @@ def build_schedule(game_rows: list[dict], fbs: set[str] | None = None) -> list[d
     this doesn't have one either.
     """
     from collections import defaultdict
-    by_week: dict[str, list[dict]] = defaultdict(list)
+    by_week: dict[tuple, list[dict]] = defaultdict(list)
     for g in game_rows:
         wk = g.get("week")
-        key = str(wk) if wk is not None else "Unscheduled"
+        week = str(wk) if wk is not None else "Unscheduled"
+        season = g.get("season")
+        try:
+            phase = int(g["season_type"])
+        except (KeyError, TypeError, ValueError):
+            phase = None
+        key = (season, phase, week)
         o = g.get("odds") or {}
         has_odds = espn.has_priced_market(o)
         by_week[key].append({
@@ -165,27 +172,36 @@ def build_schedule(game_rows: list[dict], fbs: set[str] | None = None) -> list[d
             "home_fcs": bool(fbs) and g["home"] not in fbs,
         })
 
-    def week_sort_key(k: str):
-        return (0, int(k)) if k.isdigit() else (1, k)
-
     out = []
-    for wk in sorted(by_week, key=week_sort_key):
-        rows = sorted(by_week[wk], key=lambda r: r.get("date") or "")
-        for slate_no, slate in enumerate(split_slates(rows), start=1):
-            multi = slate_no > 1 or len(split_slates(rows)) > 1
+    for (season, phase, wk), group_rows in by_week.items():
+        rows = sorted(group_rows, key=lambda r: r.get("date") or "")
+        slates = split_slates(rows)
+        phase_label = {1: "Preseason", 2: "Regular season", 3: "Postseason"}.get(phase, "Season phase unconfirmed")
+        for slate_no, slate in enumerate(slates, start=1):
+            multi = len(slates) > 1
             rng = date_range_label(slate)
+            if phase in (1, 3):
+                label = f"{phase_label} · {rng}" if rng else phase_label
+            elif phase == 2 and wk == "1" and multi and slate_no == 1:
+                label = f"Opening weekend · {rng}"
+            else:
+                label = (f"Week {wk} · {rng}" if wk.isdigit() and multi
+                         else f"Week {wk}" if wk.isdigit() else wk)
             out.append({
+                "id": f"{season or 'unknown'}:{phase or 'unknown'}:{wk}:{slate_no}",
+                "season": season,
+                "season_type": phase,
+                "phase_label": phase_label,
                 "week": wk,
                 "slate": slate_no,
-                "label": (f"Week {wk} · {rng}" if wk.isdigit() and multi
-                          else f"Week {wk}" if wk.isdigit() else wk),
+                "label": label,
                 "date_range": rng,
                 "games": len(slate),
                 "with_odds": sum(1 for r in slate if r["has_odds"]),
                 "completed": sum(1 for r in slate if r["completed"]),
                 "rows": slate,
             })
-    return out
+    return sorted(out, key=lambda s: (min((r.get("date") or "9999") for r in s["rows"]), s["id"]))
 
 
 def split_slates(rows: list[dict], gap_days: int = 3) -> list[list[dict]]:
@@ -217,10 +233,11 @@ def split_slates(rows: list[dict], gap_days: int = 3) -> list[list[dict]]:
 
 
 def _row_date(row: dict) -> dt.date | None:
-    s = (row.get("date") or "")[:10]
+    s = row.get("date") or ""
     try:
-        return dt.date.fromisoformat(s)
-    except ValueError:
+        moment = dt.datetime.fromisoformat(s.replace("Z", "+00:00"))
+        return (moment.astimezone(ZoneInfo("America/Toronto")) if moment.tzinfo else moment).date()
+    except (ValueError, TypeError):
         return None
 
 
@@ -1154,6 +1171,7 @@ def main() -> int:
         key=lambda r: -r["rating"]))
     game_rows = [{
         "game_id": g["game_id"], "date": g.get("date_utc"), "week": g.get("week"),
+        "season": g.get("season"), "season_type": g.get("season_type"),
         "away": g["away"]["abbr"], "home": g["home"]["abbr"],
         "away_name": g["away"]["name"], "home_name": g["home"]["name"],
         "away_score": g.get("away_score"), "home_score": g.get("home_score"),

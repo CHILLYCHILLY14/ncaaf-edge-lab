@@ -49,7 +49,7 @@ jobs:
         # If the model is broken, do not publish numbers from it.
         run: |
           python -m tests.test_offline
-          python -m unittest tests.test_accuracy
+          python -m unittest tests.test_accuracy tests.test_schedule
           node tests/test_simulator.js
           node tests/test_staking.mjs
           node tests/test_ledger.mjs
