@@ -1,8 +1,8 @@
 name: Refresh model
 
 # Credential-free refresh using public data only. During the college football
-# weekend we refresh every two hours so posted lines and newly available prices
-# reach the board much sooner; Monday-Thursday use a lighter four-hour cadence.
+# weekend kickoff windows we refresh twice an hour. Other hours use a lighter
+# two-hour cadence. Provider checks and weather are cached independently.
 # Times are UTC and GitHub's scheduler is best-effort.
 on:
   push:
@@ -14,9 +14,14 @@ on:
       - 'tests/**'
       - 'requirements.txt'
       - 'site/*.js'
+      - 'site/index.html'
+      - 'site/styles.css'
   schedule:
-    - cron: "17 */4 * * 1-4"
-    - cron: "17 */2 * * 0,5,6"
+    - cron: "17 */2 * * 1-4"
+    - cron: "17,47 12-23 * * 0,5,6"
+    - cron: "17,47 0-6 * * 0,6"
+    - cron: "17 0,2,4,6,8,10 * * 5"
+    - cron: "17 8,10 * * 0,6"
   workflow_dispatch:
     inputs:
       full:
@@ -49,7 +54,8 @@ jobs:
         # If the model is broken, do not publish numbers from it.
         run: |
           python -m tests.test_offline
-          python -m unittest tests.test_accuracy tests.test_schedule
+          python -m unittest tests.test_accuracy tests.test_schedule tests.test_context tests.test_privacy
+          node tests/test_matchups.js
           node tests/test_simulator.js
           node tests/test_staking.mjs
           node tests/test_ledger.mjs
@@ -74,7 +80,7 @@ jobs:
           git add state/model_accuracy.json site/data/accuracy.json
           git add -A -- \
             state/fpi_*.json state/games_*.json state/history_*.json \
-            state/lines.json \
+            state/lines.json state/context_cache.json state/quote_cache.json \
             site/data/board.json site/data/games.json site/data/meta.json \
             site/data/ratings.json site/data/schedule.json site/data/model_history.json
           git diff --staged --quiet || git commit -m "refresh $(date -u +'%Y-%m-%d %H:%M UTC')"

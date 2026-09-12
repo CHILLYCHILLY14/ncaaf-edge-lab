@@ -160,6 +160,34 @@ def mean(values):
     return round(sum(v)/len(v), 5) if v else None
 
 
+def wilson(correct, n):
+    if not n:
+        return None
+    z, p = 1.959964, correct/n
+    scale = 1+z*z/n
+    center = (p+z*z/(2*n))/scale
+    half = z*math.sqrt(p*(1-p)/n+z*z/(4*n*n))/scale
+    return [round(max(0, center-half), 5), round(min(1, center+half), 5)]
+
+
+def forecast_validation(finals):
+    """Calibration of HOME win probability, independent of the wager ledger."""
+    valid = [r for r in finals if number(r.get('probability')) is not None
+             and 0 <= r['probability'] <= 1 and r.get('actual_margin') != 0]
+    buckets = []
+    for i in range(5):
+        rs = [r for r in valid if min(4, int(r['probability']*5)) == i]
+        if rs:
+            wins = sum(r['actual_margin'] > 0 for r in rs)
+            buckets.append({'bucket': f'{i*20}–{(i+1)*20}%', 'n': len(rs),
+                            'predicted': mean(r['probability'] for r in rs),
+                            'actual': wins/len(rs), 'interval95': wilson(wins, len(rs))})
+    return {'n': len(valid), 'probability_target': 'home team win', 'calibration': buckets,
+            'brier': mean((r['probability']-(r['actual_margin'] > 0))**2 for r in valid),
+            'status': 'limited sample' if len(valid) < 100 else 'review calibration',
+            'note': 'Only frozen forecasts from this season. Intervals show sampling uncertainty; neither a small sample nor market agreement proves an edge.'}
+
+
 def call_stats(rows):
     wins = sum(r["result"] == "Win" for r in rows)
     losses = sum(r["result"] == "Loss" for r in rows)
@@ -215,8 +243,9 @@ def report(log, label="Model accuracy", season=None, season_type=None,
                                 "predicted": mean([r["probability"] for r in rs]),
                                 "actual": mean([r["result"] == "Win" for r in rs])})
     def rate(rs, fn):
-        return {"n": len(rs), "correct": sum(bool(fn(r)) for r in rs),
-                "accuracy": mean([bool(fn(r)) for r in rs])}
+        correct = sum(bool(fn(r)) for r in rs)
+        return {"n": len(rs), "correct": correct,
+                "accuracy": mean([bool(fn(r)) for r in rs]), "interval95": wilson(correct, len(rs))}
     season_type_label = {1: "preseason", 2: "regular season", 3: "postseason"}.get(
         int(season_type) if season_type is not None else None)
     output = {"schema": 3 if game_only else 2,
@@ -244,6 +273,7 @@ def report(log, label="Model accuracy", season=None, season_type=None,
                       "total_mae": mean([abs(r["total"]-r["actual_total"]) for r in finals if number(r.get("total")) is not None]),
                       "brier": mean([(r["probability"]-(r["actual_margin"] > 0))**2 for r in finals
                                      if number(r.get("probability")) is not None and r["actual_margin"] != 0])},
+            "validation": forecast_validation(finals),
             "records": sorted(rows, key=lambda r: (r.get("start") or "", r["id"]), reverse=True)}
     if not game_only:
         output.update({

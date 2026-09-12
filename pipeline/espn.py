@@ -18,6 +18,7 @@ back to `pickcenter` when the scoreboard has moved on.
 from __future__ import annotations
 
 import datetime as dt
+import math
 import re
 import time
 from typing import Any, Iterable
@@ -147,7 +148,8 @@ def _num(v: Any) -> float | None:
         if v.upper() == "EVEN":
             return 100.0
     try:
-        return float(v)
+        n = float(v)
+        return n if math.isfinite(n) else None
     except (TypeError, ValueError):
         return None
 
@@ -208,7 +210,9 @@ def parse_odds(block: dict | None) -> dict:
 
     def _legacy_spread_price(side: dict) -> float | None:
         cur = side.get("current") or {}
-        return _num((cur.get("pointSpread") or {}).get("american"))
+        # pointSpread.american is the handicap (+3.5), NOT its price (-110).
+        direct = _num(side.get("spreadOdds"))
+        return direct if direct is not None else _num((cur.get("spread") or {}).get("american"))
 
     ml_home = _num(_close(block, "moneyline", "home").get("odds"))
     ml_away = _num(_close(block, "moneyline", "away").get("odds"))
@@ -235,8 +239,27 @@ def parse_odds(block: dict | None) -> dict:
     cur = block.get("current") or {}
     if over_price is None:
         over_price = _num(((cur.get("over") or {}).get("american")))
+    if over_price is None:
+        over_price = _num(block.get("overOdds"))
     if under_price is None:
         under_price = _num(((cur.get("under") or {}).get("american")))
+    if under_price is None:
+        under_price = _num(block.get("underOdds"))
+
+    # American prices must have absolute magnitude >= 100. Reject partial,
+    # non-finite and handicap-shaped values before marking a market verified.
+    def price(v):
+        return v if v is not None and abs(v) >= 100 else None
+    ml_home, ml_away = price(ml_home), price(ml_away)
+    spread_price_home, spread_price_away = price(spread_price_home), price(spread_price_away)
+    over_price, under_price = price(over_price), price(under_price)
+    away_line = _line_num(_close(block, "pointSpread", "away").get("line"))
+    under_line = _line_num(_close(block, "total", "under").get("line"))
+    over_line = _line_num(_close(block, "total", "over").get("line"))
+    if spread_home is not None and away_line is not None and abs(spread_home + away_line) > 1e-6:
+        spread_price_home = spread_price_away = None
+    if over_line is not None and under_line is not None and abs(over_line-under_line) > 1e-6:
+        over_price = under_price = None
 
     verified = []
     if spread_home is not None and spread_price_home is not None and spread_price_away is not None:
@@ -259,6 +282,17 @@ def parse_odds(block: dict | None) -> dict:
         "details": block.get("details"),
         "verified_markets": verified,
     }
+
+
+def parse_quotes(blocks: Iterable[dict], source: str, observed_at: str | None = None) -> list[dict]:
+    """Keep every complete provider quote; never splice opposing books together."""
+    stamp = observed_at or dt.datetime.now(dt.timezone.utc).isoformat()
+    quotes = []
+    for block in blocks or []:
+        q = parse_odds(block)
+        if has_priced_market(q):
+            quotes.append({**q, "observed_at": stamp, "source": source})
+    return quotes
 
 
 def has_priced_market(odds: dict | None) -> bool:
@@ -355,6 +389,8 @@ def parse_event(ev: dict, odds_priority: list[str]) -> dict | None:
         "venue": venue.get("fullName"),
         "venue_city": addr.get("city"),
         "venue_state": addr.get("state"),
+        "venue_country": addr.get("country"),
+        "venue_id": venue.get("id"),
         "state": state,
         "status_name": status_name,
         "postponed": postponed,
@@ -365,7 +401,10 @@ def parse_event(ev: dict, odds_priority: list[str]) -> dict | None:
         "away": team(away),
         "home_score": score(home),
         "away_score": score(away),
-        "odds": parse_odds(_pick_odds_block(c.get("odds"), odds_priority)),
+        "odds": {**parse_odds(_pick_odds_block(c.get("odds"), odds_priority)),
+                 "observed_at": dt.datetime.now(dt.timezone.utc).isoformat(),
+                 "source": "ESPN scoreboard"},
+        "odds_quotes": parse_quotes(c.get("odds") or [], "ESPN scoreboard"),
         "broadcast": next(
             (b.get("names", [None])[0] for b in (c.get("broadcasts") or []) if b.get("names")), None
         ),

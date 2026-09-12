@@ -22,7 +22,7 @@ import os
 import sys
 from zoneinfo import ZoneInfo
 
-from . import espn, model as M, ratings as R, store
+from . import espn, model as M, ratings as R, store, game_context, quotes, fpi_audit
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE_DATA = os.path.join(ROOT, "site", "data")
@@ -170,6 +170,8 @@ def build_schedule(game_rows: list[dict], fbs: set[str] | None = None) -> list[d
             # is how a 54-point favourite once came out as a coin flip.
             "away_fcs": bool(fbs) and g["away"] not in fbs,
             "home_fcs": bool(fbs) and g["home"] not in fbs,
+            "away_conference": g.get("away_conference"),
+            "home_conference": g.get("home_conference"),
         })
 
     out = []
@@ -746,7 +748,7 @@ def diagnose_board(board: list[dict], cfg: dict) -> dict:
     window["evaluated_on_priced_lines"] = bool(board)
 
     near = sorted((c for c in board if c["tier"] == "PASS" and not c.get("filtered")),
-                  key=lambda c: -c["edge"])[:5]
+                  key=lambda c: -c.get("action_edge", c["edge"]))[:5]
     if qualified:
         headline = f"{len(qualified)} play(s) cleared the bar"
     elif not board:
@@ -766,8 +768,8 @@ def diagnose_board(board: list[dict], cfg: dict) -> dict:
             "matchup": c["matchup"], "market": c["market"], "pick": c["pick"],
             "edge": round(c["edge"], 4),
             "action_edge": round(c.get("action_edge", c["edge"]), 4),
-            "needed": window["lean_edge_floor"],
-            "short_by": round(window["lean_edge_floor"] - c["edge"], 4),
+            "needed": float(cfg["tiers"]["lean"]),
+            "short_by": round(max(0, float(cfg["tiers"]["lean"]) - c.get("action_edge", c["edge"])), 4),
         } for c in near],
     }
 
@@ -978,6 +980,14 @@ def main() -> int:
         print(f"-- rolling fetch {lo} .. {hi}")
         fresh = espn.fetch_range(lo, hi, group, prio)
     games = merge_games(cache, fresh)
+    print("-- updating dated availability, conferences and kickoff forecasts")
+    context_cache = store.load("context_cache.json", {})
+    context_health = game_context.enrich(games, cfg, context_cache)
+    store.save("context_cache.json", context_cache)
+    print("-- checking additional complete sportsbook quotes")
+    quote_cache = store.load("quote_cache.json", {})
+    quote_health = quotes.enrich(games, cfg, quote_cache)
+    store.save("quote_cache.json", quote_cache)
     store.save(f"games_{season}.json", games)
     print(f"   current season games: {len(games)} ({sum(1 for g in games if g.get('completed'))} final)")
 
@@ -1024,6 +1034,19 @@ def main() -> int:
     score_rat, league, home_bump = R.solve_scoring_ratings(
         games, cfg, prior=preseason_score, prior_league=prior_league,
         prior_home_bump=prior_home_bump)
+    audit_state = fpi_audit.initialize(store.load(f"fpi_audit_{season}.json", {}), fpi_data, season)
+    anchor = audit_state.get("anchor") or {}
+    audit_ratings = None
+    if anchor:
+        anchor_prior, _ = R.blend_preseason_ratings(internal_preseason, anchor["teams"], float(cfg["ratings"]["fpi_weight"]))
+        anchor_score = R.blend_scoring_priors(prior_score, anchor["teams"], float(cfg["ratings"]["fpi_scoring_weight"]))
+        after = fpi_audit.after_anchor(games, audit_state)
+        ar, ah = R.solve_margin_ratings(after, cfg, prior=anchor_prior)
+        if not any(g.get("completed") for g in after):
+            ar, ah = anchor_prior, float(cfg["model"]["home_field_fallback"])
+        asc, al, ab = R.solve_scoring_ratings(after, cfg, prior=anchor_score,
+                                            prior_league=prior_league, prior_home_bump=prior_home_bump)
+        audit_ratings = (ar, ah, asc, al, ab)
     played = R.games_played(games)
     form = R.ats_form(games)
     rests = rest_days(games)
@@ -1037,6 +1060,7 @@ def main() -> int:
     # forming around a game that isn't going to be played as scheduled, and
     # pricing one would just be noise on the board.
     forecast_games = []
+    paired_forecasts = []
     board: list[dict] = []
     lookahead = int(cfg["data"]["lookahead_days"])
     upcoming = [g for g in games if is_priceable(g, today, lookahead)]
@@ -1066,15 +1090,31 @@ def main() -> int:
         # confidence under the 0.35 floor in tier_for(), pinning the thresholds at
         # their harshest setting for reasons that had nothing to do with the model.
         conf = min(conf, snapshot_confidence(store.line_move(lines, g["game_id"]).get("snapshots", 0)))
+        context = g.get("context") or {}
+        if ((context.get("availability") or {}).get("status") != "complete"
+                or (context.get("weather") or {}).get("status") == "unavailable"):
+            conf = min(conf, 0.75)
         proj = (debias_projection(base_projections[g["game_id"]], scale_fit, cfg)
                 if use_scale_rescue else base_projections[g["game_id"]])
         if not proj["ratings_known"]:
             conf = min(conf, 0.4)
         forecast_games.append({**g, "projection": proj, "p_home": M.moneyline_probability(proj["mu"], float(cfg["model"]["margin_sd"]), bool(cfg["model"]["use_key_numbers"]))})
-        cands = apply_filters(price_game(g, proj, cfg, conf), cfg, odds_health["healthy"])
+        if audit_ratings:
+            ar, ah, asc, al, ab = audit_ratings
+            paired_forecasts.append((g, proj, project(g, ar, ah, asc, al, ab, rests, ovr, cfg)))
+        cands = []
+        for quote in (g.get("odds_quotes") or [g.get("odds") or {}]):
+            quoted_game = {**g, "odds": quote}
+            quoted_proj = project(quoted_game, rat, hfa, score_rat, league, home_bump, rests, ovr, cfg)
+            if use_scale_rescue:
+                quoted_proj = debias_projection(quoted_proj, scale_fit, cfg)
+            priced = quotes.gate(apply_filters(price_game(quoted_game, quoted_proj, cfg, conf), cfg, odds_health["healthy"]), quoted_game, cfg)
+            for c in priced:
+                c["projection"] = quoted_proj
+            cands.extend(priced)
+        cands = quotes.shortlist(cands, M.TIER_RANK)
         cands = fcs_guard(cands, g["home"]["abbr"], g["away"]["abbr"], fbs, cfg)
         for c in cands:
-            c["projection"] = proj
             c["season"] = g.get("season", season)
             c["season_type"] = g.get("season_type", 2)
         board.extend(cands)
@@ -1084,6 +1124,8 @@ def main() -> int:
     print(f"   priced {len(upcoming)} upcoming games -> {len(board)} market lines")
 
     board_diagnosis = diagnose_board(board, cfg)
+    audit_report = fpi_audit.update(audit_state, paired_forecasts, games, season)
+    store.save(f"fpi_audit_{season}.json", audit_state)
     if board_diagnosis["qualified"] == 0:
         print(f"   NO QUALIFIED PLAYS -- {board_diagnosis['headline']}")
         for reason, n in board_diagnosis["reasons"].items():
@@ -1115,6 +1157,9 @@ def main() -> int:
         "settings": public_settings(cfg),
         "brier": None,
         "odds_health": odds_health,
+        "quote_coverage": quote_health,
+        "context_health": context_health,
+        "fpi_audit": audit_report,
         "fpi": {
             "available": bool(fpi_teams),
             "teams": len(fpi_teams),
@@ -1174,6 +1219,10 @@ def main() -> int:
         "season": g.get("season"), "season_type": g.get("season_type"),
         "away": g["away"]["abbr"], "home": g["home"]["abbr"],
         "away_name": g["away"]["name"], "home_name": g["home"]["name"],
+        "away_conference": g["away"].get("conference"), "home_conference": g["home"].get("conference"),
+        "context": g.get("context") or {}, "venue": g.get("venue"),
+        "projection": next((r["projection"] for r in forecast_games if r["game_id"] == g["game_id"]), None),
+        "odds_quotes": g.get("odds_quotes") or [],
         "away_score": g.get("away_score"), "home_score": g.get("home_score"),
         "completed": g.get("completed"), "neutral": g.get("neutral"),
         "postponed": g.get("postponed"), "canceled": g.get("canceled"),

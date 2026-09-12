@@ -275,6 +275,7 @@ footer b{color:var(--ink-2)}
 <script src="ledger.js"></script>
 <script src="sim.js"></script>
 <script src="staking.js"></script>
+<script src="matchups.js"></script>
 <script>
 "use strict";
 /* ===================================================================== data */
@@ -286,6 +287,7 @@ const DATA_BASE = (() => {
 const FILES = ["meta", "summary", "board", "ledger", "ratings", "model_history", "accuracy", "schedule", "games"];
 const S = { meta:null, summary:null, board:[], ledger:[], myLedger:[], ratings:[], model_history:null, accuracy:null, schedule:[], games:[], tab:"best", staking:null,
             filters:{tier:"PLAYS", market:"ALL", q:""}, sort:{key:"rating", dir:-1}, slateIndex:null, slatePinned:false, allPlays:true,
+            scheduleFilters:{status:"all",priced:false,fbs:false,conference:"ALL",search:""},
             sim:{ready:false,gameId:"",away:"",home:"",neutral:false,spread:"",total:"",iterations:10000} };
 
 async function load(){
@@ -295,6 +297,7 @@ async function load(){
     const res = await Promise.all(FILES.map(f =>
       fetch(DATA_BASE + f + ".json", {cache:"no-store"}).then(r => r.ok ? r.json() : null)));
     FILES.forEach((f,i) => { if (res[i] !== null) S[f] = res[i]; });
+    S.board = NCAAFViews.gateBoard(S.board);
     const pinnedIndex = pinnedKey ? S.schedule.findIndex(s => scheduleKey(s) === pinnedKey) : -1;
     S.slateIndex = pinnedIndex >= 0 ? pinnedIndex : null;
     return !!S.meta;
@@ -538,7 +541,7 @@ function renderWhyEmpty(){
       <div class="tablewrap"><table><thead><tr><th>Game</th><th>Pick</th>
       <th class="r">Edge</th><th class="r">Needed</th><th class="r">Short by</th></tr></thead><tbody>`
       + d.near_misses.map(m => `<tr><td class="matchup">${esc(m.matchup)}</td><td>${esc(m.pick)}</td>
-        <td class="r num">${sgn(m.edge)}</td><td class="r num">${pct(m.needed)}</td>
+        <td class="r num">${sgn(m.action_edge)}</td><td class="r num">${pct(m.needed)}</td>
         <td class="r num" style="color:var(--ink-3)">${pct(m.short_by)}</td></tr>`).join("")
       + `</tbody></table></div>`;
   }
@@ -581,7 +584,7 @@ function renderBest(){
         <em class="play-note">${esc(warn || (b.confidence<.8?"early-season confidence reserve applied":"model and market checked"))}</em>
         <b class="play-stake">${st?money(st):"—"}</b>
         <span class="play-track">${ledgerButton(b,st)}</span>
-      </div>`;
+      </div><div class="play-detail">${NCAAFViews.explanation(b,cfg())}</div>`;
     }).join("") + `<p class="plays-foot">${esc(STAKING?STAKING.description(stakingSettings(),sym()):"Staking")} · capped at ${pct(stakingSettings().max_stake_pct,0)} per play and ${pct(stakingSettings().max_slate_exposure_pct,0)} per slate. Change this under Bankroll & Stakes. Re-check the price before betting.</p></div>`;
   }
 
@@ -605,7 +608,8 @@ function renderBest(){
 function renderBoard(){
   const el = document.getElementById("p-board");
   const f = S.filters;
-  const rows = S.board.filter(b => {
+  const scopedBoard = S.allPlays ? S.board : slateRows();
+  const rows = scopedBoard.filter(b => {
     if (f.tier === "PLAYS" && b.tier === "PASS") return false;
     if (f.tier !== "ALL" && f.tier !== "PLAYS" && b.tier !== f.tier) return false;
     if (f.market !== "ALL" && b.market !== f.market) return false;
@@ -614,7 +618,7 @@ function renderBoard(){
   });
   const tierBtns = ["PLAYS","ALL","BEST BET","GOOD","LEAN","PASS"];
   const mktBtns = [["ALL","All markets"],["ATS","Spread"],["ML","Moneyline"],["TOTAL","Total"]];
-  let h = `<div class="panel-head"><div><h2>Full Board</h2>
+  let h = `<div class="panel-head"><div><h2>Full Board · ${S.allPlays?"all upcoming":esc(activeSlate()?.label||"selected week")}</h2>
     <p>Every market on every upcoming game, priced against the book. Passes are shown too — a model you only see when it likes something is a model you cannot audit.</p></div></div>
     <div class="filters">
       ${tierBtns.map(t => `<button class="chipbtn" data-tier="${esc(t)}" aria-pressed="${f.tier===t}">${esc(t==="PLAYS"?"Plays only":tierLabel(t))}</button>`).join("")}
@@ -650,7 +654,7 @@ function renderBoard(){
           <td class="r num">${b.tier!=="PASS"&&st?money(st):"—"}</td>
           <td class="r num" style="color:var(--ink-3)">${b.confidence===null||b.confidence===undefined?"—":pct(b.confidence,0)}</td>
           <td class="r num" style="color:var(--ink-3)">${mv===null||mv===undefined?"—":(mv>0?"+":"")+mv}</td>
-          <td style="color:var(--ink-3);font-size:11.5px;min-width:180px">${b.filtered?esc(b.filtered):(b.warning?esc(b.warning):"—")}</td>
+          <td style="min-width:240px">${NCAAFViews.explanation(b,cfg())}</td>
           <td>${ledgerButton(b,st)}</td>
         </tr>`;
       }).join("") + `</tbody></table></div>
@@ -662,6 +666,7 @@ function renderBoard(){
   const q = el.querySelector("#q");
   if (q) q.oninput = () => { S.filters.q = q.value; const pos = q.selectionStart; renderBoard();
     const n = document.querySelector("#q"); if (n){ n.focus(); n.setSelectionRange(pos,pos); } };
+  bindLedgerActions();
 }
 
 function sparkline(curve, start){
@@ -771,14 +776,15 @@ function renderRatings(){
 function renderHealth(){
   const el = document.getElementById("p-health");
   const s = S.summary || {};
-  const cal = s.calibration || [];
+  const cal = S.accuracy?.validation?.calibration || [];
   const m = S.meta || {};
   const c = cfg();
   const mh = m.model_health || {};
   let h = `<div class="panel-head"><div><h2>Model Health</h2>
     <p>Whether the projections use the same scale as the market, and whether the displayed edges obey their safety ceiling. Read this before the picks.</p></div>
-    <span class="health-status ${mh.status==='healthy'?'ok':''}">${esc((mh.status||'pending').toUpperCase())}</span></div>`;
+    <span class="health-status ${mh.status==='healthy'?'ok':''}">SCALE: ${esc((mh.status||'pending').toUpperCase())}</span></div>`;
 
+  h += NCAAFViews.validation(S.accuracy) + NCAAFViews.audit(m);
   h += `<div class="health-intro"><b>Does this model speak the market's language?</b> Disagreement is the point; a unit mismatch is not. The raw ratings are checked against every priced 2026 game, then ordinary disagreement is retained while extreme scale errors are compressed before any edge is calculated.</div>`;
   const stat = (k,v,n) => `<div class="health-card"><span>${esc(k)}</span><b>${v}</b><p>${esc(n)}</p></div>`;
   h += `<div class="health-grid">
@@ -797,7 +803,7 @@ function renderHealth(){
   if (db.applied){
     h += `<div class="health-intro"><b>Slate scale correction is on.</b> Before any edge was computed, the raw 2026 ratings were regressed on the posted spreads. The board-wide component was removed (raw slope <span class="mono">${num(db.slope,4)}</span>); only the game-specific residual remains (typical residual <span class="mono">${num(db.residual_sd,2)} pts</span>). This prevents a compressed rating range from turning every large favourite into a fake underdog edge.</div>`;
   } else if ((m.fpi||{}).available){
-    h += `<div class="health-intro"><b>Independent 2026 prior active.</b> ESPN FPI contributes ${pct((m.fpi||{}).weight,0)} of the preseason rating and this model's regressed 2025 solve contributes the rest. The board is not regressed back onto the same sportsbook spreads it is evaluating, so genuine game-level disagreement can survive.</div>`;
+    h += `<div class="health-intro"><b>Current FPI reference active.</b> ESPN FPI contributes ${pct((m.fpi||{}).weight,0)} of the rating prior; regressed prior-season results contribute the rest. FPI updates during the season. The paired comparison above tests a fixed baseline to measure potential overlap with current-season results.</div>`;
   }
 
   const dots = mh.scatter || [];
@@ -816,9 +822,9 @@ function renderHealth(){
 
   h += `<div class="two"><div><div class="tablewrap" style="padding:16px 18px">
     <div style="font:600 10.5px/1 'Public Sans',sans-serif;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px">Calibration</div>
-    <p style="font-size:13px;color:var(--ink-2);margin:0 0 12px;line-height:1.55">When the model says 60%, does it win 60%? Every settled bet, bucketed by the probability claimed.</p>`;
+    <p style="font-size:13px;color:var(--ink-2);margin:0 0 12px;line-height:1.55">When home win probability is 60%, does the home team win 60%? Current-season frozen game forecasts, grouped by predicted probability.</p>`;
   if (!cal.length){
-    h += `<div class="empty" style="padding:26px">Not enough settled bets yet. Expect this to say nothing useful until roughly 50 bets have graded, and nothing trustworthy until a few hundred.</div>`;
+    h += `<div class="empty" style="padding:26px">Waiting for graded current-season forecasts. Small samples have wide uncertainty.</div>`;
   } else {
     h += `<table style="min-width:0"><thead><tr><th>Claimed</th><th class="r">N</th><th class="r">Predicted</th><th class="r">Actual</th><th class="r">Gap</th></tr></thead><tbody>` +
       cal.map(r => { const gap = r.actual - r.predicted; return `<tr>
@@ -829,22 +835,20 @@ function renderHealth(){
   }
   h += `</div></div><div>`;
 
-  const brier = m.brier;
+  const brier = S.accuracy?.validation?.brier;
   const oh = m.odds_health || {};
   h += `<div class="tablewrap" style="padding:16px 18px;margin-bottom:14px">
     <div style="font:600 10.5px/1 'Public Sans',sans-serif;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px">Scorecard</div>
     <table style="min-width:0"><tbody>
       <tr><td>Brier score</td><td class="r num" style="font-weight:600">${brier ?? "—"}</td></tr>
-      <tr><td>Average CLV</td><td class="r num ${s.avg_clv>0?"pos":s.avg_clv<0?"neg":""}" style="font-weight:600">${sgn(s.avg_clv,2)}</td></tr>
-      <tr><td>Bets beating the close</td><td class="r num" style="font-weight:600">${s.clv_positive_rate===null||s.clv_positive_rate===undefined?"—":pct(s.clv_positive_rate,0)}</td></tr>
-      <tr><td>Settled bets</td><td class="r num" style="font-weight:600">${s.settled||0}</td></tr>
+      <tr><td>Graded game forecasts</td><td class="r num">${S.accuracy?.games?.graded||0}</td></tr>
       <tr><td>Verified odds games</td><td class="r num" style="font-weight:600">${oh.games_with_verified_prices??"—"} / ${oh.games_checked??"—"}</td></tr>
       <tr><td>Distinct sportsbook prices</td><td class="r num" style="font-weight:600">${oh.unique_prices??"—"}</td></tr>
       <tr><td>Odds integrity</td><td class="r num ${oh.healthy===false?"neg":oh.healthy===true?"pos":""}" style="font-weight:600">${oh.healthy===false?"BLOCKED":oh.healthy===true?"VERIFIED":"—"}</td></tr>
     </tbody></table>
     <p style="font-size:12.5px;color:var(--ink-2);margin:12px 0 0;line-height:1.55">
       <b>Brier</b> measures probability accuracy — lower is better, 0.25 is what you'd score by guessing 50% every time.
-      <b>CLV</b> is the gap between the price you took and the price the market closed at. Over a few hundred bets it predicts profit far better than win rate does, because it is a much larger sample of a much less noisy quantity. Positive CLV with a losing record usually means variance; negative CLV with a winning record usually means luck about to run out.</p>
+      Comparisons use the same saved games and market lines. The public scorecard never reads your personal wager ledger.</p>
   </div>`;
 
   const mm = c.model || {}, tt = c.tiers || {}, bb = c.bankroll || {}, rr = c.ratings || {}, ff = c.filters || {}, dd = c.data || {};
@@ -864,11 +868,7 @@ function renderHealth(){
         .map(([k,v]) => `<tr><td style="color:var(--ink-2)">${esc(k)}</td><td class="r num">${esc(v)}</td></tr>`).join("")}
     </tbody></table></div></div></div>`;
 
-  h += `<div class="note" style="margin-top:18px"><b>What would tell you this model is broken.</b>
-    A calibration gap that stays negative across every bucket past 100 bets means the model is systematically overconfident — raise <span class="mono">market_blend</span>.
-    Average CLV sitting below zero means it is consistently getting worse numbers than the market closes at, which no amount of win rate can rescue.
-    Tier ROI running backwards — LEAN out-earning BEST BET — means the edge estimate is not ordering bets correctly, and the thresholds are cosmetic.
-    Any of the three is a reason to stop betting the model and go fix it.</div>`;
+  h += `<div class="note" style="margin-top:18px">Review calibration and error against the saved market baseline as results accumulate. Test weight changes on future games before adopting them.</div>`;
   el.innerHTML = h;
 }
 
@@ -882,7 +882,7 @@ function renderSchedule(){
   const el = document.getElementById("p-schedule");
   const weeks = S.schedule || [];
   let h = `<div class="panel-head"><div><h2>Schedule</h2>
-    <p>Choose a regular-season week or postseason period. Dates use Eastern time. This selection also controls the board and scheduled simulator matchups; odds appear only when a sportsbook has posted them.</p></div></div>`;
+    <p>Weekly matchups, posted odds and game conditions. Your selection also sets the board and simulator.</p></div></div>`;
   if (!weeks.length){ el.innerHTML = h + `<div class="empty">Schedule appears after the first pipeline run.</div>`; return; }
 
   const wk = activeSlate();
@@ -891,44 +891,31 @@ function renderSchedule(){
     `<optgroup label="${esc(phase)}">${weeks.map((w,i) => ({w,i})).filter(({w}) => `${w.season||""} ${w.phase_label||"Schedule"}`.trim() === phase).map(({w,i}) =>
       `<option value="${i}" ${scheduleKey(w)===scheduleKey(wk)?"selected":""}>${esc(w.label)}${w.label.includes(w.date_range)?"":" · "+esc(w.date_range)} · ${w.games} games</option>`).join("")}</optgroup>`
   ).join("") + `</select><button id="schedule-current" class="chipbtn">Current week</button></div>`;
-  const fcsCount = wk.rows.filter(r => r.away_fcs || r.home_fcs).length;
-  h += `<p style="color:var(--ink-3);font-size:12.5px;margin:-4px 0 12px">
-    ${wk.games} game${wk.games===1?"":"s"} · ${wk.with_odds} with a posted line · ${wk.completed} final${
-      fcsCount ? ` · <span style="color:var(--flag)">${fcsCount} vs non-FBS</span>` : ""}</p>`;
-  if (fcsCount){
-    h += `<p style="color:var(--ink-3);font-size:12px;margin:-8px 0 12px;max-width:70ch">
-      Games against an FCS opponent are listed, but the model never bets them and shows no edge for them.
-      An FCS team plays almost its whole season outside this feed, so it never earns a rating and would
-      silently inherit “average FBS team” — which is how a 54-point favourite once priced out as a coin flip.
-      Books rarely post these lines either, which is why most show a dash.</p>`;
-  }
-  h += `<div class="tablewrap"><table><thead><tr>
-    <th>Date</th><th>Matchup</th><th>Status</th><th class="r">Spread (home)</th>
-    <th class="r">Total</th><th class="r">Away ML</th><th class="r">Home ML</th><th>Book</th>
-    </tr></thead><tbody>` + wk.rows.map(r => {
-      const status = r.completed
-        ? `<span class="res Win" style="background:var(--surface-2);color:var(--ink-2)">${esc(r.away_score)}–${esc(r.home_score)} Final</span>`
-        : r.postponed ? `<span class="res Loss">Postponed</span>`
-        : r.canceled ? `<span class="res Void">Canceled</span>`
-        : `<span style="color:var(--ink-3)">${esc(r.status||"Scheduled")}</span>`;
-      return `<tr>
-        <td class="num" style="white-space:nowrap;color:var(--ink-3)">${esc(when(r.date))}</td>
-        <td class="matchup">${esc(r.away)}${r.away_fcs?fcsTag():""} @ ${esc(r.home)}${r.home_fcs?fcsTag():""}<small>${esc(r.away_name)} at ${esc(r.home_name)}</small></td>
-        <td>${status}</td>
-        <td class="r num">${r.spread_home===null||r.spread_home===undefined?"—":(r.spread_home>0?"+":"")+r.spread_home}</td>
-        <td class="r num">${r.total===null||r.total===undefined?"—":r.total}</td>
-        <td class="r num">${r.ml_away===null||r.ml_away===undefined?"—":esc(price(r.ml_away))}</td>
-        <td class="r num">${r.ml_home===null||r.ml_home===undefined?"—":esc(price(r.ml_home))}</td>
-        <td style="color:var(--ink-3);font-size:12px">${r.book?esc(r.book):"—"}</td>
-      </tr>`;
-    }).join("") + `</tbody></table></div>`;
+  const f=S.scheduleFilters;
+  const conferences=[...new Set(wk.rows.flatMap(r=>[r.away_conference,r.home_conference]).filter(Boolean))].sort();
+  h += `<details class="schedule-filter-details" ${f.expanded?"open":""}><summary>Filter games · conference, status & odds</summary><div class="schedule-filters"><label>Status<select id="schedule-status"><option value="all" ${f.status==='all'?'selected':''}>All games</option><option value="upcoming" ${f.status==='upcoming'?'selected':''}>Upcoming only</option></select></label>
+    <label>Conference<select id="schedule-conference"><option value="ALL">All conferences</option>${conferences.map(c=>`<option value="${esc(c)}" ${f.conference===c?'selected':''}>${esc(c)}</option>`).join('')}</select></label>
+    <label class="check-filter"><input id="schedule-priced" type="checkbox" ${f.priced?'checked':''}>Has odds</label>
+    <label class="check-filter"><input id="schedule-fbs" type="checkbox" ${f.fbs?'checked':''}>FBS vs FBS</label>
+    <label>Find a team<input id="schedule-search" type="search" placeholder="Team name" value="${esc(f.search)}"></label></div></details>`;
+  const rows=NCAAFViews.filterGames(wk.rows,f);
+  h += `<p class="context-meta">${rows.length} of ${wk.games} games · ${wk.completed} final · Eastern time. Games against FCS opponents remain excluded from qualified plays.</p>`;
+  h += NCAAFViews.cards(rows,new Map(S.games.map(g=>[String(g.game_id),g])),S.board,cfg());
   el.innerHTML = h;
   document.getElementById("schedule-period").onchange = e => setSlate(Number(e.target.value));
   document.getElementById("schedule-current").onclick = () => setSlate(defaultSlateIndex(), false);
+  el.querySelector('.schedule-filter-details').ontoggle=e=>{f.expanded=e.target.open;};
+  for(const [id,key] of [['schedule-status','status'],['schedule-conference','conference'],['schedule-priced','priced'],['schedule-fbs','fbs']]){
+    document.getElementById(id).onchange=e=>{f[key]=e.target.type==='checkbox'?e.target.checked:e.target.value;renderSchedule();};
+  }
+  document.getElementById('schedule-search').oninput=e=>{
+    f.search=e.target.value;const pos=e.target.selectionStart;renderSchedule();
+    const input=document.getElementById('schedule-search');input.focus();input.setSelectionRange(pos,pos);
+  };
 }
 
 function renderHistory(){
-  document.getElementById("p-history").innerHTML = '<div data-model-accuracy></div>';
+  document.getElementById("p-history").innerHTML = '<div data-model-accuracy="data/accuracy.json?v='+encodeURIComponent(S.accuracy?.generated_at||'current')+'"></div>';
 }
 
 function renderSimulator(){
@@ -1119,6 +1106,7 @@ function bindLedgerActions(){
     const id = button.dataset.add;
     const row = S.board.find(candidate => `${candidate.game_id}:${candidate.market}:${candidate.side}` === id);
     if (!row || isTracked(row)) return;
+    if (NCAAFViews.expired(row)){ S.board=NCAAFViews.gateBoard(S.board); renderPanels(); return; }
     const stakeAmount = Number(button.dataset.defaultStake);
     if (!isFinite(stakeAmount) || stakeAmount <= 0){ window.alert("Enter the stake you actually placed."); return; }
     S.myLedger.push(LEDGER.entryFrom(row, stakeAmount)); saveMyLedger(); refreshLedgerViews();
@@ -1155,6 +1143,7 @@ function bindLedgerActions(){
 }
 
 function renderPanels(){
+  document.body.dataset.activeTab=S.tab;
   ({best:renderBest, board:renderBoard, schedule:renderSchedule, ledger:renderLedger,
     sim:renderSimulator, ratings:renderRatings, history:renderHistory, health:renderHealth, settings:renderSettings}[S.tab] || renderBest)();
   bindLedgerActions();
@@ -1208,6 +1197,10 @@ async function boot(force){
 }
 boot();
 setInterval(() => { if (!window.__NCAAF_DATA__) boot(); }, 5*60*1000);
+setInterval(() => {
+  const changed=S.board.some(b=>b.tier!=="PASS" && NCAAFViews.expired(b));
+  if(changed){S.board=NCAAFViews.gateBoard(S.board);renderKpis();renderTabs();renderPanels();}
+}, 30000);
 window.addEventListener("resize", postHeight);
 </script>
 <script src="model-accuracy.js"></script>

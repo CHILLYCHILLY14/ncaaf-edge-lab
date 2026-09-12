@@ -1,0 +1,18 @@
+const assert=require('node:assert/strict');
+const V=require('../site/matchups.js');
+const now=Date.parse('2026-09-12T12:00Z');
+const row={game_id:'1',date:'2026-09-12T18:00Z',game_date:'2026-09-12T18:00Z',odds_observed_at:'2026-09-12T11:00Z',tier:'GOOD',away:'A',home:'H',away_name:'A name',home_name:'H name',away_conference:'Big Ten',has_odds:true};
+assert.equal(V.gateBoard([row],now)[0].tier,'GOOD');
+assert.equal(V.gateBoard([{...row,odds_observed_at:'2026-09-12T08:00Z'}],now)[0].tier,'PASS');
+assert.equal(V.gateBoard([row],Date.parse('2026-09-12T18:00Z'))[0].tier,'PASS');
+assert.equal(V.filterGames([row],{conference:'Big Ten',priced:true,status:'upcoming'},now).length,1);
+assert.equal(V.filterGames([row],{conference:'SEC'},now).length,0);
+assert.equal(V.filterGames([{...row,away_fcs:true}],{fbs:true},now).length,0);
+assert.equal(V.filterGames([row],{search:'A name'},now).length,1);
+const html=V.cards([{...row,home_name:'<script>alert(1)</script>'}],new Map(),[],{});
+assert.ok(html.includes('&lt;script&gt;'));
+assert.ok(!html.includes('<script>'));
+assert.ok(html.includes('Current availability unconfirmed'));
+assert.ok(!html.includes('everyone is available</p>'));
+assert.ok(V.validation({games:{graded:2,winner:{correct:2,n:2,interval95:[.342,1]}}}).includes('95% interval'));
+console.log('Matchup filters, safe rendering, small-sample evidence and clock-based price gates passed.');

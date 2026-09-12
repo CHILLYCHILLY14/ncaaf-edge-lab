@@ -1,8 +1,9 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [ main ]
+  # Normal publication belongs to Refresh model, after its tests and refresh.
+  # Keep this workflow as an explicit manual redeploy of the committed site.
+  workflow_dispatch:
 
 concurrency:
   group: ncaaf-edge-pages

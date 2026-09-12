@@ -217,3 +217,33 @@ footer{color:var(--faint);font-size:11px;margin-top:22px;padding-top:12px;border
 .schedule-toolbar label { font-size:14px; color:var(--ink-2); }
 .schedule-toolbar select { flex:1; min-width:220px; max-width:640px; padding:12px; border:1px solid var(--line); border-radius:8px; background:var(--surface); color:var(--ink); font:inherit; font-size:16px; }
 @media(max-width:600px) { .schedule-toolbar label { width:100%; } .schedule-toolbar select { width:100%; min-width:0; flex-basis:100%; } }
+
+.schedule-filters{display:flex;align-items:end;gap:12px;flex-wrap:wrap;margin:16px 0}
+.schedule-filters label{display:flex;flex-direction:column;gap:6px;color:var(--ink-2);font-size:14px}
+.schedule-filters input,.schedule-filters select{font:inherit;font-size:16px;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);max-width:100%}
+.schedule-filters .check-filter{flex-direction:row;align-items:center;padding-bottom:10px;min-height:44px}
+.schedule-filters input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent)}
+.schedule-day{margin:24px 0}.schedule-day h3{font-size:18px;margin:0 0 12px}.schedule-day h3 span{font-size:14px;color:var(--ink-2);font-weight:400;margin-left:8px}
+.matchup-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+.matchup-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;min-width:0;overflow-wrap:anywhere;border-top:3px solid var(--accent)}
+.matchup-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px;font-size:13px;color:var(--ink-2)}
+.matchup-card h4{font-size:24px;margin:14px 0 4px;line-height:1.25}.matchup-card h4 span{font-size:16px;font-weight:400;color:var(--ink-2)}
+.matchup-names{font-size:14px;margin:0 0 8px;color:var(--ink-2)}
+.context-meta{font-size:13px;color:var(--ink-2);line-height:1.6;overflow-wrap:anywhere}
+.quote-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.quote-grid dt{font-size:13px;color:var(--ink-2);margin-bottom:5px}.quote-grid dd{font-family:var(--mono);font-size:15px;margin:0;overflow-wrap:anywhere}
+.game-angle{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px;margin:12px 0}.game-angle span{color:var(--accent)}
+.pick-explanation{font-size:14px;line-height:1.6}.pick-explanation summary,.validation-panel summary{cursor:pointer;color:var(--accent);padding:8px 0;font-size:14px;min-height:28px}.pick-explanation p{margin:8px 0;font-size:14px}.pick-explanation[open]{padding-bottom:8px}
+.play-detail{padding:0 16px 10px;border-bottom:1px solid var(--line)}.play-detail .quote-grid{max-width:850px}
+.game-context{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px;padding:14px;background:var(--surface-2);border-radius:8px}
+.game-context p{margin:4px 0;font-size:14px}.game-context small{display:block;font-size:12px;color:var(--ink-2);line-height:1.5}.game-context ul{margin:6px 0;padding-left:18px}.game-context li{margin-bottom:8px}
+.context-label{font-weight:600;font-size:14px}.context-flag{color:var(--warn)}
+.validation-panel{border:1px solid var(--line);border-radius:12px;padding:20px;background:var(--surface);margin-bottom:18px;line-height:1.6}.validation-panel h3{font-size:18px;margin:0 0 10px}.validation-panel h3:not(:first-child){margin-top:20px}.validation-panel p{font-size:14px;color:var(--ink-2)}
+.evidence-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:14px 0}.evidence-grid>div{padding:12px;background:var(--surface-2);border-radius:8px}.evidence-grid span,.evidence-grid small{display:block;font-size:13px;color:var(--ink-2)}.evidence-grid b{display:block;font:600 20px/1.5 var(--mono);margin:5px 0}
+.calibration-list>div{display:flex;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding:12px 0;font-size:14px}.calibration-list small{width:100%;color:var(--ink-2)}
+.schedule-toolbar .chipbtn{font-size:14px;min-height:44px}.panel-head p{font-size:14px;line-height:1.6}
+@media(max-width:700px){.matchup-grid{grid-template-columns:1fr}.matchup-card{padding:15px}.schedule-filters label:not(.check-filter){flex:1 1 45%;min-width:0}.schedule-filters label:last-child{flex-basis:100%}.quote-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.validation-panel{padding:15px}.evidence-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.evidence-grid b{font-size:18px}}
+@media(max-width:360px){.evidence-grid{grid-template-columns:1fr}}
+
+.schedule-filter-details{margin:12px 0;border:1px solid var(--line);border-radius:8px;padding:10px 14px}.schedule-filter-details>summary{font-size:14px;color:var(--accent);cursor:pointer;min-height:24px}
+@media(max-width:700px){body[data-active-tab="schedule"] .kpis .kpi:nth-child(n+3){display:none}}
