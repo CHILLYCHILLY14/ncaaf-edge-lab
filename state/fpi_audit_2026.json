@@ -3998,6 +3998,8 @@
    "start": "2026-09-12T19:30Z"
   },
   "401866420": {
+   "actual_margin": 27.0,
+   "actual_total": 47.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 17.57,
@@ -4009,7 +4011,7 @@
     "total": 55.3
    },
    "matchup": "SHU @ MASS",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T19:30Z"
   },
   "401866421": {
