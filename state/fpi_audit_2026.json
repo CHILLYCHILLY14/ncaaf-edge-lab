@@ -2961,6 +2961,8 @@
    "start": "2026-09-12T23:00Z"
   },
   "401858442": {
+   "actual_margin": -18.0,
+   "actual_total": 36.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": -21.8,
@@ -2972,7 +2974,7 @@
     "total": 52.9
    },
    "matchup": "PSU @ TEM",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T16:00Z"
   },
   "401858443": {
@@ -3441,6 +3443,8 @@
    "start": "2026-09-19T23:00Z"
   },
   "401862702": {
+   "actual_margin": -4.0,
+   "actual_total": 52.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 2.79,
@@ -3452,7 +3456,7 @@
     "total": 49.5
    },
    "matchup": "USF @ ARMY",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T16:00Z"
   },
   "401862703": {
@@ -3906,6 +3910,8 @@
    "start": "2026-09-12T17:00Z"
   },
   "401866416": {
+   "actual_margin": 21.0,
+   "actual_total": 51.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 4.61,
@@ -3917,7 +3923,7 @@
     "total": 53.0
    },
    "matchup": "WOF @ KENT",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T16:00Z"
   },
   "401866417": {
