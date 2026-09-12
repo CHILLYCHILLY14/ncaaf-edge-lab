@@ -892,7 +892,7 @@ function renderSchedule(){
       `<option value="${i}" ${scheduleKey(w)===scheduleKey(wk)?"selected":""}>${esc(w.label)}${w.label.includes(w.date_range)?"":" · "+esc(w.date_range)} · ${w.games} games</option>`).join("")}</optgroup>`
   ).join("") + `</select><button id="schedule-current" class="chipbtn">Current week</button></div>`;
   const f=S.scheduleFilters;
-  const conferences=[...new Set(wk.rows.flatMap(r=>[r.away_conference,r.home_conference]).filter(Boolean))].sort();
+  const conferences=[...new Set([...wk.rows.flatMap(r=>[r.away_conference,r.home_conference]).filter(Boolean),...(f.conference!=="ALL"?[f.conference]:[])])].sort();
   h += `<details class="schedule-filter-details" ${f.expanded?"open":""}><summary>Filter games · conference, status & odds</summary><div class="schedule-filters"><label>Status<select id="schedule-status"><option value="all" ${f.status==='all'?'selected':''}>All games</option><option value="upcoming" ${f.status==='upcoming'?'selected':''}>Upcoming only</option></select></label>
     <label>Conference<select id="schedule-conference"><option value="ALL">All conferences</option>${conferences.map(c=>`<option value="${esc(c)}" ${f.conference===c?'selected':''}>${esc(c)}</option>`).join('')}</select></label>
     <label class="check-filter"><input id="schedule-priced" type="checkbox" ${f.priced?'checked':''}>Has odds</label>
@@ -932,7 +932,7 @@ function renderSimulator(){
   });
   const slate = activeSlate();
   const slateIds = new Set((slate?.rows||[]).map(g => String(g.game_id)));
-  const futureGames = (S.games||[]).filter(g => (!slate || slateIds.has(String(g.game_id))) && !g.completed && !g.canceled && !g.postponed &&
+  const futureGames = (S.games||[]).filter(g => (!slate || slateIds.has(String(g.game_id))) && !g.completed && !g.canceled && !g.postponed && Date.parse(g.date)>Date.now() &&
     ratings.has(g.away) && ratings.has(g.home)).sort((a,b) => String(a.date||"").localeCompare(String(b.date||"")));
   const state = S.sim;
 
