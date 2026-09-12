@@ -1,7 +1,7 @@
 {
  "schema": 3,
  "game_only": true,
- "generated_at": "2026-09-12T00:35:36.563465+00:00",
+ "generated_at": "2026-09-12T01:51:34.439575+00:00",
  "label": "NCAAF prediction accuracy",
  "scope": {
   "season": 2026,
@@ -18,17 +18,26 @@
   "winner": {
    "n": 2,
    "correct": 2,
-   "accuracy": 1.0
+   "accuracy": 1.0,
+   "interval95": [
+    0.34238,
+    1
+   ]
   },
   "ats": {
    "n": 0,
    "correct": 0,
-   "accuracy": null
+   "accuracy": null,
+   "interval95": null
   },
   "totals": {
    "n": 1,
    "correct": 0,
-   "accuracy": 0.0
+   "accuracy": 0.0,
+   "interval95": [
+    0,
+    0.79345
+   ]
   },
   "margin_comparison": {
    "n": 1,
@@ -43,6 +52,35 @@
   "margin_mae": 21.395,
   "total_mae": 17.0,
   "brier": 0.10939
+ },
+ "validation": {
+  "n": 2,
+  "probability_target": "home team win",
+  "calibration": [
+   {
+    "bucket": "40\u201360%",
+    "n": 1,
+    "predicted": 0.46749,
+    "actual": 0.0,
+    "interval95": [
+     0,
+     0.79345
+    ]
+   },
+   {
+    "bucket": "80\u2013100%",
+    "n": 1,
+    "predicted": 0.98487,
+    "actual": 1.0,
+    "interval95": [
+     0.20655,
+     1
+    ]
+   }
+  ],
+  "brier": 0.10939,
+  "status": "limited sample",
+  "note": "Only frozen forecasts from this season. Intervals show sampling uncertainty; neither a small sample nor market agreement proves an edge."
  },
  "records": [
   {
