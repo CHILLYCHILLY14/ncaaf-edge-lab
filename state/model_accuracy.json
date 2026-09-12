@@ -152,10 +152,15 @@
    "market_total": 50.5,
    "id": "game:NCAAF:401856678:::",
    "captured_at": "2026-09-06T23:35:50.193854+00:00",
-   "result": "Pending",
+   "result": "Graded",
    "version": "2026-09-06-ev2",
    "season": 2026,
-   "season_type": 2
+   "season_type": 2,
+   "actual_margin": -17.0,
+   "actual_total": 59.0,
+   "final_home": 21.0,
+   "final_away": 38.0,
+   "graded_at": "2026-09-12T03:54:50.755288+00:00"
   },
   "game:NCAAF:401856679:::": {
    "kind": "game",
