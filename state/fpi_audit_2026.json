@@ -2001,6 +2001,8 @@
    "start": "2026-09-12T16:45Z"
   },
   "401856674": {
+   "actual_margin": -28.0,
+   "actual_total": 62.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": -10.69,
@@ -2012,7 +2014,7 @@
     "total": 52.0
    },
    "matchup": "ALA @ UK",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T19:30Z"
   },
   "401856676": {
@@ -2031,6 +2033,8 @@
    "start": "2026-09-12T23:45Z"
   },
   "401856677": {
+   "actual_margin": -25.0,
+   "actual_total": 51.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": -2.06,
@@ -2042,7 +2046,7 @@
     "total": 57.4
    },
    "matchup": "MSST @ MINN",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T19:30Z"
   },
   "401856679": {
@@ -2369,6 +2373,8 @@
    "start": "2026-09-13T00:08Z"
   },
   "401856785": {
+   "actual_margin": 31.0,
+   "actual_total": 73.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 28.62,
@@ -2380,7 +2386,7 @@
     "total": 54.9
    },
    "matchup": "WEB @ COLO",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T19:30Z"
   },
   "401856786": {
@@ -2641,6 +2647,8 @@
    "start": "2026-09-19T23:00Z"
   },
   "401856810": {
+   "actual_margin": 11.0,
+   "actual_total": 45.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 8.04,
@@ -2652,7 +2660,7 @@
     "total": 50.6
    },
    "matchup": "ARIZ @ BYU",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T19:30Z"
   },
   "401856811": {
@@ -2686,6 +2694,8 @@
    "start": "2026-09-19T16:00Z"
   },
   "401858216": {
+   "actual_margin": -3.0,
+   "actual_total": 39.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 5.68,
@@ -2697,10 +2707,12 @@
     "total": 58.4
    },
    "matchup": "CAL @ SYR",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T19:30Z"
   },
   "401858217": {
+   "actual_margin": -4.0,
+   "actual_total": 58.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 4.8,
@@ -2712,7 +2724,7 @@
     "total": 52.9
    },
    "matchup": "DUKE @ ILL",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T19:30Z"
   },
   "401858218": {
@@ -2765,6 +2777,8 @@
    "start": "2026-09-12T16:00Z"
   },
   "401858223": {
+   "actual_margin": 46.0,
+   "actual_total": 66.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 24.22,
@@ -2776,7 +2790,7 @@
     "total": 58.3
    },
    "matchup": "UCD @ SMU",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T20:00Z"
   },
   "401858224": {
@@ -3349,6 +3363,8 @@
    "start": "2026-09-13T02:30Z"
   },
   "401860884": {
+   "actual_margin": -5.0,
+   "actual_total": 57.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 0.21,
@@ -3360,7 +3376,7 @@
     "total": 64.3
    },
    "matchup": "UTSA @ TXST",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T19:30Z"
   },
   "401860885": {
@@ -3501,6 +3517,8 @@
    "start": "2026-09-12T23:30Z"
   },
   "401862705": {
+   "actual_margin": 38.0,
+   "actual_total": 50.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": -3.84,
@@ -3512,7 +3530,7 @@
     "total": 57.7
    },
    "matchup": "UNLV @ UNT",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T19:45Z"
   },
   "401862707": {
@@ -3865,6 +3883,8 @@
    "start": "2026-09-13T03:59Z"
   },
   "401865252": {
+   "actual_margin": 63.0,
+   "actual_total": 77.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 35.52,
@@ -3876,7 +3896,7 @@
     "total": 54.6
    },
    "matchup": "MERC @ UNM",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T20:00Z"
   },
   "401866412": {
@@ -3995,6 +4015,8 @@
    "start": "2026-09-12T22:00Z"
   },
   "401866419": {
+   "actual_margin": 53.0,
+   "actual_total": 73.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 29.53,
@@ -4006,7 +4028,7 @@
     "total": 55.1
    },
    "matchup": "CCSU @ TOL",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T19:30Z"
   },
   "401866420": {
