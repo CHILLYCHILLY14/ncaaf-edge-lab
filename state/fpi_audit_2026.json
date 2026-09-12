@@ -1984,6 +1984,8 @@
    "start": "2026-09-12T21:30Z"
   },
   "401856673": {
+   "actual_margin": 50.0,
+   "actual_total": 90.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 36.94,
@@ -1995,7 +1997,7 @@
     "total": 56.5
    },
    "matchup": "WKU @ UGA",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T16:45Z"
   },
   "401856674": {
@@ -2303,6 +2305,8 @@
    "start": "2026-09-19T16:45Z"
   },
   "401856781": {
+   "actual_margin": 27.0,
+   "actual_total": 41.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 15.71,
@@ -2314,7 +2318,7 @@
     "total": 51.8
    },
    "matchup": "WSU @ KSU",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T16:00Z"
   },
   "401856782": {
@@ -2453,6 +2457,8 @@
    "start": "2026-09-12T19:30Z"
   },
   "401856791": {
+   "actual_margin": 45.0,
+   "actual_total": 59.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 35.52,
@@ -2464,7 +2470,7 @@
     "total": 56.6
    },
    "matchup": "UTM @ WVU",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T17:00Z"
   },
   "401856792": {
@@ -2708,6 +2714,8 @@
    "start": "2026-09-12T19:30Z"
   },
   "401858218": {
+   "actual_margin": 32.0,
+   "actual_total": 38.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 29.61,
@@ -2719,7 +2727,7 @@
     "total": 53.2
    },
    "matchup": "ETSU @ UNC",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T16:00Z"
   },
   "401858219": {
@@ -3905,6 +3913,8 @@
    "start": "2026-09-12T22:00Z"
   },
   "401866415": {
+   "actual_margin": 3.0,
+   "actual_total": 23.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 15.55,
@@ -3916,7 +3926,7 @@
     "total": 52.7
    },
    "matchup": "COLG @ CMU",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T17:00Z"
   },
   "401866416": {
