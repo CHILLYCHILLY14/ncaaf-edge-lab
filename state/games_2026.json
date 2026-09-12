@@ -4915,7 +4915,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:35.210003+00:00",
+   "observed_at": "2026-09-12T16:52:49.053118+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -4966,7 +4966,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:35.548193+00:00",
+   "observed_at": "2026-09-12T16:52:49.528330+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -5017,7 +5017,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:35.652652+00:00",
+   "observed_at": "2026-09-12T16:52:49.711277+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -5068,7 +5068,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:35.652665+00:00",
+   "observed_at": "2026-09-12T16:52:49.711294+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -5119,7 +5119,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:35.652679+00:00",
+   "observed_at": "2026-09-12T16:52:49.711310+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -5170,7 +5170,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:35.652716+00:00",
+   "observed_at": "2026-09-12T16:52:49.711325+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -5221,7 +5221,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:35.652623+00:00",
+   "observed_at": "2026-09-12T16:52:49.711237+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -5272,7 +5272,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:35.745623+00:00",
+   "observed_at": "2026-09-12T16:52:49.922843+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -5280,7 +5280,7 @@
   "season": 2026,
   "season_type": 2,
   "state": "in",
-  "status_detail": "9:47 - 1st",
+  "status_detail": "1:40 - 1st",
   "status_name": "STATUS_IN_PROGRESS",
   "venue": "Michigan Stadium",
   "venue_city": "Ann Arbor",
@@ -5301,7 +5301,7 @@
    "rank": 99,
    "record": "1-0"
   },
-  "away_score": 0,
+  "away_score": 7,
   "broadcast": "ABC",
   "canceled": false,
   "completed": false,
@@ -5319,11 +5319,11 @@
    "rank": 10,
    "record": "1-0"
   },
-  "home_score": 0,
+  "home_score": 7,
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:35.745608+00:00",
+   "observed_at": "2026-09-12T16:52:49.922825+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -5331,7 +5331,7 @@
   "season": 2026,
   "season_type": 2,
   "state": "in",
-  "status_detail": "6:12 - 1st",
+  "status_detail": "14:53 - 2nd",
   "status_name": "STATUS_IN_PROGRESS",
   "venue": "Kyle Field",
   "venue_city": "College Station",
@@ -5374,7 +5374,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:35.745650+00:00",
+   "observed_at": "2026-09-12T16:52:49.922872+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -5382,64 +5382,13 @@
   "season": 2026,
   "season_type": 2,
   "state": "in",
-  "status_detail": "1:35 - 1st",
+  "status_detail": "6:55 - 2nd",
   "status_name": "STATUS_IN_PROGRESS",
   "venue": "Bill Snyder Family Stadium",
   "venue_city": "Manhattan",
   "venue_country": "USA",
   "venue_id": "3636",
   "venue_state": "KS",
-  "week": 2
- },
- {
-  "away": {
-   "abbr": "ORE",
-   "color": "00934b",
-   "conference": "Big Ten",
-   "conference_id": "",
-   "id": "2483",
-   "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2483.png",
-   "name": "Oregon Ducks",
-   "rank": 6,
-   "record": "1-0"
-  },
-  "away_score": 0,
-  "broadcast": "ESPN",
-  "canceled": false,
-  "completed": false,
-  "conference_game": false,
-  "date_utc": "2026-09-12T16:00Z",
-  "game_id": "401856782",
-  "home": {
-   "abbr": "OKST",
-   "color": "fe5c00",
-   "conference": "Big 12",
-   "conference_id": "",
-   "id": "197",
-   "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/197.png",
-   "name": "Oklahoma State Cowboys",
-   "rank": 99,
-   "record": "0-1"
-  },
-  "home_score": 0,
-  "indoor": false,
-  "neutral": false,
-  "odds": {
-   "observed_at": "2026-09-12T16:27:35.745591+00:00",
-   "source": "ESPN scoreboard"
-  },
-  "odds_quotes": [],
-  "postponed": true,
-  "season": 2026,
-  "season_type": 2,
-  "state": "in",
-  "status_detail": "Delayed",
-  "status_name": "STATUS_DELAYED",
-  "venue": "Boone Pickens Stadium",
-  "venue_city": "Stillwater",
-  "venue_country": "USA",
-  "venue_id": "3646",
-  "venue_state": "OK",
   "week": 2
  },
  {
@@ -5472,11 +5421,11 @@
    "rank": 99,
    "record": "1-0"
   },
-  "home_score": 7,
+  "home_score": 14,
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:35.745663+00:00",
+   "observed_at": "2026-09-12T16:52:49.922887+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -5484,7 +5433,7 @@
   "season": 2026,
   "season_type": 2,
   "state": "in",
-  "status_detail": "4:24 - 1st",
+  "status_detail": "10:34 - 2nd",
   "status_name": "STATUS_IN_PROGRESS",
   "venue": "Kenan Stadium",
   "venue_city": "Chapel Hill",
@@ -5523,11 +5472,11 @@
    "rank": 99,
    "record": "1-0"
   },
-  "home_score": 3,
+  "home_score": 17,
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:35.745677+00:00",
+   "observed_at": "2026-09-12T16:52:49.922900+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -5535,7 +5484,7 @@
   "season": 2026,
   "season_type": 2,
   "state": "in",
-  "status_detail": "8:03 - 1st",
+  "status_detail": "0:08 - 1st",
   "status_name": "STATUS_IN_PROGRESS",
   "venue": "Lane Stadium",
   "venue_city": "Blacksburg",
@@ -5556,7 +5505,7 @@
    "rank": 99,
    "record": "1-0"
   },
-  "away_score": 7,
+  "away_score": 10,
   "broadcast": "FS1",
   "canceled": false,
   "completed": false,
@@ -5578,7 +5527,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:35.745724+00:00",
+   "observed_at": "2026-09-12T16:52:49.922929+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -5586,7 +5535,7 @@
   "season": 2026,
   "season_type": 2,
   "state": "in",
-  "status_detail": "4:58 - 1st",
+  "status_detail": "10:01 - 2nd",
   "status_name": "STATUS_IN_PROGRESS",
   "venue": "Ross-Ade Stadium",
   "venue_city": "West Lafayette",
@@ -5625,11 +5574,11 @@
    "rank": 5,
    "record": "1-0"
   },
-  "home_score": 13,
+  "home_score": 20,
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:35.745557+00:00",
+   "observed_at": "2026-09-12T16:52:49.922784+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -5637,7 +5586,7 @@
   "season": 2026,
   "season_type": 2,
   "state": "in",
-  "status_detail": "4:16 - 1st",
+  "status_detail": "11:32 - 2nd",
   "status_name": "STATUS_IN_PROGRESS",
   "venue": "Memorial Stadium (Bloomington, IN)",
   "venue_city": "Bloomington",
@@ -5676,11 +5625,11 @@
    "rank": 99,
    "record": "1-0"
   },
-  "home_score": 0,
+  "home_score": 3,
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:35.745636+00:00",
+   "observed_at": "2026-09-12T16:52:49.922858+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -5688,7 +5637,7 @@
   "season": 2026,
   "season_type": 2,
   "state": "in",
-  "status_detail": "5:11 - 1st",
+  "status_detail": "10:42 - 2nd",
   "status_name": "STATUS_IN_PROGRESS",
   "venue": "Lincoln Financial Field",
   "venue_city": "Philadelphia",
@@ -5727,11 +5676,11 @@
    "rank": 99,
    "record": "1-0"
   },
-  "home_score": 0,
+  "home_score": 7,
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:35.745749+00:00",
+   "observed_at": "2026-09-12T16:52:49.922943+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -5739,7 +5688,7 @@
   "season": 2026,
   "season_type": 2,
   "state": "in",
-  "status_detail": "3:50 - 1st",
+  "status_detail": "10:10 - 2nd",
   "status_name": "STATUS_IN_PROGRESS",
   "venue": "Michie Stadium",
   "venue_city": "West Point",
@@ -5760,7 +5709,7 @@
    "rank": 99,
    "record": "1-0"
   },
-  "away_score": 0,
+  "away_score": 9,
   "broadcast": "ESPNU",
   "canceled": false,
   "completed": false,
@@ -5778,11 +5727,11 @@
    "rank": 99,
    "record": "0-1"
   },
-  "home_score": 0,
+  "home_score": 7,
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:35.745763+00:00",
+   "observed_at": "2026-09-12T16:52:49.922957+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -5790,7 +5739,7 @@
   "season": 2026,
   "season_type": 2,
   "state": "in",
-  "status_detail": "5:15 - 1st",
+  "status_detail": "14:17 - 2nd",
   "status_name": "STATUS_IN_PROGRESS",
   "venue": "Dowdy-Ficklen Stadium",
   "venue_city": "Greenville",
@@ -5811,7 +5760,7 @@
    "rank": 99,
    "record": "2-0"
   },
-  "away_score": 0,
+  "away_score": 3,
   "broadcast": "ESPN+",
   "canceled": false,
   "completed": false,
@@ -5833,7 +5782,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:35.745778+00:00",
+   "observed_at": "2026-09-12T16:52:49.922970+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -5841,7 +5790,7 @@
   "season": 2026,
   "season_type": 2,
   "state": "in",
-  "status_detail": "5:51 - 1st",
+  "status_detail": "14:08 - 2nd",
   "status_name": "STATUS_IN_PROGRESS",
   "venue": "Zoeller Field at Dix Stadium",
   "venue_city": "Kent",
@@ -5880,11 +5829,11 @@
    "rank": 99,
    "record": "1-0"
   },
-  "home_score": 14,
+  "home_score": 21,
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:35.745978+00:00",
+   "observed_at": "2026-09-12T16:52:49.922984+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -5892,7 +5841,7 @@
   "season": 2026,
   "season_type": 2,
   "state": "in",
-  "status_detail": "7:46 - 1st",
+  "status_detail": "15:00 - 2nd",
   "status_name": "STATUS_IN_PROGRESS",
   "venue": "Bridgeforth Stadium",
   "venue_city": "Harrisonburg",
@@ -5913,7 +5862,7 @@
    "rank": 99,
    "record": "0-2"
   },
-  "away_score": 3,
+  "away_score": 6,
   "broadcast": "ESPN+",
   "canceled": false,
   "completed": false,
@@ -5931,11 +5880,11 @@
    "rank": 99,
    "record": "0-1"
   },
-  "home_score": 13,
+  "home_score": 14,
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:35.745993+00:00",
+   "observed_at": "2026-09-12T16:52:49.923202+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -5943,7 +5892,7 @@
   "season": 2026,
   "season_type": 2,
   "state": "in",
-  "status_detail": "8:48 - 1st",
+  "status_detail": "14:08 - 2nd",
   "status_name": "STATUS_IN_PROGRESS",
   "venue": "Williams Stadium (VA)",
   "venue_city": "Lynchburg",
@@ -5969,28 +5918,6 @@
   "canceled": false,
   "completed": false,
   "conference_game": false,
-  "context": {
-   "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
-    "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
-    "reports": {
-     "away": [],
-     "home": []
-    },
-    "status": "unavailable"
-   },
-   "review_flags": [],
-   "weather": {
-    "checked_at": null,
-    "forecast": null,
-    "location": null,
-    "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
-    "precision": "venue city",
-    "source": "Open-Meteo",
-    "source_url": "https://open-meteo.com/",
-    "status": "unavailable"
-   }
-  },
   "date_utc": "2026-09-12T16:45Z",
   "game_id": "401856673",
   "home": {
@@ -6004,53 +5931,20 @@
    "rank": 2,
    "record": "1-0"
   },
-  "home_score": 0,
+  "home_score": 7,
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
-   "details": "UGA -40.5",
-   "ml_away": null,
-   "ml_home": null,
-   "observed_at": "2026-09-12T16:27:37.137298+00:00",
-   "over_price": -112.0,
-   "source": "ESPN provider feed",
-   "spread_home": -40.5,
-   "spread_price_away": -115.0,
-   "spread_price_home": -105.0,
-   "total": 55.5,
-   "under_price": -108.0,
-   "verified_markets": [
-    "ATS",
-    "TOTAL"
-   ]
+   "observed_at": "2026-09-12T16:52:49.923219+00:00",
+   "source": "ESPN scoreboard"
   },
-  "odds_quotes": [
-   {
-    "book": "Draft Kings",
-    "details": "UGA -40.5",
-    "ml_away": null,
-    "ml_home": null,
-    "observed_at": "2026-09-12T16:27:37.137298+00:00",
-    "over_price": -112.0,
-    "source": "ESPN provider feed",
-    "spread_home": -40.5,
-    "spread_price_away": -115.0,
-    "spread_price_home": -105.0,
-    "total": 55.5,
-    "under_price": -108.0,
-    "verified_markets": [
-     "ATS",
-     "TOTAL"
-    ]
-   }
-  ],
+  "odds_quotes": [],
   "postponed": false,
   "season": 2026,
   "season_type": 2,
-  "state": "pre",
-  "status_detail": "9/12 - 12:45 PM EDT",
-  "status_name": "STATUS_SCHEDULED",
+  "state": "in",
+  "status_detail": "13:59 - 1st",
+  "status_name": "STATUS_IN_PROGRESS",
   "venue": "Sanford Stadium",
   "venue_city": "Athens",
   "venue_country": "USA",
@@ -6077,7 +5971,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -6087,14 +5981,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T17:00:00+00:00",
      "gust_mph": 12.1,
      "precip_mm": 0.0,
-     "rain_probability": 6.0,
+     "rain_probability": 5.0,
      "temp_c": 29.9,
-     "wind_mph": 7.8
+     "wind_mph": 7.0
     },
     "location": "Morgantown, WV",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -6121,18 +6015,18 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
-   "details": "WVU -40.5",
+   "book": "DraftKings",
+   "details": "WVU -41.5",
    "ml_away": null,
    "ml_home": null,
-   "observed_at": "2026-09-12T16:27:35.746111+00:00",
-   "over_price": -110.0,
+   "observed_at": "2026-09-12T16:52:49.923296+00:00",
+   "over_price": -115.0,
    "source": "ESPN scoreboard",
-   "spread_home": -40.5,
+   "spread_home": -41.5,
    "spread_price_away": -112.0,
    "spread_price_home": -108.0,
    "total": 56.5,
-   "under_price": -110.0,
+   "under_price": -105.0,
    "verified_markets": [
     "ATS",
     "TOTAL"
@@ -6140,18 +6034,18 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
-    "details": "WVU -40.5",
+    "book": "DraftKings",
+    "details": "WVU -41.5",
     "ml_away": null,
     "ml_home": null,
-    "observed_at": "2026-09-12T16:27:35.746111+00:00",
-    "over_price": -110.0,
+    "observed_at": "2026-09-12T16:52:49.923296+00:00",
+    "over_price": -115.0,
     "source": "ESPN scoreboard",
-    "spread_home": -40.5,
+    "spread_home": -41.5,
     "spread_price_away": -112.0,
     "spread_price_home": -108.0,
     "total": 56.5,
-    "under_price": -110.0,
+    "under_price": -105.0,
     "verified_markets": [
      "ATS",
      "TOTAL"
@@ -6190,7 +6084,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -6227,11 +6121,11 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "CMU -18.5",
    "ml_away": 900.0,
    "ml_home": -1600.0,
-   "observed_at": "2026-09-12T16:27:35.746149+00:00",
+   "observed_at": "2026-09-12T16:52:49.923351+00:00",
    "over_price": -105.0,
    "source": "ESPN scoreboard",
    "spread_home": -18.5,
@@ -6247,11 +6141,11 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "CMU -18.5",
     "ml_away": 900.0,
     "ml_home": -1600.0,
-    "observed_at": "2026-09-12T16:27:35.746149+00:00",
+    "observed_at": "2026-09-12T16:52:49.923351+00:00",
     "over_price": -105.0,
     "source": "ESPN scoreboard",
     "spread_home": -18.5,
@@ -6298,7 +6192,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -6335,11 +6229,11 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "M-OH -30.5",
    "ml_away": 2000.0,
    "ml_home": -6500.0,
-   "observed_at": "2026-09-12T16:27:35.746184+00:00",
+   "observed_at": "2026-09-12T16:52:49.923393+00:00",
    "over_price": -105.0,
    "source": "ESPN scoreboard",
    "spread_home": -30.5,
@@ -6355,11 +6249,11 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "M-OH -30.5",
     "ml_away": 2000.0,
     "ml_home": -6500.0,
-    "observed_at": "2026-09-12T16:27:35.746184+00:00",
+    "observed_at": "2026-09-12T16:52:49.923393+00:00",
     "over_price": -105.0,
     "source": "ESPN scoreboard",
     "spread_home": -30.5,
@@ -6389,6 +6283,121 @@
  },
  {
   "away": {
+   "abbr": "ORE",
+   "color": "00934b",
+   "conference": "Big Ten",
+   "conference_id": "",
+   "id": "2483",
+   "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2483.png",
+   "name": "Oregon Ducks",
+   "rank": 6,
+   "record": "1-0"
+  },
+  "away_score": 0,
+  "broadcast": "ESPN",
+  "canceled": false,
+  "completed": false,
+  "conference_game": false,
+  "context": {
+   "availability": {
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
+    "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
+    "reports": {
+     "away": [],
+     "home": []
+    },
+    "status": "unavailable"
+   },
+   "review_flags": [],
+   "weather": {
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
+    "forecast": {
+     "forecast_for": "2026-09-12T17:00:00+00:00",
+     "gust_mph": 16.6,
+     "precip_mm": 0.0,
+     "rain_probability": 9.0,
+     "temp_c": 29.7,
+     "wind_mph": 11.9
+    },
+    "location": "Stillwater, OK",
+    "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
+    "precision": "venue city",
+    "source": "Open-Meteo",
+    "source_url": "https://open-meteo.com/",
+    "status": "available"
+   }
+  },
+  "date_utc": "2026-09-12T17:30Z",
+  "game_id": "401856782",
+  "home": {
+   "abbr": "OKST",
+   "color": "fe5c00",
+   "conference": "Big 12",
+   "conference_id": "",
+   "id": "197",
+   "logo": "https://a.espncdn.com/i/teamlogos/ncaa/500/197.png",
+   "name": "Oklahoma State Cowboys",
+   "rank": 99,
+   "record": "0-1"
+  },
+  "home_score": 0,
+  "indoor": false,
+  "neutral": false,
+  "odds": {
+   "book": "Draft Kings",
+   "details": "ORE -24.5",
+   "ml_away": -2400.0,
+   "ml_home": 1200.0,
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
+   "over_price": -112.0,
+   "source": "ESPN provider feed",
+   "spread_home": 24.5,
+   "spread_price_away": -110.0,
+   "spread_price_home": -110.0,
+   "total": 55.5,
+   "under_price": -108.0,
+   "verified_markets": [
+    "ATS",
+    "TOTAL",
+    "ML"
+   ]
+  },
+  "odds_quotes": [
+   {
+    "book": "Draft Kings",
+    "details": "ORE -24.5",
+    "ml_away": -2400.0,
+    "ml_home": 1200.0,
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
+    "over_price": -112.0,
+    "source": "ESPN provider feed",
+    "spread_home": 24.5,
+    "spread_price_away": -110.0,
+    "spread_price_home": -110.0,
+    "total": 55.5,
+    "under_price": -108.0,
+    "verified_markets": [
+     "ATS",
+     "TOTAL",
+     "ML"
+    ]
+   }
+  ],
+  "postponed": false,
+  "season": 2026,
+  "season_type": 2,
+  "state": "pre",
+  "status_detail": "9/12 - 1:30 PM EDT",
+  "status_name": "STATUS_SCHEDULED",
+  "venue": "Boone Pickens Stadium",
+  "venue_city": "Stillwater",
+  "venue_country": "USA",
+  "venue_id": "3646",
+  "venue_state": "OK",
+  "week": 2
+ },
+ {
+  "away": {
    "abbr": "STBK",
    "color": "990000",
    "conference": null,
@@ -6406,7 +6415,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -6416,14 +6425,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T18:00:00+00:00",
-     "gust_mph": 10.7,
-     "precip_mm": 0.0,
-     "rain_probability": 20.0,
-     "temp_c": 24.8,
-     "wind_mph": 6.3
+     "gust_mph": 19.7,
+     "precip_mm": 18.7,
+     "rain_probability": 17.0,
+     "temp_c": 22.6,
+     "wind_mph": 10.0
     },
     "location": "Muncie, IN",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -6450,18 +6459,18 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "BALL -13.5",
-   "ml_away": 410.0,
-   "ml_home": -550.0,
-   "observed_at": "2026-09-12T16:27:35.746217+00:00",
-   "over_price": -115.0,
+   "ml_away": 425.0,
+   "ml_home": -575.0,
+   "observed_at": "2026-09-12T16:52:49.923468+00:00",
+   "over_price": -112.0,
    "source": "ESPN scoreboard",
    "spread_home": -13.5,
    "spread_price_away": -105.0,
    "spread_price_home": -115.0,
-   "total": 53.5,
-   "under_price": -105.0,
+   "total": 52.5,
+   "under_price": -108.0,
    "verified_markets": [
     "ATS",
     "TOTAL",
@@ -6470,18 +6479,18 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "BALL -13.5",
-    "ml_away": 410.0,
-    "ml_home": -550.0,
-    "observed_at": "2026-09-12T16:27:35.746217+00:00",
-    "over_price": -115.0,
+    "ml_away": 425.0,
+    "ml_home": -575.0,
+    "observed_at": "2026-09-12T16:52:49.923468+00:00",
+    "over_price": -112.0,
     "source": "ESPN scoreboard",
     "spread_home": -13.5,
     "spread_price_away": -105.0,
     "spread_price_home": -115.0,
-    "total": 53.5,
-    "under_price": -105.0,
+    "total": 52.5,
+    "under_price": -108.0,
     "verified_markets": [
      "ATS",
      "TOTAL",
@@ -6521,7 +6530,7 @@
   "conference_game": true,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -6531,14 +6540,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T19:00:00+00:00",
-     "gust_mph": 15.4,
+     "gust_mph": 12.5,
      "precip_mm": 0.0,
-     "rain_probability": 22.0,
-     "temp_c": 27.3,
-     "wind_mph": 10.6
+     "rain_probability": 19.0,
+     "temp_c": 26.2,
+     "wind_mph": 9.0
     },
     "location": "Lexington, KY",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -6569,9 +6578,9 @@
    "details": "ALA -8.5",
    "ml_away": -360.0,
    "ml_home": 285.0,
-   "observed_at": "2026-09-12T16:27:35.746284+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -115.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": 8.5,
    "spread_price_away": -112.0,
    "spread_price_home": -108.0,
@@ -6589,9 +6598,9 @@
     "details": "ALA -8.5",
     "ml_away": -360.0,
     "ml_home": 285.0,
-    "observed_at": "2026-09-12T16:27:35.746284+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -115.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": 8.5,
     "spread_price_away": -112.0,
     "spread_price_home": -108.0,
@@ -6636,7 +6645,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -6646,14 +6655,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T19:00:00+00:00",
-     "gust_mph": 19.0,
+     "gust_mph": 17.9,
      "precip_mm": 0.0,
      "rain_probability": 0.0,
      "temp_c": 23.1,
-     "wind_mph": 13.1
+     "wind_mph": 12.2
     },
     "location": "Minneapolis, MN",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -6684,9 +6693,9 @@
    "details": "MSST -1.5",
    "ml_away": -115.0,
    "ml_home": -105.0,
-   "observed_at": "2026-09-12T16:27:35.746379+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -112.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": 1.5,
    "spread_price_away": -105.0,
    "spread_price_home": -115.0,
@@ -6704,9 +6713,9 @@
     "details": "MSST -1.5",
     "ml_away": -115.0,
     "ml_home": -105.0,
-    "observed_at": "2026-09-12T16:27:35.746379+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -112.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": 1.5,
     "spread_price_away": -105.0,
     "spread_price_home": -115.0,
@@ -6751,7 +6760,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -6761,14 +6770,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T19:00:00+00:00",
-     "gust_mph": 6.7,
+     "gust_mph": 5.8,
      "precip_mm": 0.0,
      "rain_probability": 2.0,
-     "temp_c": 24.6,
-     "wind_mph": 4.9
+     "temp_c": 24.5,
+     "wind_mph": 4.6
     },
     "location": "Boulder, CO",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -6795,15 +6804,15 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "COLO -38.5",
-   "ml_away": 2200.0,
-   "ml_home": -8000.0,
-   "observed_at": "2026-09-12T16:27:35.746410+00:00",
+   "ml_away": 2000.0,
+   "ml_home": -6500.0,
+   "observed_at": "2026-09-12T16:52:49.923685+00:00",
    "over_price": -108.0,
    "source": "ESPN scoreboard",
    "spread_home": -38.5,
-   "spread_price_away": -102.0,
+   "spread_price_away": -118.0,
    "spread_price_home": -102.0,
    "total": 57.5,
    "under_price": -112.0,
@@ -6815,15 +6824,15 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "COLO -38.5",
-    "ml_away": 2200.0,
-    "ml_home": -8000.0,
-    "observed_at": "2026-09-12T16:27:35.746410+00:00",
+    "ml_away": 2000.0,
+    "ml_home": -6500.0,
+    "observed_at": "2026-09-12T16:52:49.923685+00:00",
     "over_price": -108.0,
     "source": "ESPN scoreboard",
     "spread_home": -38.5,
-    "spread_price_away": -102.0,
+    "spread_price_away": -118.0,
     "spread_price_home": -102.0,
     "total": 57.5,
     "under_price": -112.0,
@@ -6866,7 +6875,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -6876,14 +6885,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T19:00:00+00:00",
-     "gust_mph": 10.5,
+     "gust_mph": 14.3,
      "precip_mm": 0.0,
      "rain_probability": 14.0,
-     "temp_c": 29.3,
-     "wind_mph": 5.3
+     "temp_c": 29.6,
+     "wind_mph": 5.8
     },
     "location": "Pittsburgh, PA",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -6912,16 +6921,16 @@
   "odds": {
    "book": "Draft Kings",
    "details": "PITT -7",
-   "ml_away": 225.0,
-   "ml_home": -278.0,
-   "observed_at": "2026-09-12T16:27:35.746441+00:00",
-   "over_price": -105.0,
-   "source": "ESPN scoreboard",
+   "ml_away": 235.0,
+   "ml_home": -290.0,
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
+   "over_price": -102.0,
+   "source": "ESPN provider feed",
    "spread_home": -7.0,
-   "spread_price_away": -105.0,
-   "spread_price_home": -115.0,
+   "spread_price_away": -102.0,
+   "spread_price_home": -118.0,
    "total": 55.5,
-   "under_price": -115.0,
+   "under_price": -118.0,
    "verified_markets": [
     "ATS",
     "TOTAL",
@@ -6932,16 +6941,16 @@
    {
     "book": "Draft Kings",
     "details": "PITT -7",
-    "ml_away": 225.0,
-    "ml_home": -278.0,
-    "observed_at": "2026-09-12T16:27:35.746441+00:00",
-    "over_price": -105.0,
-    "source": "ESPN scoreboard",
+    "ml_away": 235.0,
+    "ml_home": -290.0,
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
+    "over_price": -102.0,
+    "source": "ESPN provider feed",
     "spread_home": -7.0,
-    "spread_price_away": -105.0,
-    "spread_price_home": -115.0,
+    "spread_price_away": -102.0,
+    "spread_price_home": -118.0,
     "total": 55.5,
-    "under_price": -115.0,
+    "under_price": -118.0,
     "verified_markets": [
      "ATS",
      "TOTAL",
@@ -6981,7 +6990,7 @@
   "conference_game": true,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -7022,9 +7031,9 @@
    "details": "BYU -7",
    "ml_away": 220.0,
    "ml_home": -270.0,
-   "observed_at": "2026-09-12T16:27:35.746316+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -115.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -7.0,
    "spread_price_away": -112.0,
    "spread_price_home": -108.0,
@@ -7042,9 +7051,9 @@
     "details": "BYU -7",
     "ml_away": 220.0,
     "ml_home": -270.0,
-    "observed_at": "2026-09-12T16:27:35.746316+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -115.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -7.0,
     "spread_price_away": -112.0,
     "spread_price_home": -108.0,
@@ -7089,7 +7098,7 @@
   "conference_game": true,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -7130,9 +7139,9 @@
    "details": "SYR -3.5",
    "ml_away": 160.0,
    "ml_home": -192.0,
-   "observed_at": "2026-09-12T16:27:35.746473+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -115.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -3.5,
    "spread_price_away": -112.0,
    "spread_price_home": -108.0,
@@ -7150,9 +7159,9 @@
     "details": "SYR -3.5",
     "ml_away": 160.0,
     "ml_home": -192.0,
-    "observed_at": "2026-09-12T16:27:35.746473+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -115.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -3.5,
     "spread_price_away": -112.0,
     "spread_price_home": -108.0,
@@ -7197,7 +7206,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -7207,14 +7216,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T19:00:00+00:00",
-     "gust_mph": 10.1,
+     "gust_mph": 7.4,
      "precip_mm": 0.0,
      "rain_probability": 0.0,
-     "temp_c": 29.8,
-     "wind_mph": 7.7
+     "temp_c": 30.1,
+     "wind_mph": 5.7
     },
     "location": "Champaign, IL",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -7245,9 +7254,9 @@
    "details": "ILL -6",
    "ml_away": 190.0,
    "ml_home": -230.0,
-   "observed_at": "2026-09-12T16:27:35.746504+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -105.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -6.0,
    "spread_price_away": -112.0,
    "spread_price_home": -108.0,
@@ -7265,9 +7274,9 @@
     "details": "ILL -6",
     "ml_away": 190.0,
     "ml_home": -230.0,
-    "observed_at": "2026-09-12T16:27:35.746504+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -105.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -6.0,
     "spread_price_away": -112.0,
     "spread_price_home": -108.0,
@@ -7312,7 +7321,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -7322,14 +7331,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T19:00:00+00:00",
      "gust_mph": 14.8,
      "precip_mm": 0.0,
      "rain_probability": 0.0,
-     "temp_c": 28.6,
-     "wind_mph": 10.2
+     "temp_c": 28.0,
+     "wind_mph": 10.6
     },
     "location": "East Lansing, MI",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -7360,12 +7369,12 @@
    "details": "MSU -17.5",
    "ml_away": 575.0,
    "ml_home": -850.0,
-   "observed_at": "2026-09-12T16:27:35.746538+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -110.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -17.5,
-   "spread_price_away": -112.0,
-   "spread_price_home": -108.0,
+   "spread_price_away": -115.0,
+   "spread_price_home": -105.0,
    "total": 49.5,
    "under_price": -110.0,
    "verified_markets": [
@@ -7380,12 +7389,12 @@
     "details": "MSU -17.5",
     "ml_away": 575.0,
     "ml_home": -850.0,
-    "observed_at": "2026-09-12T16:27:35.746538+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -110.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -17.5,
-    "spread_price_away": -112.0,
-    "spread_price_home": -108.0,
+    "spread_price_away": -115.0,
+    "spread_price_home": -105.0,
     "total": 49.5,
     "under_price": -110.0,
     "verified_markets": [
@@ -7427,7 +7436,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -7437,14 +7446,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T19:00:00+00:00",
-     "gust_mph": 10.5,
+     "gust_mph": 12.3,
      "precip_mm": 0.0,
      "rain_probability": 0.0,
-     "temp_c": 25.2,
-     "wind_mph": 8.3
+     "temp_c": 25.6,
+     "wind_mph": 9.7
     },
     "location": "East Hartford, CT",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -7475,9 +7484,9 @@
    "details": "MD -11.5",
    "ml_away": -470.0,
    "ml_home": 360.0,
-   "observed_at": "2026-09-12T16:27:35.746570+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -112.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": 11.5,
    "spread_price_away": -112.0,
    "spread_price_home": -108.0,
@@ -7495,9 +7504,9 @@
     "details": "MD -11.5",
     "ml_away": -470.0,
     "ml_home": 360.0,
-    "observed_at": "2026-09-12T16:27:35.746570+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -112.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": 11.5,
     "spread_price_away": -112.0,
     "spread_price_home": -108.0,
@@ -7542,7 +7551,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -7583,9 +7592,9 @@
    "details": "WASH -28.5",
    "ml_away": 2000.0,
    "ml_home": -6500.0,
-   "observed_at": "2026-09-12T16:27:35.746348+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -105.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -28.5,
    "spread_price_away": -118.0,
    "spread_price_home": -102.0,
@@ -7603,9 +7612,9 @@
     "details": "WASH -28.5",
     "ml_away": 2000.0,
     "ml_home": -6500.0,
-    "observed_at": "2026-09-12T16:27:35.746348+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -105.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -28.5,
     "spread_price_away": -118.0,
     "spread_price_home": -102.0,
@@ -7650,7 +7659,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -7687,13 +7696,13 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "ND -44.5",
    "ml_away": null,
    "ml_home": null,
-   "observed_at": "2026-09-12T16:27:37.137298+00:00",
+   "observed_at": "2026-09-12T16:52:49.923507+00:00",
    "over_price": -108.0,
-   "source": "ESPN provider feed",
+   "source": "ESPN scoreboard",
    "spread_home": -44.5,
    "spread_price_away": -102.0,
    "spread_price_home": -118.0,
@@ -7706,13 +7715,13 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "ND -44.5",
     "ml_away": null,
     "ml_home": null,
-    "observed_at": "2026-09-12T16:27:37.137298+00:00",
+    "observed_at": "2026-09-12T16:52:49.923507+00:00",
     "over_price": -108.0,
-    "source": "ESPN provider feed",
+    "source": "ESPN scoreboard",
     "spread_home": -44.5,
     "spread_price_away": -102.0,
     "spread_price_home": -118.0,
@@ -7756,7 +7765,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -7766,14 +7775,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T19:00:00+00:00",
-     "gust_mph": 12.3,
+     "gust_mph": 10.1,
      "precip_mm": 0.0,
      "rain_probability": 1.0,
-     "temp_c": 36.4,
-     "wind_mph": 9.6
+     "temp_c": 35.2,
+     "wind_mph": 7.7
     },
     "location": "San Marcos, TX",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -7802,14 +7811,14 @@
   "odds": {
    "book": "Draft Kings",
    "details": "TXST -2.5",
-   "ml_away": 120.0,
-   "ml_home": -142.0,
-   "observed_at": "2026-09-12T16:27:35.746607+00:00",
+   "ml_away": 114.0,
+   "ml_home": -135.0,
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -110.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -2.5,
-   "spread_price_away": -105.0,
-   "spread_price_home": -115.0,
+   "spread_price_away": -110.0,
+   "spread_price_home": -110.0,
    "total": 65.5,
    "under_price": -110.0,
    "verified_markets": [
@@ -7822,14 +7831,14 @@
    {
     "book": "Draft Kings",
     "details": "TXST -2.5",
-    "ml_away": 120.0,
-    "ml_home": -142.0,
-    "observed_at": "2026-09-12T16:27:35.746607+00:00",
+    "ml_away": 114.0,
+    "ml_home": -135.0,
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -110.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -2.5,
-    "spread_price_away": -105.0,
-    "spread_price_home": -115.0,
+    "spread_price_away": -110.0,
+    "spread_price_home": -110.0,
     "total": 65.5,
     "under_price": -110.0,
     "verified_markets": [
@@ -7871,7 +7880,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -7912,9 +7921,9 @@
    "details": "UAB -9.5",
    "ml_away": 285.0,
    "ml_home": -360.0,
-   "observed_at": "2026-09-12T16:27:35.746640+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -110.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -9.5,
    "spread_price_away": -108.0,
    "spread_price_home": -112.0,
@@ -7932,9 +7941,9 @@
     "details": "UAB -9.5",
     "ml_away": 285.0,
     "ml_home": -360.0,
-    "observed_at": "2026-09-12T16:27:35.746640+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -110.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -9.5,
     "spread_price_away": -108.0,
     "spread_price_home": -112.0,
@@ -7979,7 +7988,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -7989,14 +7998,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T19:00:00+00:00",
-     "gust_mph": 15.2,
-     "precip_mm": 0.4,
-     "rain_probability": 31.0,
-     "temp_c": 23.2,
-     "wind_mph": 4.3
+     "gust_mph": 16.1,
+     "precip_mm": 0.0,
+     "rain_probability": 39.0,
+     "temp_c": 23.5,
+     "wind_mph": 7.1
     },
     "location": "Akron, OH",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -8023,11 +8032,11 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "AKR -27.5",
    "ml_away": 1500.0,
    "ml_home": -3600.0,
-   "observed_at": "2026-09-12T16:27:35.746673+00:00",
+   "observed_at": "2026-09-12T16:52:49.923982+00:00",
    "over_price": -110.0,
    "source": "ESPN scoreboard",
    "spread_home": -27.5,
@@ -8043,11 +8052,11 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "AKR -27.5",
     "ml_away": 1500.0,
     "ml_home": -3600.0,
-    "observed_at": "2026-09-12T16:27:35.746673+00:00",
+    "observed_at": "2026-09-12T16:52:49.923982+00:00",
     "over_price": -110.0,
     "source": "ESPN scoreboard",
     "spread_home": -27.5,
@@ -8094,7 +8103,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -8104,14 +8113,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T19:00:00+00:00",
-     "gust_mph": 12.8,
+     "gust_mph": 11.6,
      "precip_mm": 0.0,
      "rain_probability": 7.0,
-     "temp_c": 26.6,
-     "wind_mph": 7.9
+     "temp_c": 27.0,
+     "wind_mph": 8.2
     },
     "location": "Toledo, OH",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -8138,18 +8147,18 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "TOL -36.5",
    "ml_away": 3500.0,
    "ml_home": -20000.0,
-   "observed_at": "2026-09-12T16:27:35.746719+00:00",
-   "over_price": -118.0,
+   "observed_at": "2026-09-12T16:52:49.924017+00:00",
+   "over_price": -108.0,
    "source": "ESPN scoreboard",
    "spread_home": -36.5,
    "spread_price_away": -112.0,
    "spread_price_home": -108.0,
    "total": 52.5,
-   "under_price": -102.0,
+   "under_price": -112.0,
    "verified_markets": [
     "ATS",
     "TOTAL",
@@ -8158,18 +8167,18 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "TOL -36.5",
     "ml_away": 3500.0,
     "ml_home": -20000.0,
-    "observed_at": "2026-09-12T16:27:35.746719+00:00",
-    "over_price": -118.0,
+    "observed_at": "2026-09-12T16:52:49.924017+00:00",
+    "over_price": -108.0,
     "source": "ESPN scoreboard",
     "spread_home": -36.5,
     "spread_price_away": -112.0,
     "spread_price_home": -108.0,
     "total": 52.5,
-    "under_price": -102.0,
+    "under_price": -112.0,
     "verified_markets": [
      "ATS",
      "TOTAL",
@@ -8209,7 +8218,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -8246,11 +8255,11 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "MASS -23.5",
    "ml_away": 1200.0,
    "ml_home": -2400.0,
-   "observed_at": "2026-09-12T16:27:35.746756+00:00",
+   "observed_at": "2026-09-12T16:52:49.924052+00:00",
    "over_price": -112.0,
    "source": "ESPN scoreboard",
    "spread_home": -23.5,
@@ -8266,11 +8275,11 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "MASS -23.5",
     "ml_away": 1200.0,
     "ml_home": -2400.0,
-    "observed_at": "2026-09-12T16:27:35.746756+00:00",
+    "observed_at": "2026-09-12T16:52:49.924052+00:00",
     "over_price": -112.0,
     "source": "ESPN scoreboard",
     "spread_home": -23.5,
@@ -8317,7 +8326,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -8358,14 +8367,14 @@
    "details": "UNLV -3",
    "ml_away": -162.0,
    "ml_home": 136.0,
-   "observed_at": "2026-09-12T16:27:35.746791+00:00",
-   "over_price": -120.0,
-   "source": "ESPN scoreboard",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
+   "over_price": -118.0,
+   "source": "ESPN provider feed",
    "spread_home": 3.0,
    "spread_price_away": -115.0,
    "spread_price_home": -105.0,
    "total": 57.5,
-   "under_price": 100.0,
+   "under_price": -102.0,
    "verified_markets": [
     "ATS",
     "TOTAL",
@@ -8378,14 +8387,14 @@
     "details": "UNLV -3",
     "ml_away": -162.0,
     "ml_home": 136.0,
-    "observed_at": "2026-09-12T16:27:35.746791+00:00",
-    "over_price": -120.0,
-    "source": "ESPN scoreboard",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
+    "over_price": -118.0,
+    "source": "ESPN provider feed",
     "spread_home": 3.0,
     "spread_price_away": -115.0,
     "spread_price_home": -105.0,
     "total": 57.5,
-    "under_price": 100.0,
+    "under_price": -102.0,
     "verified_markets": [
      "ATS",
      "TOTAL",
@@ -8425,7 +8434,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -8462,11 +8471,11 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "SMU -32.5",
    "ml_away": 1500.0,
    "ml_home": -3600.0,
-   "observed_at": "2026-09-12T16:27:35.746824+00:00",
+   "observed_at": "2026-09-12T16:52:49.924138+00:00",
    "over_price": -115.0,
    "source": "ESPN scoreboard",
    "spread_home": -32.5,
@@ -8482,11 +8491,11 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "SMU -32.5",
     "ml_away": 1500.0,
     "ml_home": -3600.0,
-    "observed_at": "2026-09-12T16:27:35.746824+00:00",
+    "observed_at": "2026-09-12T16:52:49.924138+00:00",
     "over_price": -115.0,
     "source": "ESPN scoreboard",
     "spread_home": -32.5,
@@ -8533,7 +8542,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -8543,14 +8552,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T20:00:00+00:00",
-     "gust_mph": 27.1,
+     "gust_mph": 26.8,
      "precip_mm": 0.0,
-     "rain_probability": 4.0,
-     "temp_c": 25.2,
-     "wind_mph": 18.1
+     "rain_probability": 5.0,
+     "temp_c": 25.3,
+     "wind_mph": 16.6
     },
     "location": "Laramie, WY",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -8577,16 +8586,16 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "WYO -23.5",
    "ml_away": 1000.0,
    "ml_home": -1800.0,
-   "observed_at": "2026-09-12T16:27:35.746856+00:00",
+   "observed_at": "2026-09-12T16:52:49.924171+00:00",
    "over_price": -102.0,
    "source": "ESPN scoreboard",
    "spread_home": -23.5,
-   "spread_price_away": -112.0,
-   "spread_price_home": -108.0,
+   "spread_price_away": -115.0,
+   "spread_price_home": -105.0,
    "total": 44.5,
    "under_price": -118.0,
    "verified_markets": [
@@ -8597,16 +8606,16 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "WYO -23.5",
     "ml_away": 1000.0,
     "ml_home": -1800.0,
-    "observed_at": "2026-09-12T16:27:35.746856+00:00",
+    "observed_at": "2026-09-12T16:52:49.924171+00:00",
     "over_price": -102.0,
     "source": "ESPN scoreboard",
     "spread_home": -23.5,
-    "spread_price_away": -112.0,
-    "spread_price_home": -108.0,
+    "spread_price_away": -115.0,
+    "spread_price_home": -105.0,
     "total": 44.5,
     "under_price": -118.0,
     "verified_markets": [
@@ -8648,7 +8657,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -8658,14 +8667,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T20:00:00+00:00",
-     "gust_mph": 8.5,
+     "gust_mph": 11.0,
      "precip_mm": 0.0,
      "rain_probability": 1.0,
-     "temp_c": 34.4,
-     "wind_mph": 6.9
+     "temp_c": 34.2,
+     "wind_mph": 9.0
     },
     "location": "Albuquerque, NM",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -8692,11 +8701,11 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "UNM -42.5",
    "ml_away": null,
    "ml_home": null,
-   "observed_at": "2026-09-12T16:27:35.746896+00:00",
+   "observed_at": "2026-09-12T16:52:49.924207+00:00",
    "over_price": -108.0,
    "source": "ESPN scoreboard",
    "spread_home": -42.5,
@@ -8711,11 +8720,11 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "UNM -42.5",
     "ml_away": null,
     "ml_home": null,
-    "observed_at": "2026-09-12T16:27:35.746896+00:00",
+    "observed_at": "2026-09-12T16:52:49.924207+00:00",
     "over_price": -108.0,
     "source": "ESPN scoreboard",
     "spread_home": -42.5,
@@ -8761,7 +8770,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -8771,14 +8780,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T20:00:00+00:00",
      "gust_mph": 9.6,
      "precip_mm": 0.0,
-     "rain_probability": 19.0,
-     "temp_c": 30.0,
-     "wind_mph": 6.4
+     "rain_probability": 18.0,
+     "temp_c": 30.2,
+     "wind_mph": 6.9
     },
     "location": "Troy, AL",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -8805,11 +8814,11 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "TROY -23.5",
    "ml_away": 1100.0,
    "ml_home": -2100.0,
-   "observed_at": "2026-09-12T16:27:35.746955+00:00",
+   "observed_at": "2026-09-12T16:52:49.924243+00:00",
    "over_price": -115.0,
    "source": "ESPN scoreboard",
    "spread_home": -23.5,
@@ -8825,11 +8834,11 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "TROY -23.5",
     "ml_away": 1100.0,
     "ml_home": -2100.0,
-    "observed_at": "2026-09-12T16:27:35.746955+00:00",
+    "observed_at": "2026-09-12T16:52:49.924243+00:00",
     "over_price": -115.0,
     "source": "ESPN scoreboard",
     "spread_home": -23.5,
@@ -8876,7 +8885,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -8886,14 +8895,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T20:00:00+00:00",
-     "gust_mph": 7.2,
+     "gust_mph": 10.3,
      "precip_mm": 0.0,
-     "rain_probability": 10.0,
-     "temp_c": 30.9,
-     "wind_mph": 1.8
+     "rain_probability": 9.0,
+     "temp_c": 31.5,
+     "wind_mph": 6.1
     },
     "location": "Nashville, TN",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -8924,9 +8933,9 @@
    "details": "VAN -21",
    "ml_away": 800.0,
    "ml_home": -1350.0,
-   "observed_at": "2026-09-12T16:27:35.746989+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -115.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -21.0,
    "spread_price_away": -112.0,
    "spread_price_home": -108.0,
@@ -8944,9 +8953,9 @@
     "details": "VAN -21",
     "ml_away": 800.0,
     "ml_home": -1350.0,
-    "observed_at": "2026-09-12T16:27:35.746989+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -115.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -21.0,
     "spread_price_away": -112.0,
     "spread_price_home": -108.0,
@@ -8991,7 +9000,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -9001,14 +9010,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T21:00:00+00:00",
-     "gust_mph": 11.9,
+     "gust_mph": 8.3,
      "precip_mm": 0.0,
-     "rain_probability": 28.0,
-     "temp_c": 27.2,
-     "wind_mph": 7.3
+     "rain_probability": 23.0,
+     "temp_c": 30.1,
+     "wind_mph": 5.6
     },
     "location": "Gainesville, FL",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -9035,11 +9044,11 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "FLA -50.5",
    "ml_away": null,
    "ml_home": null,
-   "observed_at": "2026-09-12T16:27:35.747024+00:00",
+   "observed_at": "2026-09-12T16:52:49.924319+00:00",
    "over_price": -118.0,
    "source": "ESPN scoreboard",
    "spread_home": -50.5,
@@ -9054,11 +9063,11 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "FLA -50.5",
     "ml_away": null,
     "ml_home": null,
-    "observed_at": "2026-09-12T16:27:35.747024+00:00",
+    "observed_at": "2026-09-12T16:52:49.924319+00:00",
     "over_price": -118.0,
     "source": "ESPN scoreboard",
     "spread_home": -50.5,
@@ -9104,7 +9113,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -9114,14 +9123,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T22:00:00+00:00",
-     "gust_mph": 10.7,
+     "gust_mph": 11.2,
      "precip_mm": 0.0,
      "rain_probability": 0.0,
      "temp_c": 30.3,
-     "wind_mph": 1.7
+     "wind_mph": 2.1
     },
     "location": "Boise, ID",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -9150,16 +9159,16 @@
   "odds": {
    "book": "Draft Kings",
    "details": "BOIS -9.5",
-   "ml_away": 295.0,
-   "ml_home": -375.0,
-   "observed_at": "2026-09-12T16:27:35.747060+00:00",
-   "over_price": -110.0,
-   "source": "ESPN scoreboard",
+   "ml_away": 300.0,
+   "ml_home": -380.0,
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
+   "over_price": -115.0,
+   "source": "ESPN provider feed",
    "spread_home": -9.5,
-   "spread_price_away": -112.0,
-   "spread_price_home": -108.0,
-   "total": 55.5,
-   "under_price": -110.0,
+   "spread_price_away": -108.0,
+   "spread_price_home": -112.0,
+   "total": 54.5,
+   "under_price": -105.0,
    "verified_markets": [
     "ATS",
     "TOTAL",
@@ -9170,16 +9179,16 @@
    {
     "book": "Draft Kings",
     "details": "BOIS -9.5",
-    "ml_away": 295.0,
-    "ml_home": -375.0,
-    "observed_at": "2026-09-12T16:27:35.747060+00:00",
-    "over_price": -110.0,
-    "source": "ESPN scoreboard",
+    "ml_away": 300.0,
+    "ml_home": -380.0,
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
+    "over_price": -115.0,
+    "source": "ESPN provider feed",
     "spread_home": -9.5,
-    "spread_price_away": -112.0,
-    "spread_price_home": -108.0,
-    "total": 55.5,
-    "under_price": -110.0,
+    "spread_price_away": -108.0,
+    "spread_price_home": -112.0,
+    "total": 54.5,
+    "under_price": -105.0,
     "verified_markets": [
      "ATS",
      "TOTAL",
@@ -9219,7 +9228,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -9229,14 +9238,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T22:00:00+00:00",
-     "gust_mph": 2.9,
+     "gust_mph": 6.7,
      "precip_mm": 0.0,
-     "rain_probability": 23.0,
-     "temp_c": 29.7,
-     "wind_mph": 1.9
+     "rain_probability": 20.0,
+     "temp_c": 28.5,
+     "wind_mph": 2.3
     },
     "location": "Miami, FL",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -9267,9 +9276,9 @@
    "details": "FIU -10",
    "ml_away": 320.0,
    "ml_home": -410.0,
-   "observed_at": "2026-09-12T16:27:35.747091+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -105.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -10.0,
    "spread_price_away": -108.0,
    "spread_price_home": -112.0,
@@ -9287,9 +9296,9 @@
     "details": "FIU -10",
     "ml_away": 320.0,
     "ml_home": -410.0,
-    "observed_at": "2026-09-12T16:27:35.747091+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -105.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -10.0,
     "spread_price_away": -108.0,
     "spread_price_home": -112.0,
@@ -9334,7 +9343,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -9344,14 +9353,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T22:00:00+00:00",
-     "gust_mph": 7.8,
+     "gust_mph": 12.8,
      "precip_mm": 0.0,
-     "rain_probability": 30.0,
-     "temp_c": 27.7,
-     "wind_mph": 3.4
+     "rain_probability": 25.0,
+     "temp_c": 27.0,
+     "wind_mph": 5.9
     },
     "location": "Athens, OH",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -9382,9 +9391,9 @@
    "details": "OHIO -2.5",
    "ml_away": 110.0,
    "ml_home": -130.0,
-   "observed_at": "2026-09-12T16:27:35.747124+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -108.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -2.5,
    "spread_price_away": -115.0,
    "spread_price_home": -105.0,
@@ -9402,9 +9411,9 @@
     "details": "OHIO -2.5",
     "ml_away": 110.0,
     "ml_home": -130.0,
-    "observed_at": "2026-09-12T16:27:35.747124+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -108.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -2.5,
     "spread_price_away": -115.0,
     "spread_price_home": -105.0,
@@ -9449,7 +9458,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -9459,14 +9468,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T22:00:00+00:00",
-     "gust_mph": 16.8,
+     "gust_mph": 15.7,
      "precip_mm": 0.0,
      "rain_probability": 1.0,
-     "temp_c": 27.8,
-     "wind_mph": 11.0
+     "temp_c": 27.6,
+     "wind_mph": 9.9
     },
     "location": "Kalamazoo, MI",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -9493,11 +9502,11 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "WMU -29.5",
    "ml_away": 1800.0,
    "ml_home": -5000.0,
-   "observed_at": "2026-09-12T16:27:35.747156+00:00",
+   "observed_at": "2026-09-12T16:52:49.924462+00:00",
    "over_price": -112.0,
    "source": "ESPN scoreboard",
    "spread_home": -29.5,
@@ -9513,11 +9522,11 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "WMU -29.5",
     "ml_away": 1800.0,
     "ml_home": -5000.0,
-    "observed_at": "2026-09-12T16:27:35.747156+00:00",
+    "observed_at": "2026-09-12T16:52:49.924462+00:00",
     "over_price": -112.0,
     "source": "ESPN scoreboard",
     "spread_home": -29.5,
@@ -9564,7 +9573,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -9574,14 +9583,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T23:00:00+00:00",
-     "gust_mph": 8.9,
+     "gust_mph": 9.8,
      "precip_mm": 0.0,
-     "rain_probability": 13.0,
-     "temp_c": 30.7,
-     "wind_mph": 5.8
+     "rain_probability": 12.0,
+     "temp_c": 30.2,
+     "wind_mph": 6.5
     },
     "location": "Columbia, SC",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -9608,11 +9617,11 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "SC -43.5",
    "ml_away": null,
    "ml_home": null,
-   "observed_at": "2026-09-12T16:27:35.747254+00:00",
+   "observed_at": "2026-09-12T16:52:49.924570+00:00",
    "over_price": -108.0,
    "source": "ESPN scoreboard",
    "spread_home": -43.5,
@@ -9627,11 +9636,11 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "SC -43.5",
     "ml_away": null,
     "ml_home": null,
-    "observed_at": "2026-09-12T16:27:35.747254+00:00",
+    "observed_at": "2026-09-12T16:52:49.924570+00:00",
     "over_price": -108.0,
     "source": "ESPN scoreboard",
     "spread_home": -43.5,
@@ -9677,7 +9686,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -9687,14 +9696,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T23:00:00+00:00",
-     "gust_mph": 8.9,
+     "gust_mph": 6.5,
      "precip_mm": 0.0,
-     "rain_probability": 11.0,
-     "temp_c": 27.0,
-     "wind_mph": 4.1
+     "rain_probability": 7.0,
+     "temp_c": 24.9,
+     "wind_mph": 2.6
     },
     "location": "Atlanta, GA",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -9725,9 +9734,9 @@
    "details": "TENN -12.5",
    "ml_away": -470.0,
    "ml_home": 360.0,
-   "observed_at": "2026-09-12T16:27:35.747189+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -110.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": 12.5,
    "spread_price_away": -108.0,
    "spread_price_home": -112.0,
@@ -9745,9 +9754,9 @@
     "details": "TENN -12.5",
     "ml_away": -470.0,
     "ml_home": 360.0,
-    "observed_at": "2026-09-12T16:27:35.747189+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -110.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": 12.5,
     "spread_price_away": -108.0,
     "spread_price_home": -112.0,
@@ -9792,7 +9801,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -9802,14 +9811,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T23:00:00+00:00",
-     "gust_mph": 7.4,
+     "gust_mph": 12.8,
      "precip_mm": 0.0,
      "rain_probability": 17.0,
-     "temp_c": 24.0,
-     "wind_mph": 2.5
+     "temp_c": 22.3,
+     "wind_mph": 3.7
     },
     "location": "Cincinnati, OH",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -9836,11 +9845,11 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "CIN -36.5",
    "ml_away": null,
    "ml_home": null,
-   "observed_at": "2026-09-12T16:27:35.747286+00:00",
+   "observed_at": "2026-09-12T16:52:49.924606+00:00",
    "over_price": -108.0,
    "source": "ESPN scoreboard",
    "spread_home": -36.5,
@@ -9855,11 +9864,11 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "CIN -36.5",
     "ml_away": null,
     "ml_home": null,
-    "observed_at": "2026-09-12T16:27:35.747286+00:00",
+    "observed_at": "2026-09-12T16:52:49.924606+00:00",
     "over_price": -108.0,
     "source": "ESPN scoreboard",
     "spread_home": -36.5,
@@ -9905,7 +9914,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -9915,14 +9924,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T23:00:00+00:00",
-     "gust_mph": 17.9,
+     "gust_mph": 16.8,
      "precip_mm": 0.0,
-     "rain_probability": 9.0,
-     "temp_c": 31.7,
-     "wind_mph": 10.3
+     "rain_probability": 6.0,
+     "temp_c": 26.8,
+     "wind_mph": 7.2
     },
     "location": "Houston, TX",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -9949,18 +9958,18 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "HOU -51.5",
    "ml_away": null,
    "ml_home": null,
-   "observed_at": "2026-09-12T16:27:35.747221+00:00",
-   "over_price": -105.0,
+   "observed_at": "2026-09-12T16:52:49.924535+00:00",
+   "over_price": -108.0,
    "source": "ESPN scoreboard",
    "spread_home": -51.5,
-   "spread_price_away": -105.0,
-   "spread_price_home": -115.0,
+   "spread_price_away": -102.0,
+   "spread_price_home": -118.0,
    "total": 61.5,
-   "under_price": -115.0,
+   "under_price": -112.0,
    "verified_markets": [
     "ATS",
     "TOTAL"
@@ -9968,18 +9977,18 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "HOU -51.5",
     "ml_away": null,
     "ml_home": null,
-    "observed_at": "2026-09-12T16:27:35.747221+00:00",
-    "over_price": -105.0,
+    "observed_at": "2026-09-12T16:52:49.924535+00:00",
+    "over_price": -108.0,
     "source": "ESPN scoreboard",
     "spread_home": -51.5,
-    "spread_price_away": -105.0,
-    "spread_price_home": -115.0,
+    "spread_price_away": -102.0,
+    "spread_price_home": -118.0,
     "total": 61.5,
-    "under_price": -115.0,
+    "under_price": -112.0,
     "verified_markets": [
      "ATS",
      "TOTAL"
@@ -10018,7 +10027,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -10028,14 +10037,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T23:00:00+00:00",
-     "gust_mph": 10.1,
+     "gust_mph": 11.2,
      "precip_mm": 0.0,
      "rain_probability": 9.0,
-     "temp_c": 21.8,
-     "wind_mph": 5.5
+     "temp_c": 22.5,
+     "wind_mph": 6.8
     },
     "location": "Lincoln, NE",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -10066,9 +10075,9 @@
    "details": "NEB -30.5",
    "ml_away": 2000.0,
    "ml_home": -6500.0,
-   "observed_at": "2026-09-12T16:27:35.747320+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -112.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -30.5,
    "spread_price_away": -110.0,
    "spread_price_home": -110.0,
@@ -10086,9 +10095,9 @@
     "details": "NEB -30.5",
     "ml_away": 2000.0,
     "ml_home": -6500.0,
-    "observed_at": "2026-09-12T16:27:35.747320+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -112.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -30.5,
     "spread_price_away": -110.0,
     "spread_price_home": -110.0,
@@ -10133,7 +10142,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -10143,14 +10152,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T23:00:00+00:00",
-     "gust_mph": 11.4,
+     "gust_mph": 15.0,
      "precip_mm": 0.0,
      "rain_probability": 6.0,
-     "temp_c": 28.4,
-     "wind_mph": 5.4
+     "temp_c": 26.9,
+     "wind_mph": 10.2
     },
     "location": "Fort Collins, CO",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -10177,11 +10186,11 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "CSU -20.5",
    "ml_away": 800.0,
    "ml_home": -1350.0,
-   "observed_at": "2026-09-12T16:27:35.747352+00:00",
+   "observed_at": "2026-09-12T16:52:49.924676+00:00",
    "over_price": -105.0,
    "source": "ESPN scoreboard",
    "spread_home": -20.5,
@@ -10197,11 +10206,11 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "CSU -20.5",
     "ml_away": 800.0,
     "ml_home": -1350.0,
-    "observed_at": "2026-09-12T16:27:35.747352+00:00",
+    "observed_at": "2026-09-12T16:52:49.924676+00:00",
     "over_price": -105.0,
     "source": "ESPN scoreboard",
     "spread_home": -20.5,
@@ -10248,7 +10257,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -10258,14 +10267,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T23:00:00+00:00",
-     "gust_mph": 23.0,
+     "gust_mph": 17.2,
      "precip_mm": 0.0,
-     "rain_probability": 8.0,
-     "temp_c": 32.0,
-     "wind_mph": 15.6
+     "rain_probability": 9.0,
+     "temp_c": 32.5,
+     "wind_mph": 12.5
     },
     "location": "Huntsville, TX",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -10296,14 +10305,14 @@
    "details": "TLSA -12.5",
    "ml_away": -500.0,
    "ml_home": 380.0,
-   "observed_at": "2026-09-12T16:27:35.747383+00:00",
-   "over_price": -112.0,
-   "source": "ESPN scoreboard",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
+   "over_price": -118.0,
+   "source": "ESPN provider feed",
    "spread_home": 12.5,
    "spread_price_away": -108.0,
    "spread_price_home": -112.0,
    "total": 51.5,
-   "under_price": -108.0,
+   "under_price": -102.0,
    "verified_markets": [
     "ATS",
     "TOTAL",
@@ -10316,14 +10325,14 @@
     "details": "TLSA -12.5",
     "ml_away": -500.0,
     "ml_home": 380.0,
-    "observed_at": "2026-09-12T16:27:35.747383+00:00",
-    "over_price": -112.0,
-    "source": "ESPN scoreboard",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
+    "over_price": -118.0,
+    "source": "ESPN provider feed",
     "spread_home": 12.5,
     "spread_price_away": -108.0,
     "spread_price_home": -112.0,
     "total": 51.5,
-    "under_price": -108.0,
+    "under_price": -102.0,
     "verified_markets": [
      "ATS",
      "TOTAL",
@@ -10363,7 +10372,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -10373,14 +10382,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T23:00:00+00:00",
-     "gust_mph": 13.0,
+     "gust_mph": 13.2,
      "precip_mm": 0.0,
      "rain_probability": 1.0,
-     "temp_c": 26.7,
-     "wind_mph": 7.5
+     "temp_c": 26.6,
+     "wind_mph": 7.3
     },
     "location": "Dekalb, IL",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -10407,11 +10416,11 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "ILST -3",
    "ml_away": -170.0,
    "ml_home": 142.0,
-   "observed_at": "2026-09-12T16:27:35.747415+00:00",
+   "observed_at": "2026-09-12T16:52:49.924747+00:00",
    "over_price": -115.0,
    "source": "ESPN scoreboard",
    "spread_home": 3.0,
@@ -10427,11 +10436,11 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "ILST -3",
     "ml_away": -170.0,
     "ml_home": 142.0,
-    "observed_at": "2026-09-12T16:27:35.747415+00:00",
+    "observed_at": "2026-09-12T16:52:49.924747+00:00",
     "over_price": -115.0,
     "source": "ESPN scoreboard",
     "spread_home": 3.0,
@@ -10478,7 +10487,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -10488,14 +10497,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T23:00:00+00:00",
-     "gust_mph": 10.5,
+     "gust_mph": 9.4,
      "precip_mm": 0.0,
-     "rain_probability": 11.0,
-     "temp_c": 29.2,
-     "wind_mph": 6.0
+     "rain_probability": 10.0,
+     "temp_c": 28.4,
+     "wind_mph": 5.2
     },
     "location": "New Orleans, LA",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -10526,13 +10535,13 @@
    "details": "TULN -9.5",
    "ml_away": 295.0,
    "ml_home": -375.0,
-   "observed_at": "2026-09-12T16:27:35.747447+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -112.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -9.5,
    "spread_price_away": -105.0,
    "spread_price_home": -115.0,
-   "total": 49.5,
+   "total": 48.5,
    "under_price": -108.0,
    "verified_markets": [
     "ATS",
@@ -10546,13 +10555,13 @@
     "details": "TULN -9.5",
     "ml_away": 295.0,
     "ml_home": -375.0,
-    "observed_at": "2026-09-12T16:27:35.747447+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -112.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -9.5,
     "spread_price_away": -105.0,
     "spread_price_home": -115.0,
-    "total": 49.5,
+    "total": 48.5,
     "under_price": -108.0,
     "verified_markets": [
      "ATS",
@@ -10593,7 +10602,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -10603,14 +10612,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T23:00:00+00:00",
-     "gust_mph": 6.0,
+     "gust_mph": 6.7,
      "precip_mm": 0.0,
      "rain_probability": 0.0,
      "temp_c": 33.5,
-     "wind_mph": 4.6
+     "wind_mph": 5.1
     },
     "location": "Jonesboro, AR",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -10637,11 +10646,11 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "ARST -31.5",
    "ml_away": 3000.0,
    "ml_home": -10000.0,
-   "observed_at": "2026-09-12T16:27:35.747479+00:00",
+   "observed_at": "2026-09-12T16:52:49.924819+00:00",
    "over_price": -108.0,
    "source": "ESPN scoreboard",
    "spread_home": -31.5,
@@ -10657,11 +10666,11 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "ARST -31.5",
     "ml_away": 3000.0,
     "ml_home": -10000.0,
-    "observed_at": "2026-09-12T16:27:35.747479+00:00",
+    "observed_at": "2026-09-12T16:52:49.924819+00:00",
     "over_price": -108.0,
     "source": "ESPN scoreboard",
     "spread_home": -31.5,
@@ -10708,7 +10717,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -10718,14 +10727,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T23:00:00+00:00",
      "gust_mph": 7.4,
      "precip_mm": 0.0,
-     "rain_probability": 9.0,
-     "temp_c": 26.3,
-     "wind_mph": 2.3
+     "rain_probability": 8.0,
+     "temp_c": 26.0,
+     "wind_mph": 5.1
     },
     "location": "Kennesaw, GA",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -10754,16 +10763,16 @@
   "odds": {
    "book": "Draft Kings",
    "details": "KENN -8.5",
-   "ml_away": 270.0,
-   "ml_home": -340.0,
-   "observed_at": "2026-09-12T16:27:35.747510+00:00",
-   "over_price": -108.0,
-   "source": "ESPN scoreboard",
+   "ml_away": 250.0,
+   "ml_home": -310.0,
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
+   "over_price": -105.0,
+   "source": "ESPN provider feed",
    "spread_home": -8.5,
-   "spread_price_away": -108.0,
-   "spread_price_home": -112.0,
-   "total": 54.5,
-   "under_price": -112.0,
+   "spread_price_away": -115.0,
+   "spread_price_home": -105.0,
+   "total": 55.5,
+   "under_price": -115.0,
    "verified_markets": [
     "ATS",
     "TOTAL",
@@ -10774,16 +10783,16 @@
    {
     "book": "Draft Kings",
     "details": "KENN -8.5",
-    "ml_away": 270.0,
-    "ml_home": -340.0,
-    "observed_at": "2026-09-12T16:27:35.747510+00:00",
-    "over_price": -108.0,
-    "source": "ESPN scoreboard",
+    "ml_away": 250.0,
+    "ml_home": -310.0,
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
+    "over_price": -105.0,
+    "source": "ESPN provider feed",
     "spread_home": -8.5,
-    "spread_price_away": -108.0,
-    "spread_price_home": -112.0,
-    "total": 54.5,
-    "under_price": -112.0,
+    "spread_price_away": -115.0,
+    "spread_price_home": -105.0,
+    "total": 55.5,
+    "under_price": -115.0,
     "verified_markets": [
      "ATS",
      "TOTAL",
@@ -10823,7 +10832,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -10833,14 +10842,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T23:00:00+00:00",
-     "gust_mph": 12.1,
+     "gust_mph": 9.8,
      "precip_mm": 0.0,
-     "rain_probability": 23.0,
-     "temp_c": 27.3,
-     "wind_mph": 4.1
+     "rain_probability": 20.0,
+     "temp_c": 25.9,
+     "wind_mph": 4.9
     },
     "location": "Huntington, WV",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -10868,17 +10877,17 @@
   "neutral": false,
   "odds": {
    "book": "Draft Kings",
-   "details": "MRSH -13.5",
-   "ml_away": 390.0,
-   "ml_home": -520.0,
-   "observed_at": "2026-09-12T16:27:35.747544+00:00",
-   "over_price": -112.0,
-   "source": "ESPN scoreboard",
-   "spread_home": -13.5,
-   "spread_price_away": -112.0,
-   "spread_price_home": -108.0,
-   "total": 56.5,
-   "under_price": -108.0,
+   "details": "MRSH -12.5",
+   "ml_away": 400.0,
+   "ml_home": -535.0,
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
+   "over_price": -115.0,
+   "source": "ESPN provider feed",
+   "spread_home": -12.5,
+   "spread_price_away": -108.0,
+   "spread_price_home": -112.0,
+   "total": 55.5,
+   "under_price": -105.0,
    "verified_markets": [
     "ATS",
     "TOTAL",
@@ -10888,17 +10897,17 @@
   "odds_quotes": [
    {
     "book": "Draft Kings",
-    "details": "MRSH -13.5",
-    "ml_away": 390.0,
-    "ml_home": -520.0,
-    "observed_at": "2026-09-12T16:27:35.747544+00:00",
-    "over_price": -112.0,
-    "source": "ESPN scoreboard",
-    "spread_home": -13.5,
-    "spread_price_away": -112.0,
-    "spread_price_home": -108.0,
-    "total": 56.5,
-    "under_price": -108.0,
+    "details": "MRSH -12.5",
+    "ml_away": 400.0,
+    "ml_home": -535.0,
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
+    "over_price": -115.0,
+    "source": "ESPN provider feed",
+    "spread_home": -12.5,
+    "spread_price_away": -108.0,
+    "spread_price_home": -112.0,
+    "total": 55.5,
+    "under_price": -105.0,
     "verified_markets": [
      "ATS",
      "TOTAL",
@@ -10938,7 +10947,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -10948,14 +10957,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T23:00:00+00:00",
-     "gust_mph": 8.1,
+     "gust_mph": 8.9,
      "precip_mm": 0.0,
-     "rain_probability": 3.0,
-     "temp_c": 33.8,
-     "wind_mph": 6.1
+     "rain_probability": 2.0,
+     "temp_c": 32.8,
+     "wind_mph": 6.8
     },
     "location": "Springfield, MO",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -10982,11 +10991,11 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "MOST -16.5",
    "ml_away": 575.0,
    "ml_home": -850.0,
-   "observed_at": "2026-09-12T16:27:35.747576+00:00",
+   "observed_at": "2026-09-12T16:52:49.924928+00:00",
    "over_price": -115.0,
    "source": "ESPN scoreboard",
    "spread_home": -16.5,
@@ -11002,11 +11011,11 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "MOST -16.5",
     "ml_away": 575.0,
     "ml_home": -850.0,
-    "observed_at": "2026-09-12T16:27:35.747576+00:00",
+    "observed_at": "2026-09-12T16:52:49.924928+00:00",
     "over_price": -115.0,
     "source": "ESPN scoreboard",
     "spread_home": -16.5,
@@ -11053,7 +11062,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -11094,9 +11103,9 @@
    "details": "UCLA -13.5",
    "ml_away": 380.0,
    "ml_home": -500.0,
-   "observed_at": "2026-09-12T16:27:35.747609+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -108.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -13.5,
    "spread_price_away": -112.0,
    "spread_price_home": -108.0,
@@ -11114,9 +11123,9 @@
     "details": "UCLA -13.5",
     "ml_away": 380.0,
     "ml_home": -500.0,
-    "observed_at": "2026-09-12T16:27:35.747609+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -108.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -13.5,
     "spread_price_away": -112.0,
     "spread_price_home": -108.0,
@@ -11161,7 +11170,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -11171,14 +11180,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T23:00:00+00:00",
-     "gust_mph": 11.4,
+     "gust_mph": 13.4,
      "precip_mm": 0.0,
      "rain_probability": 1.0,
-     "temp_c": 25.6,
-     "wind_mph": 6.0
+     "temp_c": 25.9,
+     "wind_mph": 7.0
     },
     "location": "Madison, WI",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -11205,11 +11214,11 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "WIS -42.5",
    "ml_away": null,
    "ml_home": null,
-   "observed_at": "2026-09-12T16:27:35.747642+00:00",
+   "observed_at": "2026-09-12T16:52:49.924998+00:00",
    "over_price": -110.0,
    "source": "ESPN scoreboard",
    "spread_home": -42.5,
@@ -11224,11 +11233,11 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "WIS -42.5",
     "ml_away": null,
     "ml_home": null,
-    "observed_at": "2026-09-12T16:27:35.747642+00:00",
+    "observed_at": "2026-09-12T16:52:49.924998+00:00",
     "over_price": -110.0,
     "source": "ESPN scoreboard",
     "spread_home": -42.5,
@@ -11274,7 +11283,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -11284,14 +11293,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T23:00:00+00:00",
-     "gust_mph": 12.5,
+     "gust_mph": 12.3,
      "precip_mm": 0.0,
      "rain_probability": 4.0,
      "temp_c": 37.7,
-     "wind_mph": 9.3
+     "wind_mph": 9.0
     },
     "location": "Austin, TX",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -11322,9 +11331,9 @@
    "details": "TEX -1.5",
    "ml_away": 102.0,
    "ml_home": -122.0,
-   "observed_at": "2026-09-12T16:27:35.747681+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -112.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -1.5,
    "spread_price_away": -108.0,
    "spread_price_home": -112.0,
@@ -11342,9 +11351,9 @@
     "details": "TEX -1.5",
     "ml_away": 102.0,
     "ml_home": -122.0,
-    "observed_at": "2026-09-12T16:27:35.747681+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -112.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -1.5,
     "spread_price_away": -108.0,
     "spread_price_home": -112.0,
@@ -11389,7 +11398,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -11399,14 +11408,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T23:00:00+00:00",
-     "gust_mph": 14.1,
+     "gust_mph": 11.2,
      "precip_mm": 0.0,
-     "rain_probability": 10.0,
-     "temp_c": 18.2,
-     "wind_mph": 9.4
+     "rain_probability": 11.0,
+     "temp_c": 19.5,
+     "wind_mph": 7.5
     },
     "location": "Corvallis, OR",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -11437,14 +11446,14 @@
    "details": "TTU -25.5",
    "ml_away": -3200.0,
    "ml_home": 1400.0,
-   "observed_at": "2026-09-12T16:27:35.747778+00:00",
-   "over_price": -105.0,
-   "source": "ESPN scoreboard",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
+   "over_price": -112.0,
+   "source": "ESPN provider feed",
    "spread_home": 25.5,
    "spread_price_away": -108.0,
    "spread_price_home": -112.0,
-   "total": 53.5,
-   "under_price": -115.0,
+   "total": 52.5,
+   "under_price": -108.0,
    "verified_markets": [
     "ATS",
     "TOTAL",
@@ -11457,14 +11466,14 @@
     "details": "TTU -25.5",
     "ml_away": -3200.0,
     "ml_home": 1400.0,
-    "observed_at": "2026-09-12T16:27:35.747778+00:00",
-    "over_price": -105.0,
-    "source": "ESPN scoreboard",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
+    "over_price": -112.0,
+    "source": "ESPN provider feed",
     "spread_home": 25.5,
     "spread_price_away": -108.0,
     "spread_price_home": -112.0,
-    "total": 53.5,
-    "under_price": -115.0,
+    "total": 52.5,
+    "under_price": -108.0,
     "verified_markets": [
      "ATS",
      "TOTAL",
@@ -11504,7 +11513,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -11514,14 +11523,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T23:00:00+00:00",
-     "gust_mph": 11.9,
+     "gust_mph": 13.4,
      "precip_mm": 0.0,
      "rain_probability": 1.0,
-     "temp_c": 25.8,
-     "wind_mph": 8.7
+     "temp_c": 25.7,
+     "wind_mph": 9.2
     },
     "location": "Iowa City, IA",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -11552,9 +11561,9 @@
    "details": "IOWA -14",
    "ml_away": 455.0,
    "ml_home": -600.0,
-   "observed_at": "2026-09-12T16:27:35.747811+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -108.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -14.0,
    "spread_price_away": -110.0,
    "spread_price_home": -110.0,
@@ -11572,9 +11581,9 @@
     "details": "IOWA -14",
     "ml_away": 455.0,
     "ml_home": -600.0,
-    "observed_at": "2026-09-12T16:27:35.747811+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -108.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -14.0,
     "spread_price_away": -110.0,
     "spread_price_home": -110.0,
@@ -11619,7 +11628,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -11629,14 +11638,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T23:00:00+00:00",
-     "gust_mph": 7.4,
+     "gust_mph": 6.0,
      "precip_mm": 0.0,
-     "rain_probability": 24.0,
-     "temp_c": 25.4,
-     "wind_mph": 4.5
+     "rain_probability": 20.0,
+     "temp_c": 25.1,
+     "wind_mph": 0.9
     },
     "location": "Clemson, SC",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -11667,9 +11676,9 @@
    "details": "CLEM -19.5",
    "ml_away": 750.0,
    "ml_home": -1200.0,
-   "observed_at": "2026-09-12T16:27:35.747845+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -102.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -19.5,
    "spread_price_away": -105.0,
    "spread_price_home": -115.0,
@@ -11687,9 +11696,9 @@
     "details": "CLEM -19.5",
     "ml_away": 750.0,
     "ml_home": -1200.0,
-    "observed_at": "2026-09-12T16:27:35.747845+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -102.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -19.5,
     "spread_price_away": -105.0,
     "spread_price_home": -115.0,
@@ -11734,7 +11743,7 @@
   "conference_game": true,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -11744,14 +11753,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T23:00:00+00:00",
-     "gust_mph": 6.3,
+     "gust_mph": 4.7,
      "precip_mm": 0.0,
-     "rain_probability": 23.0,
-     "temp_c": 24.6,
-     "wind_mph": 4.5
+     "rain_probability": 26.0,
+     "temp_c": 25.9,
+     "wind_mph": 3.1
     },
     "location": "Boca Raton, FL",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -11782,9 +11791,9 @@
    "details": "NAVY -4",
    "ml_away": -198.0,
    "ml_home": 164.0,
-   "observed_at": "2026-09-12T16:27:35.747877+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -110.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": 4.0,
    "spread_price_away": -112.0,
    "spread_price_home": -108.0,
@@ -11802,9 +11811,9 @@
     "details": "NAVY -4",
     "ml_away": -198.0,
     "ml_home": 164.0,
-    "observed_at": "2026-09-12T16:27:35.747877+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -110.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": 4.0,
     "spread_price_away": -112.0,
     "spread_price_home": -108.0,
@@ -11849,7 +11858,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -11859,14 +11868,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T23:00:00+00:00",
-     "gust_mph": 18.1,
+     "gust_mph": 11.2,
      "precip_mm": 0.0,
-     "rain_probability": 18.0,
-     "temp_c": 26.1,
-     "wind_mph": 11.8
+     "rain_probability": 23.0,
+     "temp_c": 32.7,
+     "wind_mph": 8.0
     },
     "location": "Baton Rouge, LA",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -11894,17 +11903,17 @@
   "neutral": false,
   "odds": {
    "book": "Draft Kings",
-   "details": "LSU -35.5",
+   "details": "LSU -34.5",
    "ml_away": 3500.0,
    "ml_home": -20000.0,
-   "observed_at": "2026-09-12T16:27:35.747746+00:00",
-   "over_price": -112.0,
-   "source": "ESPN scoreboard",
-   "spread_home": -35.5,
-   "spread_price_away": -118.0,
-   "spread_price_home": -102.0,
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
+   "over_price": -108.0,
+   "source": "ESPN provider feed",
+   "spread_home": -34.5,
+   "spread_price_away": -102.0,
+   "spread_price_home": -118.0,
    "total": 55.5,
-   "under_price": -108.0,
+   "under_price": -112.0,
    "verified_markets": [
     "ATS",
     "TOTAL",
@@ -11914,17 +11923,17 @@
   "odds_quotes": [
    {
     "book": "Draft Kings",
-    "details": "LSU -35.5",
+    "details": "LSU -34.5",
     "ml_away": 3500.0,
     "ml_home": -20000.0,
-    "observed_at": "2026-09-12T16:27:35.747746+00:00",
-    "over_price": -112.0,
-    "source": "ESPN scoreboard",
-    "spread_home": -35.5,
-    "spread_price_away": -118.0,
-    "spread_price_home": -102.0,
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
+    "over_price": -108.0,
+    "source": "ESPN provider feed",
+    "spread_home": -34.5,
+    "spread_price_away": -102.0,
+    "spread_price_home": -118.0,
     "total": 55.5,
-    "under_price": -108.0,
+    "under_price": -112.0,
     "verified_markets": [
      "ATS",
      "TOTAL",
@@ -11964,7 +11973,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -11974,14 +11983,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-12T23:00:00+00:00",
-     "gust_mph": 15.2,
+     "gust_mph": 12.1,
      "precip_mm": 0.0,
-     "rain_probability": 15.0,
-     "temp_c": 27.3,
-     "wind_mph": 8.1
+     "rain_probability": 14.0,
+     "temp_c": 28.1,
+     "wind_mph": 6.1
     },
     "location": "Conway, SC",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -12008,11 +12017,11 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "CCU -35.5",
    "ml_away": null,
    "ml_home": null,
-   "observed_at": "2026-09-12T16:27:35.747909+00:00",
+   "observed_at": "2026-09-12T16:52:49.925263+00:00",
    "over_price": -110.0,
    "source": "ESPN scoreboard",
    "spread_home": -35.5,
@@ -12027,11 +12036,11 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "CCU -35.5",
     "ml_away": null,
     "ml_home": null,
-    "observed_at": "2026-09-12T16:27:35.747909+00:00",
+    "observed_at": "2026-09-12T16:52:49.925263+00:00",
     "over_price": -110.0,
     "source": "ESPN scoreboard",
     "spread_home": -35.5,
@@ -12077,7 +12086,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -12118,9 +12127,9 @@
    "details": "AUB -32.5",
    "ml_away": 3000.0,
    "ml_home": -10000.0,
-   "observed_at": "2026-09-12T16:27:35.747975+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -105.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -32.5,
    "spread_price_away": -108.0,
    "spread_price_home": -112.0,
@@ -12138,9 +12147,9 @@
     "details": "AUB -32.5",
     "ml_away": 3000.0,
     "ml_home": -10000.0,
-    "observed_at": "2026-09-12T16:27:35.747975+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -105.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -32.5,
     "spread_price_away": -108.0,
     "spread_price_home": -112.0,
@@ -12185,7 +12194,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -12222,13 +12231,13 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "MISS -45.5",
    "ml_away": null,
    "ml_home": null,
-   "observed_at": "2026-09-12T16:27:37.137298+00:00",
+   "observed_at": "2026-09-12T16:52:49.925298+00:00",
    "over_price": -112.0,
-   "source": "ESPN provider feed",
+   "source": "ESPN scoreboard",
    "spread_home": -45.5,
    "spread_price_away": -115.0,
    "spread_price_home": -105.0,
@@ -12241,13 +12250,13 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "MISS -45.5",
     "ml_away": null,
     "ml_home": null,
-    "observed_at": "2026-09-12T16:27:37.137298+00:00",
+    "observed_at": "2026-09-12T16:52:49.925298+00:00",
     "over_price": -112.0,
-    "source": "ESPN provider feed",
+    "source": "ESPN scoreboard",
     "spread_home": -45.5,
     "spread_price_away": -115.0,
     "spread_price_home": -105.0,
@@ -12291,7 +12300,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -12301,14 +12310,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-13T00:00:00+00:00",
-     "gust_mph": 16.3,
+     "gust_mph": 15.7,
      "precip_mm": 0.0,
      "rain_probability": 0.0,
-     "temp_c": 36.0,
-     "wind_mph": 10.8
+     "temp_c": 35.6,
+     "wind_mph": 10.2
     },
     "location": "Fort Worth, TX",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -12335,11 +12344,11 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "TCU -44.5",
    "ml_away": null,
    "ml_home": null,
-   "observed_at": "2026-09-12T16:27:35.748011+00:00",
+   "observed_at": "2026-09-12T16:52:49.925372+00:00",
    "over_price": -105.0,
    "source": "ESPN scoreboard",
    "spread_home": -44.5,
@@ -12354,11 +12363,11 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "TCU -44.5",
     "ml_away": null,
     "ml_home": null,
-    "observed_at": "2026-09-12T16:27:35.748011+00:00",
+    "observed_at": "2026-09-12T16:52:49.925372+00:00",
     "over_price": -105.0,
     "source": "ESPN scoreboard",
     "spread_home": -44.5,
@@ -12404,7 +12413,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -12414,13 +12423,13 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-13T00:00:00+00:00",
      "gust_mph": 13.4,
      "precip_mm": 0.0,
      "rain_probability": 1.0,
-     "temp_c": 34.5,
+     "temp_c": 34.3,
      "wind_mph": 8.0
     },
     "location": "Waco, TX",
@@ -12448,11 +12457,11 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "BAY -37.5",
    "ml_away": null,
    "ml_home": null,
-   "observed_at": "2026-09-12T16:27:35.748043+00:00",
+   "observed_at": "2026-09-12T16:52:49.925407+00:00",
    "over_price": -110.0,
    "source": "ESPN scoreboard",
    "spread_home": -37.5,
@@ -12467,11 +12476,11 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "BAY -37.5",
     "ml_away": null,
     "ml_home": null,
-    "observed_at": "2026-09-12T16:27:35.748043+00:00",
+    "observed_at": "2026-09-12T16:52:49.925407+00:00",
     "over_price": -110.0,
     "source": "ESPN scoreboard",
     "spread_home": -37.5,
@@ -12517,7 +12526,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -12554,11 +12563,11 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "SJSU -21.5",
    "ml_away": 1000.0,
    "ml_home": -1800.0,
-   "observed_at": "2026-09-12T16:27:35.748075+00:00",
+   "observed_at": "2026-09-12T16:52:49.925444+00:00",
    "over_price": -108.0,
    "source": "ESPN scoreboard",
    "spread_home": -21.5,
@@ -12574,11 +12583,11 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "SJSU -21.5",
     "ml_away": 1000.0,
     "ml_home": -1800.0,
-    "observed_at": "2026-09-12T16:27:35.748075+00:00",
+    "observed_at": "2026-09-12T16:52:49.925444+00:00",
     "over_price": -108.0,
     "source": "ESPN scoreboard",
     "spread_home": -21.5,
@@ -12625,7 +12634,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -12662,11 +12671,11 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "UTEP -27.5",
    "ml_away": 1700.0,
    "ml_home": -4500.0,
-   "observed_at": "2026-09-12T16:27:35.748106+00:00",
+   "observed_at": "2026-09-12T16:52:49.925479+00:00",
    "over_price": -112.0,
    "source": "ESPN scoreboard",
    "spread_home": -27.5,
@@ -12682,11 +12691,11 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "UTEP -27.5",
     "ml_away": 1700.0,
     "ml_home": -4500.0,
-    "observed_at": "2026-09-12T16:27:35.748106+00:00",
+    "observed_at": "2026-09-12T16:52:49.925479+00:00",
     "over_price": -112.0,
     "source": "ESPN scoreboard",
     "spread_home": -27.5,
@@ -12733,7 +12742,7 @@
   "conference_game": true,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -12774,9 +12783,9 @@
    "details": "NDSU -1.5",
    "ml_away": -125.0,
    "ml_home": 105.0,
-   "observed_at": "2026-09-12T16:27:35.748138+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -112.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": 1.5,
    "spread_price_away": -115.0,
    "spread_price_home": -105.0,
@@ -12794,9 +12803,9 @@
     "details": "NDSU -1.5",
     "ml_away": -125.0,
     "ml_home": 105.0,
-    "observed_at": "2026-09-12T16:27:35.748138+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -112.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": 1.5,
     "spread_price_away": -115.0,
     "spread_price_home": -105.0,
@@ -12841,7 +12850,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -12851,14 +12860,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-13T02:00:00+00:00",
      "gust_mph": 7.4,
      "precip_mm": 0.0,
      "rain_probability": 1.0,
-     "temp_c": 27.9,
-     "wind_mph": 3.5
+     "temp_c": 27.7,
+     "wind_mph": 3.6
     },
     "location": "Salt Lake City, UT",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -12889,14 +12898,14 @@
    "details": "UTAH -12.5",
    "ml_away": 380.0,
    "ml_home": -500.0,
-   "observed_at": "2026-09-12T16:27:35.748172+00:00",
-   "over_price": -108.0,
-   "source": "ESPN scoreboard",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
+   "over_price": -112.0,
+   "source": "ESPN provider feed",
    "spread_home": -12.5,
    "spread_price_away": -110.0,
    "spread_price_home": -110.0,
    "total": 55.5,
-   "under_price": -112.0,
+   "under_price": -108.0,
    "verified_markets": [
     "ATS",
     "TOTAL",
@@ -12909,14 +12918,14 @@
     "details": "UTAH -12.5",
     "ml_away": 380.0,
     "ml_home": -500.0,
-    "observed_at": "2026-09-12T16:27:35.748172+00:00",
-    "over_price": -108.0,
-    "source": "ESPN scoreboard",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
+    "over_price": -112.0,
+    "source": "ESPN provider feed",
     "spread_home": -12.5,
     "spread_price_away": -110.0,
     "spread_price_home": -110.0,
     "total": 55.5,
-    "under_price": -112.0,
+    "under_price": -108.0,
     "verified_markets": [
      "ATS",
      "TOTAL",
@@ -12956,7 +12965,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -12966,13 +12975,13 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-13T02:00:00+00:00",
      "gust_mph": 21.5,
      "precip_mm": 0.0,
      "rain_probability": 0.0,
-     "temp_c": 31.5,
+     "temp_c": 32.2,
      "wind_mph": 11.6
     },
     "location": "Fresno, CA",
@@ -13004,9 +13013,9 @@
    "details": "FRES -17.5",
    "ml_away": 600.0,
    "ml_home": -900.0,
-   "observed_at": "2026-09-12T16:27:35.748202+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -112.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -17.5,
    "spread_price_away": -110.0,
    "spread_price_home": -110.0,
@@ -13024,9 +13033,9 @@
     "details": "FRES -17.5",
     "ml_away": 600.0,
     "ml_home": -900.0,
-    "observed_at": "2026-09-12T16:27:35.748202+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -112.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -17.5,
     "spread_price_away": -110.0,
     "spread_price_home": -110.0,
@@ -13071,7 +13080,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -13081,14 +13090,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-13T02:00:00+00:00",
-     "gust_mph": 4.9,
+     "gust_mph": 7.8,
      "precip_mm": 0.0,
      "rain_probability": 0.0,
-     "temp_c": 21.9,
-     "wind_mph": 4.7
+     "temp_c": 22.0,
+     "wind_mph": 6.9
     },
     "location": "Reno, NV",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -13115,11 +13124,11 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "MTST -3.5",
    "ml_away": -170.0,
    "ml_home": 142.0,
-   "observed_at": "2026-09-12T16:27:35.748232+00:00",
+   "observed_at": "2026-09-12T16:52:49.925622+00:00",
    "over_price": -115.0,
    "source": "ESPN scoreboard",
    "spread_home": 3.5,
@@ -13135,11 +13144,11 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "MTST -3.5",
     "ml_away": -170.0,
     "ml_home": 142.0,
-    "observed_at": "2026-09-12T16:27:35.748232+00:00",
+    "observed_at": "2026-09-12T16:52:49.925622+00:00",
     "over_price": -115.0,
     "source": "ESPN scoreboard",
     "spread_home": 3.5,
@@ -13186,7 +13195,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -13196,14 +13205,14 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-13T03:00:00+00:00",
-     "gust_mph": 6.3,
+     "gust_mph": 6.9,
      "precip_mm": 0.0,
      "rain_probability": 0.0,
      "temp_c": 22.3,
-     "wind_mph": 5.0
+     "wind_mph": 5.2
     },
     "location": "Los Angeles, CA",
     "note": "Forecast near kickoff; no uncalibrated scoring adjustment.",
@@ -13232,11 +13241,11 @@
   "odds": {
    "book": "Draft Kings",
    "details": "USC -30.5",
-   "ml_away": 1800.0,
-   "ml_home": -5000.0,
-   "observed_at": "2026-09-12T16:27:35.748263+00:00",
+   "ml_away": 2000.0,
+   "ml_home": -6500.0,
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -105.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -30.5,
    "spread_price_away": -102.0,
    "spread_price_home": -118.0,
@@ -13252,11 +13261,11 @@
    {
     "book": "Draft Kings",
     "details": "USC -30.5",
-    "ml_away": 1800.0,
-    "ml_home": -5000.0,
-    "observed_at": "2026-09-12T16:27:35.748263+00:00",
+    "ml_away": 2000.0,
+    "ml_home": -6500.0,
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -105.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -30.5,
     "spread_price_away": -102.0,
     "spread_price_home": -118.0,
@@ -13301,7 +13310,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -13311,7 +13320,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-13T04:00:00+00:00",
      "gust_mph": 21.9,
@@ -13349,9 +13358,9 @@
    "details": "HAW -7.5",
    "ml_away": 240.0,
    "ml_home": -298.0,
-   "observed_at": "2026-09-12T16:27:35.748293+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -110.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -7.5,
    "spread_price_away": -115.0,
    "spread_price_home": -105.0,
@@ -13369,9 +13378,9 @@
     "details": "HAW -7.5",
     "ml_away": 240.0,
     "ml_home": -298.0,
-    "observed_at": "2026-09-12T16:27:35.748293+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -110.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -7.5,
     "spread_price_away": -115.0,
     "spread_price_home": -105.0,
@@ -13416,7 +13425,7 @@
   "conference_game": true,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -13426,7 +13435,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-17T23:00:00+00:00",
      "gust_mph": 5.4,
@@ -13460,13 +13469,13 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "PITT -10.5",
    "ml_away": 295.0,
    "ml_home": -375.0,
-   "observed_at": "2026-09-12T16:27:37.137298+00:00",
+   "observed_at": "2026-09-12T16:52:50.913585+00:00",
    "over_price": -108.0,
-   "source": "ESPN provider feed",
+   "source": "ESPN scoreboard",
    "spread_home": -10.5,
    "spread_price_away": -112.0,
    "spread_price_home": -108.0,
@@ -13479,13 +13488,13 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "PITT -10.5",
     "ml_away": 295.0,
     "ml_home": -375.0,
-    "observed_at": "2026-09-12T16:27:37.137298+00:00",
+    "observed_at": "2026-09-12T16:52:50.913585+00:00",
     "over_price": -108.0,
-    "source": "ESPN provider feed",
+    "source": "ESPN scoreboard",
     "spread_home": -10.5,
     "spread_price_away": -112.0,
     "spread_price_home": -108.0,
@@ -13529,7 +13538,7 @@
   "conference_game": true,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -13539,7 +13548,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-18T23:00:00+00:00",
      "gust_mph": 2.5,
@@ -13577,9 +13586,9 @@
    "details": "MIA -20.5",
    "ml_away": -1350.0,
    "ml_home": 800.0,
-   "observed_at": "2026-09-12T16:27:36.456657+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -108.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": 20.5,
    "spread_price_away": -108.0,
    "spread_price_home": -112.0,
@@ -13597,9 +13606,9 @@
     "details": "MIA -20.5",
     "ml_away": -1350.0,
     "ml_home": 800.0,
-    "observed_at": "2026-09-12T16:27:36.456657+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -108.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": 20.5,
     "spread_price_away": -108.0,
     "spread_price_home": -112.0,
@@ -13644,7 +13653,7 @@
   "conference_game": true,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -13681,13 +13690,13 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "book": "Draft Kings",
+   "book": "DraftKings",
    "details": "TTU -14",
    "ml_away": null,
    "ml_home": null,
-   "observed_at": "2026-09-12T16:27:37.137298+00:00",
+   "observed_at": "2026-09-12T16:52:51.061075+00:00",
    "over_price": null,
-   "source": "ESPN provider feed",
+   "source": "ESPN scoreboard",
    "spread_home": -14.0,
    "spread_price_away": -108.0,
    "spread_price_home": -112.0,
@@ -13699,13 +13708,13 @@
   },
   "odds_quotes": [
    {
-    "book": "Draft Kings",
+    "book": "DraftKings",
     "details": "TTU -14",
     "ml_away": null,
     "ml_home": null,
-    "observed_at": "2026-09-12T16:27:37.137298+00:00",
+    "observed_at": "2026-09-12T16:52:51.061075+00:00",
     "over_price": null,
-    "source": "ESPN provider feed",
+    "source": "ESPN scoreboard",
     "spread_home": -14.0,
     "spread_price_away": -108.0,
     "spread_price_home": -112.0,
@@ -13748,7 +13757,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -13758,7 +13767,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T02:00:00+00:00",
      "gust_mph": 4.3,
@@ -13792,7 +13801,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.456760+00:00",
+   "observed_at": "2026-09-12T16:52:51.061146+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -13828,7 +13837,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -13838,7 +13847,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T15:00:00+00:00",
      "gust_mph": 4.5,
@@ -13872,7 +13881,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.567988+00:00",
+   "observed_at": "2026-09-12T16:52:51.235434+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -13908,7 +13917,7 @@
   "conference_game": true,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -13918,7 +13927,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T16:00:00+00:00",
      "gust_mph": 13.9,
@@ -13956,9 +13965,9 @@
    "details": "UGA -17.5",
    "ml_away": -900.0,
    "ml_home": 600.0,
-   "observed_at": "2026-09-12T16:27:36.568071+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -108.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": 17.5,
    "spread_price_away": -110.0,
    "spread_price_home": -110.0,
@@ -13976,9 +13985,9 @@
     "details": "UGA -17.5",
     "ml_away": -900.0,
     "ml_home": 600.0,
-    "observed_at": "2026-09-12T16:27:36.568071+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -108.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": 17.5,
     "spread_price_away": -110.0,
     "spread_price_home": -110.0,
@@ -14023,7 +14032,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -14033,7 +14042,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T16:00:00+00:00",
      "gust_mph": 5.4,
@@ -14067,7 +14076,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568107+00:00",
+   "observed_at": "2026-09-12T16:52:51.235572+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -14103,7 +14112,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -14140,7 +14149,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568120+00:00",
+   "observed_at": "2026-09-12T16:52:51.235586+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -14176,7 +14185,7 @@
   "conference_game": true,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -14213,7 +14222,7 @@
   "indoor": false,
   "neutral": true,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568132+00:00",
+   "observed_at": "2026-09-12T16:52:51.235612+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -14249,7 +14258,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -14259,7 +14268,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T16:00:00+00:00",
      "gust_mph": 2.7,
@@ -14293,7 +14302,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568144+00:00",
+   "observed_at": "2026-09-12T16:52:51.235627+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -14329,7 +14338,7 @@
   "conference_game": true,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -14339,7 +14348,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T16:00:00+00:00",
      "gust_mph": 5.1,
@@ -14377,9 +14386,9 @@
    "details": "CLEM -8.5",
    "ml_away": 295.0,
    "ml_home": -375.0,
-   "observed_at": "2026-09-12T16:27:36.568169+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -108.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -8.5,
    "spread_price_away": -110.0,
    "spread_price_home": -110.0,
@@ -14397,9 +14406,9 @@
     "details": "CLEM -8.5",
     "ml_away": 295.0,
     "ml_home": -375.0,
-    "observed_at": "2026-09-12T16:27:36.568169+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -108.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -8.5,
     "spread_price_away": -110.0,
     "spread_price_home": -110.0,
@@ -14444,7 +14453,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -14454,7 +14463,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T16:00:00+00:00",
      "gust_mph": 5.4,
@@ -14488,7 +14497,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568187+00:00",
+   "observed_at": "2026-09-12T16:52:51.235679+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -14524,7 +14533,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -14534,7 +14543,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T16:00:00+00:00",
      "gust_mph": 6.9,
@@ -14568,7 +14577,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568021+00:00",
+   "observed_at": "2026-09-12T16:52:51.235473+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -14604,7 +14613,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -14614,7 +14623,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T16:00:00+00:00",
      "gust_mph": 2.0,
@@ -14648,7 +14657,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568095+00:00",
+   "observed_at": "2026-09-12T16:52:51.235557+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -14684,7 +14693,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -14694,7 +14703,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T16:00:00+00:00",
      "gust_mph": 8.7,
@@ -14728,7 +14737,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568198+00:00",
+   "observed_at": "2026-09-12T16:52:51.235695+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -14764,7 +14773,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -14774,7 +14783,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T16:00:00+00:00",
      "gust_mph": 4.3,
@@ -14808,7 +14817,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568210+00:00",
+   "observed_at": "2026-09-12T16:52:51.235709+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -14844,7 +14853,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -14854,7 +14863,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T17:00:00+00:00",
      "gust_mph": 4.5,
@@ -14888,7 +14897,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568222+00:00",
+   "observed_at": "2026-09-12T16:52:51.235723+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -14924,7 +14933,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -14961,7 +14970,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568233+00:00",
+   "observed_at": "2026-09-12T16:52:51.235737+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -14997,7 +15006,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -15034,7 +15043,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568245+00:00",
+   "observed_at": "2026-09-12T16:52:51.235750+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -15070,7 +15079,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -15080,7 +15089,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T18:00:00+00:00",
      "gust_mph": 11.4,
@@ -15114,7 +15123,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568258+00:00",
+   "observed_at": "2026-09-12T16:52:51.235764+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -15150,7 +15159,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -15160,7 +15169,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T19:00:00+00:00",
      "gust_mph": 5.1,
@@ -15194,7 +15203,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568269+00:00",
+   "observed_at": "2026-09-12T16:52:51.235778+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -15230,7 +15239,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -15240,7 +15249,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T19:00:00+00:00",
      "gust_mph": 2.9,
@@ -15278,9 +15287,9 @@
    "details": "ALA -17.5",
    "ml_away": 625.0,
    "ml_home": -950.0,
-   "observed_at": "2026-09-12T16:27:36.568465+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -112.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -17.5,
    "spread_price_away": -115.0,
    "spread_price_home": -105.0,
@@ -15298,9 +15307,9 @@
     "details": "ALA -17.5",
     "ml_away": 625.0,
     "ml_home": -950.0,
-    "observed_at": "2026-09-12T16:27:36.568465+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -112.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -17.5,
     "spread_price_away": -115.0,
     "spread_price_home": -105.0,
@@ -15345,7 +15354,7 @@
   "conference_game": true,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -15355,7 +15364,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T19:00:00+00:00",
      "gust_mph": 3.4,
@@ -15389,7 +15398,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568282+00:00",
+   "observed_at": "2026-09-12T16:52:51.235791+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -15425,7 +15434,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -15435,7 +15444,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T19:00:00+00:00",
      "gust_mph": 7.8,
@@ -15469,7 +15478,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568540+00:00",
+   "observed_at": "2026-09-12T16:52:51.235909+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -15505,7 +15514,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -15515,7 +15524,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T19:00:00+00:00",
      "gust_mph": 3.1,
@@ -15549,7 +15558,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568528+00:00",
+   "observed_at": "2026-09-12T16:52:51.235895+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -15585,7 +15594,7 @@
   "conference_game": true,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -15595,7 +15604,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T19:00:00+00:00",
      "gust_mph": 5.6,
@@ -15633,9 +15642,9 @@
    "details": "LOU -1.5",
    "ml_away": -105.0,
    "ml_home": -115.0,
-   "observed_at": "2026-09-12T16:27:36.568510+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -108.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -1.5,
    "spread_price_away": -115.0,
    "spread_price_home": -105.0,
@@ -15653,9 +15662,9 @@
     "details": "LOU -1.5",
     "ml_away": -105.0,
     "ml_home": -115.0,
-    "observed_at": "2026-09-12T16:27:36.568510+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -108.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -1.5,
     "spread_price_away": -115.0,
     "spread_price_home": -105.0,
@@ -15700,7 +15709,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -15737,7 +15746,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568552+00:00",
+   "observed_at": "2026-09-12T16:52:51.235923+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -15773,7 +15782,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -15783,7 +15792,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T19:00:00+00:00",
      "gust_mph": 5.6,
@@ -15817,7 +15826,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568563+00:00",
+   "observed_at": "2026-09-12T16:52:51.235937+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -15853,7 +15862,7 @@
   "conference_game": true,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -15863,7 +15872,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T19:00:00+00:00",
      "gust_mph": 2.9,
@@ -15897,7 +15906,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568486+00:00",
+   "observed_at": "2026-09-12T16:52:51.235845+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -15933,7 +15942,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -15970,7 +15979,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568575+00:00",
+   "observed_at": "2026-09-12T16:52:51.235950+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -16006,7 +16015,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -16043,7 +16052,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568586+00:00",
+   "observed_at": "2026-09-12T16:52:51.235965+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -16079,7 +16088,7 @@
   "conference_game": true,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -16089,7 +16098,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T20:00:00+00:00",
      "gust_mph": 6.9,
@@ -16123,7 +16132,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568621+00:00",
+   "observed_at": "2026-09-12T16:52:51.236006+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -16159,7 +16168,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -16196,7 +16205,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568597+00:00",
+   "observed_at": "2026-09-12T16:52:51.235979+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -16232,7 +16241,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -16242,7 +16251,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T20:00:00+00:00",
      "gust_mph": 23.5,
@@ -16276,7 +16285,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568609+00:00",
+   "observed_at": "2026-09-12T16:52:51.235992+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -16312,7 +16321,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -16322,7 +16331,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T20:00:00+00:00",
      "gust_mph": 2.7,
@@ -16356,7 +16365,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568633+00:00",
+   "observed_at": "2026-09-12T16:52:51.236020+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -16392,7 +16401,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -16402,7 +16411,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T20:00:00+00:00",
      "gust_mph": 4.5,
@@ -16436,7 +16445,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568645+00:00",
+   "observed_at": "2026-09-12T16:52:51.236033+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -16472,7 +16481,7 @@
   "conference_game": true,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -16482,7 +16491,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T20:00:00+00:00",
      "gust_mph": 9.4,
@@ -16520,9 +16529,9 @@
    "details": "SC -7.5",
    "ml_away": 240.0,
    "ml_home": -298.0,
-   "observed_at": "2026-09-12T16:27:36.568669+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -115.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -7.5,
    "spread_price_away": -112.0,
    "spread_price_home": -108.0,
@@ -16540,9 +16549,9 @@
     "details": "SC -7.5",
     "ml_away": 240.0,
     "ml_home": -298.0,
-    "observed_at": "2026-09-12T16:27:36.568669+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -115.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -7.5,
     "spread_price_away": -112.0,
     "spread_price_home": -108.0,
@@ -16587,7 +16596,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -16624,7 +16633,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568686+00:00",
+   "observed_at": "2026-09-12T16:52:51.236095+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -16660,7 +16669,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -16670,7 +16679,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T22:00:00+00:00",
      "gust_mph": 11.2,
@@ -16704,7 +16713,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568709+00:00",
+   "observed_at": "2026-09-12T16:52:51.236110+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -16740,7 +16749,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -16750,7 +16759,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T22:00:00+00:00",
      "gust_mph": 6.5,
@@ -16784,7 +16793,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568722+00:00",
+   "observed_at": "2026-09-12T16:52:51.236124+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -16820,7 +16829,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -16857,7 +16866,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568735+00:00",
+   "observed_at": "2026-09-12T16:52:51.236138+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -16893,7 +16902,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -16903,7 +16912,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T22:00:00+00:00",
      "gust_mph": 11.6,
@@ -16937,7 +16946,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568747+00:00",
+   "observed_at": "2026-09-12T16:52:51.236152+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -16973,7 +16982,7 @@
   "conference_game": true,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -17014,9 +17023,9 @@
    "details": "FLA -2.5",
    "ml_away": -135.0,
    "ml_home": 114.0,
-   "observed_at": "2026-09-12T16:27:36.568785+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -108.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": 2.5,
    "spread_price_away": -110.0,
    "spread_price_home": -110.0,
@@ -17034,9 +17043,9 @@
     "details": "FLA -2.5",
     "ml_away": -135.0,
     "ml_home": 114.0,
-    "observed_at": "2026-09-12T16:27:36.568785+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -108.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": 2.5,
     "spread_price_away": -110.0,
     "spread_price_home": -110.0,
@@ -17081,7 +17090,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -17091,7 +17100,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T23:00:00+00:00",
      "gust_mph": 10.7,
@@ -17125,7 +17134,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568759+00:00",
+   "observed_at": "2026-09-12T16:52:51.236166+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -17161,7 +17170,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -17171,7 +17180,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T23:00:00+00:00",
      "gust_mph": 9.6,
@@ -17205,7 +17214,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568803+00:00",
+   "observed_at": "2026-09-12T16:52:51.236219+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -17241,7 +17250,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -17251,7 +17260,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T23:00:00+00:00",
      "gust_mph": 14.3,
@@ -17285,7 +17294,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568815+00:00",
+   "observed_at": "2026-09-12T16:52:51.236233+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -17321,7 +17330,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -17358,7 +17367,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568826+00:00",
+   "observed_at": "2026-09-12T16:52:51.236253+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -17394,7 +17403,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -17431,7 +17440,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568838+00:00",
+   "observed_at": "2026-09-12T16:52:51.236267+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -17467,7 +17476,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -17477,7 +17486,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T23:00:00+00:00",
      "gust_mph": 10.7,
@@ -17511,7 +17520,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568850+00:00",
+   "observed_at": "2026-09-12T16:52:51.236281+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -17547,7 +17556,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -17557,7 +17566,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T23:00:00+00:00",
      "gust_mph": 3.1,
@@ -17591,7 +17600,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568873+00:00",
+   "observed_at": "2026-09-12T16:52:51.236295+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -17627,7 +17636,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -17637,7 +17646,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T23:00:00+00:00",
      "gust_mph": 11.6,
@@ -17671,7 +17680,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568888+00:00",
+   "observed_at": "2026-09-12T16:52:51.236309+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -17707,7 +17716,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -17744,7 +17753,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568901+00:00",
+   "observed_at": "2026-09-12T16:52:51.236323+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -17780,7 +17789,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -17790,7 +17799,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T23:00:00+00:00",
      "gust_mph": 4.7,
@@ -17824,7 +17833,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568913+00:00",
+   "observed_at": "2026-09-12T16:52:51.236337+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -17860,7 +17869,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -17870,7 +17879,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T23:00:00+00:00",
      "gust_mph": 11.2,
@@ -17904,7 +17913,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568925+00:00",
+   "observed_at": "2026-09-12T16:52:51.236351+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -17940,7 +17949,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -17950,7 +17959,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T23:00:00+00:00",
      "gust_mph": 14.1,
@@ -17984,7 +17993,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568949+00:00",
+   "observed_at": "2026-09-12T16:52:51.236378+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -18020,7 +18029,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -18057,7 +18066,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.568937+00:00",
+   "observed_at": "2026-09-12T16:52:51.236365+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -18093,7 +18102,7 @@
   "conference_game": true,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -18134,9 +18143,9 @@
    "details": "LSU -2.5",
    "ml_away": -135.0,
    "ml_home": 114.0,
-   "observed_at": "2026-09-12T16:27:36.569008+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -112.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": 2.5,
    "spread_price_away": -112.0,
    "spread_price_home": -108.0,
@@ -18154,9 +18163,9 @@
     "details": "LSU -2.5",
     "ml_away": -135.0,
     "ml_home": 114.0,
-    "observed_at": "2026-09-12T16:27:36.569008+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -112.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": 2.5,
     "spread_price_away": -112.0,
     "spread_price_home": -108.0,
@@ -18201,7 +18210,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -18211,7 +18220,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T23:00:00+00:00",
      "gust_mph": 8.3,
@@ -18245,7 +18254,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.569026+00:00",
+   "observed_at": "2026-09-12T16:52:51.236464+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -18281,7 +18290,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -18291,7 +18300,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T23:00:00+00:00",
      "gust_mph": 14.1,
@@ -18325,7 +18334,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.569037+00:00",
+   "observed_at": "2026-09-12T16:52:51.236477+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -18361,7 +18370,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -18398,7 +18407,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.569077+00:00",
+   "observed_at": "2026-09-12T16:52:51.236526+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -18434,7 +18443,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -18444,7 +18453,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T23:00:00+00:00",
      "gust_mph": 11.6,
@@ -18482,9 +18491,9 @@
    "details": "UVA -8.5",
    "ml_away": 260.0,
    "ml_home": -325.0,
-   "observed_at": "2026-09-12T16:27:36.569060+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -108.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -8.5,
    "spread_price_away": -110.0,
    "spread_price_home": -110.0,
@@ -18502,9 +18511,9 @@
     "details": "UVA -8.5",
     "ml_away": 260.0,
     "ml_home": -325.0,
-    "observed_at": "2026-09-12T16:27:36.569060+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -108.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -8.5,
     "spread_price_away": -110.0,
     "spread_price_home": -110.0,
@@ -18549,7 +18558,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -18559,7 +18568,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-19T23:00:00+00:00",
      "gust_mph": 6.5,
@@ -18597,9 +18606,9 @@
    "details": "VT -1.5",
    "ml_away": -120.0,
    "ml_home": 100.0,
-   "observed_at": "2026-09-12T16:27:36.569104+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -112.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": 1.5,
    "spread_price_away": -112.0,
    "spread_price_home": -108.0,
@@ -18617,9 +18626,9 @@
     "details": "VT -1.5",
     "ml_away": -120.0,
     "ml_home": 100.0,
-    "observed_at": "2026-09-12T16:27:36.569104+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -112.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": 1.5,
     "spread_price_away": -112.0,
     "spread_price_home": -108.0,
@@ -18664,7 +18673,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -18705,9 +18714,9 @@
    "details": "ND -29.5",
    "ml_away": 2200.0,
    "ml_home": -8000.0,
-   "observed_at": "2026-09-12T16:27:36.568978+00:00",
+   "observed_at": "2026-09-12T16:52:54.898761+00:00",
    "over_price": -115.0,
-   "source": "ESPN scoreboard",
+   "source": "ESPN provider feed",
    "spread_home": -29.5,
    "spread_price_away": -115.0,
    "spread_price_home": -105.0,
@@ -18725,9 +18734,9 @@
     "details": "ND -29.5",
     "ml_away": 2200.0,
     "ml_home": -8000.0,
-    "observed_at": "2026-09-12T16:27:36.568978+00:00",
+    "observed_at": "2026-09-12T16:52:54.898761+00:00",
     "over_price": -115.0,
-    "source": "ESPN scoreboard",
+    "source": "ESPN provider feed",
     "spread_home": -29.5,
     "spread_price_away": -115.0,
     "spread_price_home": -105.0,
@@ -18772,7 +18781,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -18809,7 +18818,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.569123+00:00",
+   "observed_at": "2026-09-12T16:52:51.236574+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -18845,7 +18854,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -18855,7 +18864,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-20T00:00:00+00:00",
      "gust_mph": 11.0,
@@ -18889,7 +18898,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.569136+00:00",
+   "observed_at": "2026-09-12T16:52:51.236588+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -18925,7 +18934,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -18935,7 +18944,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-20T00:00:00+00:00",
      "gust_mph": 5.1,
@@ -18969,7 +18978,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.569149+00:00",
+   "observed_at": "2026-09-12T16:52:51.236602+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -19005,7 +19014,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -19015,7 +19024,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-20T00:00:00+00:00",
      "gust_mph": 3.4,
@@ -19049,7 +19058,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.569162+00:00",
+   "observed_at": "2026-09-12T16:52:51.236617+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -19085,7 +19094,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -19095,7 +19104,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-20T00:00:00+00:00",
      "gust_mph": 6.0,
@@ -19129,7 +19138,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.569175+00:00",
+   "observed_at": "2026-09-12T16:52:51.236632+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -19165,7 +19174,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -19175,7 +19184,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-20T02:00:00+00:00",
      "gust_mph": 3.8,
@@ -19209,7 +19218,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.569188+00:00",
+   "observed_at": "2026-09-12T16:52:51.236646+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -19245,7 +19254,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -19282,7 +19291,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.569201+00:00",
+   "observed_at": "2026-09-12T16:52:51.236660+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -19318,7 +19327,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -19328,7 +19337,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-20T02:00:00+00:00",
      "gust_mph": 6.5,
@@ -19362,7 +19371,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.569214+00:00",
+   "observed_at": "2026-09-12T16:52:51.236674+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -19398,7 +19407,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -19408,7 +19417,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-20T02:00:00+00:00",
      "gust_mph": 15.7,
@@ -19442,7 +19451,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.569228+00:00",
+   "observed_at": "2026-09-12T16:52:51.236688+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -19478,7 +19487,7 @@
   "conference_game": true,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -19515,7 +19524,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.569241+00:00",
+   "observed_at": "2026-09-12T16:52:51.236702+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -19551,7 +19560,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -19561,7 +19570,7 @@
    },
    "review_flags": [],
    "weather": {
-    "checked_at": "2026-09-12T14:52:45.799843+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "forecast": {
      "forecast_for": "2026-09-20T03:00:00+00:00",
      "gust_mph": 10.3,
@@ -19595,7 +19604,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.569254+00:00",
+   "observed_at": "2026-09-12T16:52:51.236724+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
@@ -19631,7 +19640,7 @@
   "conference_game": false,
   "context": {
    "availability": {
-    "checked_at": "2026-09-12T16:27:36.953185+00:00",
+    "checked_at": "2026-09-12T16:52:51.702744+00:00",
     "note": "Only dated reports from the last 72 hours. No report does not confirm availability.",
     "reports": {
      "away": [],
@@ -19668,7 +19677,7 @@
   "indoor": false,
   "neutral": false,
   "odds": {
-   "observed_at": "2026-09-12T16:27:36.569267+00:00",
+   "observed_at": "2026-09-12T16:52:51.236748+00:00",
    "source": "ESPN scoreboard"
   },
   "odds_quotes": [],
