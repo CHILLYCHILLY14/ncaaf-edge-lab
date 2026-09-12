@@ -2914,6 +2914,8 @@
    "start": "2026-09-19T19:30Z"
   },
   "401858439": {
+   "actual_margin": 55.0,
+   "actual_total": 55.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 50.55,
@@ -2925,7 +2927,7 @@
     "total": 62.1
    },
    "matchup": "HOW @ IU",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T16:00Z"
   },
   "401858440": {
