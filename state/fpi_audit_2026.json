@@ -3760,6 +3760,8 @@
    "start": "2026-09-13T02:30Z"
   },
   "401864502": {
+   "actual_margin": -6.0,
+   "actual_total": 70.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": -2.35,
@@ -3771,7 +3773,7 @@
     "total": 47.3
    },
    "matchup": "NDSU @ AFA",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-13T02:00Z"
   },
   "401864503": {
