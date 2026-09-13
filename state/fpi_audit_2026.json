@@ -1939,6 +1939,8 @@
  },
  "records": {
   "401856670": {
+   "actual_margin": 33.0,
+   "actual_total": 53.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 11.68,
@@ -1950,7 +1952,7 @@
     "total": 59.0
    },
    "matchup": "ARK @ UTAH",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-13T02:15Z"
   },
   "401856671": {
@@ -3078,6 +3080,8 @@
    "start": "2026-09-12T19:30Z"
   },
   "401858445": {
+   "actual_margin": 19.0,
+   "actual_total": 79.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 28.04,
@@ -3089,7 +3093,7 @@
     "total": 57.5
    },
    "matchup": "UL @ USC",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-13T03:00Z"
   },
   "401858446": {
@@ -3388,6 +3392,8 @@
    "start": "2026-09-12T23:00Z"
   },
   "401860883": {
+   "actual_margin": 46.0,
+   "actual_total": 52.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 15.79,
@@ -3399,7 +3405,7 @@
     "total": 45.0
    },
    "matchup": "SAC @ FRES",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-13T02:30Z"
   },
   "401860884": {
@@ -3745,6 +3751,8 @@
    "start": "2026-09-19T23:00Z"
   },
   "401864500": {
+   "actual_margin": -13.0,
+   "actual_total": 27.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": -1.97,
@@ -3756,7 +3764,7 @@
     "total": 53.9
    },
    "matchup": "MTST @ NEV",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-13T02:30Z"
   },
   "401864502": {
