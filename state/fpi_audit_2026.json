@@ -3807,6 +3807,8 @@
    "start": "2026-09-13T01:00Z"
   },
   "401864505": {
+   "actual_margin": 41.0,
+   "actual_total": 61.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 19.52,
@@ -3818,7 +3820,7 @@
     "total": 54.5
    },
    "matchup": "TXSO @ UTEP",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-13T01:00Z"
   },
   "401864506": {

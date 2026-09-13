@@ -1,7 +1,7 @@
 {
  "schema": 3,
  "game_only": true,
- "generated_at": "2026-09-13T04:29:42.100679+00:00",
+ "generated_at": "2026-09-13T04:55:05.146333+00:00",
  "label": "NCAAF prediction accuracy",
  "scope": {
   "season": 2026,
@@ -13,15 +13,15 @@
  "method": "One frozen pregame projection per game. Winner, spread direction, totals direction and error are graded from final scores. No wagers, prices, stake units or ledger records are stored in this history.",
  "games": {
   "logged": 162,
-  "graded": 79,
-  "pending": 83,
+  "graded": 80,
+  "pending": 82,
   "winner": {
-   "n": 79,
+   "n": 80,
    "correct": 55,
-   "accuracy": 0.6962,
+   "accuracy": 0.6875,
    "interval95": [
-    0.58765,
-    0.78656
+    0.57932,
+    0.7785
    ]
   },
   "ats": {
@@ -52,12 +52,12 @@
    "model_mae": 10.52955,
    "market_mae": 10.34091
   },
-  "margin_mae": 20.86278,
-  "total_mae": 11.26582,
-  "brier": 0.17707
+  "margin_mae": 21.22663,
+  "total_mae": 11.18875,
+  "brier": 0.18175
  },
  "validation": {
-  "n": 79,
+  "n": 80,
   "probability_target": "home team win",
   "calibration": [
    {
@@ -72,12 +72,12 @@
    },
    {
     "bucket": "20\u201340%",
-    "n": 14,
-    "predicted": 0.29072,
-    "actual": 0.6428571428571429,
+    "n": 15,
+    "predicted": 0.28852,
+    "actual": 0.6666666666666666,
     "interval95": [
-     0.38764,
-     0.83655
+     0.41714,
+     0.84824
     ]
    },
    {
@@ -111,7 +111,7 @@
     ]
    }
   ],
-  "brier": 0.17707,
+  "brier": 0.18175,
   "status": "limited sample",
   "note": "Only frozen forecasts from this season. Intervals show sampling uncertainty; neither a small sample nor market agreement proves an edge."
  },
@@ -1587,10 +1587,15 @@
    "market_total": null,
    "id": "game:NCAAF:401864505:::",
    "captured_at": "2026-09-06T23:35:50.193854+00:00",
-   "result": "Pending",
+   "result": "Graded",
    "version": "2026-09-06-ev2",
    "season": 2026,
-   "season_type": 2
+   "season_type": 2,
+   "actual_margin": 41.0,
+   "actual_total": 61.0,
+   "final_home": 51.0,
+   "final_away": 10.0,
+   "graded_at": "2026-09-13T04:55:05.144385+00:00"
   },
   {
    "kind": "game",
