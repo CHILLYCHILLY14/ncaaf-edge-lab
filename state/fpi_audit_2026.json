@@ -3324,6 +3324,8 @@
    "start": "2026-09-12T19:30Z"
   },
   "401860881": {
+   "actual_margin": 18.0,
+   "actual_total": 58.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 7.89,
@@ -3335,7 +3337,7 @@
     "total": 57.0
    },
    "matchup": "MEM @ BOIS",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T22:00Z"
   },
   "401860882": {
@@ -3942,6 +3944,8 @@
    "start": "2026-09-12T18:00Z"
   },
   "401866414": {
+   "actual_margin": 13.0,
+   "actual_total": 53.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 6.55,
@@ -3953,7 +3957,7 @@
     "total": 47.4
    },
    "matchup": "BUFF @ FIU",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T22:00Z"
   },
   "401866415": {
@@ -4008,6 +4012,8 @@
    "start": "2026-09-12T17:00Z"
   },
   "401866418": {
+   "actual_margin": 2.0,
+   "actual_total": 56.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 2.53,
@@ -4019,7 +4025,7 @@
     "total": 52.1
    },
    "matchup": "JVST @ OHIO",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T22:00Z"
   },
   "401866419": {
