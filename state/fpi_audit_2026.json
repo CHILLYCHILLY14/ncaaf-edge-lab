@@ -1969,6 +1969,8 @@
    "start": "2026-09-12T23:45Z"
   },
   "401856672": {
+   "actual_margin": 49.0,
+   "actual_total": 55.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 44.54,
@@ -1980,7 +1982,7 @@
     "total": 63.5
    },
    "matchup": "CAM @ FLA",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T21:30Z"
   },
   "401856673": {
