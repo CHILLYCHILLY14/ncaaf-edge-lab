@@ -1,13 +1,13 @@
 {
  "401856685": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [
    {
     "book": "Draft Kings",
     "details": "ALA -19.5",
     "ml_away": 750.0,
     "ml_home": -1200.0,
-    "observed_at": "2026-09-13T19:52:42.869408+00:00",
+    "observed_at": "2026-09-13T20:53:12.621061+00:00",
     "over_price": -112.0,
     "source": "ESPN provider feed",
     "spread_home": -19.5,
@@ -50,14 +50,14 @@
   "status": "checked"
  },
  "401856687": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [
    {
     "book": "Draft Kings",
     "details": "FLA -2.5",
     "ml_away": -135.0,
     "ml_home": 114.0,
-    "observed_at": "2026-09-13T19:52:42.869408+00:00",
+    "observed_at": "2026-09-13T20:53:12.621061+00:00",
     "over_price": -105.0,
     "source": "ESPN provider feed",
     "spread_home": 2.5,
@@ -75,14 +75,14 @@
   "status": "checked"
  },
  "401856688": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [
    {
     "book": "Draft Kings",
     "details": "LSU -2.5",
     "ml_away": -142.0,
     "ml_home": 120.0,
-    "observed_at": "2026-09-13T19:52:42.869408+00:00",
+    "observed_at": "2026-09-13T20:53:12.621061+00:00",
     "over_price": -112.0,
     "source": "ESPN provider feed",
     "spread_home": 2.5,
@@ -150,14 +150,14 @@
   "status": "checked"
  },
  "401856691": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [
    {
     "book": "Draft Kings",
     "details": "SC -3.5",
     "ml_away": 145.0,
     "ml_home": -175.0,
-    "observed_at": "2026-09-13T19:52:42.869408+00:00",
+    "observed_at": "2026-09-13T20:53:12.621061+00:00",
     "over_price": -108.0,
     "source": "ESPN provider feed",
     "spread_home": -3.5,
@@ -200,14 +200,14 @@
   "status": "checked"
  },
  "401856693": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [
    {
     "book": "Draft Kings",
     "details": "TEX -29.5",
     "ml_away": 2000.0,
     "ml_home": -6500.0,
-    "observed_at": "2026-09-13T19:52:42.869408+00:00",
+    "observed_at": "2026-09-13T20:53:12.621061+00:00",
     "over_price": -110.0,
     "source": "ESPN provider feed",
     "spread_home": -29.5,
@@ -348,14 +348,14 @@
   "status": "checked"
  },
  "401856796": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [
    {
     "book": "Draft Kings",
     "details": "NU -3.5",
     "ml_away": 136.0,
     "ml_home": -162.0,
-    "observed_at": "2026-09-13T19:52:42.869408+00:00",
+    "observed_at": "2026-09-13T20:53:12.621061+00:00",
     "over_price": -110.0,
     "source": "ESPN provider feed",
     "spread_home": -3.5,
@@ -498,14 +498,14 @@
   "status": "checked"
  },
  "401856802": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [
    {
     "book": "Draft Kings",
     "details": "UVA -9.5",
     "ml_away": 285.0,
     "ml_home": -360.0,
-    "observed_at": "2026-09-13T19:52:42.869408+00:00",
+    "observed_at": "2026-09-13T20:53:12.621061+00:00",
     "over_price": -110.0,
     "source": "ESPN provider feed",
     "spread_home": -9.5,
@@ -523,7 +523,7 @@
   "status": "checked"
  },
  "401856803": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [],
   "status": "checked"
  },
@@ -626,24 +626,24 @@
   "status": "checked"
  },
  "401858227": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [],
   "status": "checked"
  },
  "401858228": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [],
   "status": "checked"
  },
  "401858229": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [
    {
     "book": "Draft Kings",
     "details": "CLEM -4.5",
     "ml_away": 164.0,
     "ml_home": -198.0,
-    "observed_at": "2026-09-13T19:52:42.869408+00:00",
+    "observed_at": "2026-09-13T20:53:12.621061+00:00",
     "over_price": -108.0,
     "source": "ESPN provider feed",
     "spread_home": -4.5,
@@ -661,14 +661,14 @@
   "status": "checked"
  },
  "401858230": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [
    {
     "book": "Draft Kings",
     "details": "LOU -1.5",
     "ml_away": 100.0,
     "ml_home": -120.0,
-    "observed_at": "2026-09-13T19:52:42.869408+00:00",
+    "observed_at": "2026-09-13T20:53:12.621061+00:00",
     "over_price": -112.0,
     "source": "ESPN provider feed",
     "spread_home": -1.5,
@@ -736,12 +736,12 @@
   "status": "checked"
  },
  "401858233": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [],
   "status": "checked"
  },
  "401858448": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [],
   "status": "checked"
  },
@@ -819,7 +819,7 @@
   "status": "checked"
  },
  "401858452": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [],
   "status": "checked"
  },
@@ -873,7 +873,7 @@
   "status": "checked"
  },
  "401858455": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [],
   "status": "checked"
  },
@@ -952,7 +952,7 @@
   "status": "checked"
  },
  "401858459": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [],
   "status": "checked"
  },
@@ -982,17 +982,17 @@
   "status": "checked"
  },
  "401858471": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [],
   "status": "checked"
  },
  "401860885": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [],
   "status": "checked"
  },
  "401860886": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [],
   "status": "checked"
  },
@@ -1072,7 +1072,7 @@
   "status": "checked"
  },
  "401860890": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [],
   "status": "checked"
  },
@@ -1152,7 +1152,7 @@
   "status": "checked"
  },
  "401862772": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [],
   "status": "checked"
  },
@@ -1207,7 +1207,7 @@
   "status": "checked"
  },
  "401862775": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [],
   "status": "checked"
  },
@@ -1237,7 +1237,7 @@
   "status": "checked"
  },
  "401862777": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [],
   "status": "checked"
  },
@@ -1392,7 +1392,7 @@
   "status": "checked"
  },
  "401866424": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [],
   "status": "checked"
  },
@@ -1422,7 +1422,7 @@
   "status": "checked"
  },
  "401868317": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [],
   "status": "checked"
  },
@@ -1477,7 +1477,7 @@
   "status": "checked"
  },
  "401870764": {
-  "checked_at": "2026-09-13T19:52:42.869408+00:00",
+  "checked_at": "2026-09-13T20:53:12.621061+00:00",
   "quotes": [],
   "status": "checked"
  },
