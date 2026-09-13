@@ -2428,6 +2428,8 @@
    "start": "2026-09-12T23:00Z"
   },
   "401856788": {
+   "actual_margin": 3.0,
+   "actual_total": 29.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 13.31,
@@ -2439,7 +2441,7 @@
     "total": 45.0
    },
    "matchup": "ISU @ IOWA",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T23:30Z"
   },
   "401856789": {
@@ -3351,6 +3353,8 @@
    "start": "2026-09-12T22:00Z"
   },
   "401860882": {
+   "actual_margin": 34.0,
+   "actual_total": 82.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 14.68,
@@ -3362,7 +3366,7 @@
     "total": 56.6
    },
    "matchup": "SUU @ CSU",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T23:00Z"
   },
   "401860883": {
@@ -4188,6 +4192,8 @@
    "start": "2026-09-12T16:00Z"
   },
   "401868008": {
+   "actual_margin": 38.0,
+   "actual_total": 52.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 28.51,
@@ -4199,7 +4205,7 @@
     "total": 54.3
    },
    "matchup": "FOR @ CCU",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T23:30Z"
   },
   "401868187": {
