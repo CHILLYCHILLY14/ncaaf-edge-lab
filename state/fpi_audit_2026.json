@@ -2372,6 +2372,8 @@
    "start": "2026-09-12T23:30Z"
   },
   "401856784": {
+   "actual_margin": 41.0,
+   "actual_total": 47.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 31.59,
@@ -2383,7 +2385,7 @@
     "total": 55.2
    },
    "matchup": "PV @ BAY",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-13T00:08Z"
   },
   "401856785": {
