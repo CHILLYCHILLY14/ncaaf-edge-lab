@@ -38085,6 +38085,24 @@
     "TOTAL",
     "ML"
    ]
+  },
+  {
+   "book": "Draft Kings",
+   "ml_away": 124.0,
+   "ml_home": -148.0,
+   "odds_verified": true,
+   "over_price": -118.0,
+   "spread_home": -3.0,
+   "spread_price_away": -108.0,
+   "spread_price_home": -112.0,
+   "total": 45.5,
+   "ts": "2026-09-13T08:26:14+00:00",
+   "under_price": -102.0,
+   "verified_markets": [
+    "ATS",
+    "TOTAL",
+    "ML"
+   ]
   }
  ],
  "401856802": [

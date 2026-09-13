@@ -3932,6 +3932,8 @@
    "start": "2026-09-12T23:00Z"
   },
   "401864578": {
+   "actual_margin": 10.0,
+   "actual_total": 48.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 7.41,
@@ -3943,7 +3945,7 @@
     "total": 50.7
    },
    "matchup": "NMSU @ HAW",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-13T03:59Z"
   },
   "401865252": {
