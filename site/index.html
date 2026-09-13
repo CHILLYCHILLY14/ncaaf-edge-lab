@@ -1204,5 +1204,11 @@ setInterval(() => {
 window.addEventListener("resize", postHeight);
 </script>
 <script src="model-accuracy.js"></script>
+<!-- Shared ledger: keeps this board in step with the same bets on every
+     other device. Endpoint and token live in this browser only. -->
+<script src="betsync.js"></script>
+<script src="sync-adapter.js"></script>
+<script src="betsync-ui.js"></script>
+
 </body>
 </html>

@@ -59,6 +59,7 @@ jobs:
           node tests/test_simulator.js
           node tests/test_staking.mjs
           node tests/test_ledger.mjs
+          node tests/test_sync.mjs
 
       - name: Refresh
         run: |
