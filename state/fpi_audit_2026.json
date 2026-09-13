@@ -1954,6 +1954,8 @@
    "start": "2026-09-13T02:15Z"
   },
   "401856671": {
+   "actual_margin": 35.0,
+   "actual_total": 51.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 27.04,
@@ -1965,7 +1967,7 @@
     "total": 53.8
    },
    "matchup": "USM @ AUB",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-12T23:45Z"
   },
   "401856672": {
@@ -3788,6 +3790,8 @@
    "start": "2026-09-12T23:00Z"
   },
   "401864504": {
+   "actual_margin": 10.0,
+   "actual_total": 50.0,
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
     "margin": 14.63,
@@ -3799,7 +3803,7 @@
     "total": 57.3
    },
    "matchup": "CP @ SJSU",
-   "result": "Pending",
+   "result": "Graded",
    "start": "2026-09-13T01:00Z"
   },
   "401864505": {
