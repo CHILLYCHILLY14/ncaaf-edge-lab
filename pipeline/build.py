@@ -1090,6 +1090,19 @@ def main() -> int:
         # confidence under the 0.35 floor in tier_for(), pinning the thresholds at
         # their harshest setting for reasons that had nothing to do with the model.
         conf = min(conf, snapshot_confidence(store.line_move(lines, g["game_id"]).get("snapshots", 0)))
+        required_books = max(
+            1, int(cfg["model"].get("min_books_for_full_confidence", 1))
+        )
+        observed_books = len({
+            "".join(ch for ch in str(q.get("book") or "").casefold() if ch.isalnum())
+            for q in (g.get("odds_quotes") or [])
+            if q.get("book")
+        })
+        if not observed_books and has_odds:
+            observed_books = 1
+        # A single posted market is still a real price, but it is not a
+        # consensus. Treat book depth as an independent confidence ceiling.
+        conf = min(conf, min(1.0, observed_books / required_books))
         context = g.get("context") or {}
         if ((context.get("availability") or {}).get("status") != "complete"
                 or (context.get("weather") or {}).get("status") == "unavailable"):
