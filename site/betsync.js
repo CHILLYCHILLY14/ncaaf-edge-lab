@@ -579,12 +579,34 @@
     writeJson(ALL_KEY, { rows: merged, settings: conf, saved_at: new Date().toISOString() });
 
     var mine = merged.filter(function (r) { return r.app === app && !r.deleted; });
+
+    /* A bet can be added in the seconds between this sync going out and its
+     * answer coming back. The answer knows nothing about that bet, so writing
+     * it straight back over the board's store would erase the bet before it had
+     * ever been sent - it would exist nowhere. Anything here that the sheet has
+     * not seen is kept, and deliberately left out of the shadow below so the
+     * next sync treats it as new and sends it. */
+    var seen = {};
+    for (var m = 0; m < merged.length; m++) seen[merged[m].id] = true;
+
+    var localNow = [];
+    try { localNow = (registered.readLocal() || []).map(canonical); } catch (_) {}
+    var unsent = localNow.filter(function (r) {
+      return r.app === app && r.id && !seen[r.id];
+    });
+    if (unsent.length) mine = mine.concat(unsent);
+
     try { suppress(function () { registered.writeLocal(mine); }); } catch (_) {}
 
     var after;
     try { after = (registered.readLocal() || []).map(canonical); }
     catch (_) { after = mine; }
-    writeJson(shadowKey, shadowOf(after));
+
+    var shadowNext = shadowOf(after);
+    for (var u = 0; u < unsent.length; u++) delete shadowNext[unsent[u].id];
+    writeJson(shadowKey, shadowNext);
+
+    if (unsent.length) touch();
 
     /* The cursor is a moment on the sheet's clock, and rows are stamped to the
      * millisecond. A row written in the same millisecond the server answered in
