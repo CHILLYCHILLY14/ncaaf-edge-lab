@@ -62,8 +62,13 @@ def enrich(games, cfg, cache, now=None):
     for gid in list(cache):
         if gid not in live_ids:
             del cache[gid]
+    multiple = sum(len(g.get('odds_quotes') or []) > 1 for g in eligible)
     return {'provider_checks': len(selected), 'books': sorted(books),
-            'games_multiple_books': sum(len(g.get('odds_quotes') or []) > 1 for g in eligible),
+            'games_multiple_books': multiple,
+            'status': 'multi-book' if multiple else 'single-book',
+            'note': ('Independent book comparison available'
+                     if multiple else
+                     'Only one sportsbook source is available; confidence and stake are reduced'),
             'max_quote_age_hours': 3, 'checked_at': now.isoformat()}
 
 
@@ -96,5 +101,27 @@ def gate(candidates, g, cfg, now=None):
             c['tier'] = 'LEAN'
             c['stake_multiplier'] = min(c.get('stake_multiplier', 1), .5)
             c['risk_flags'] = list(dict.fromkeys([*(c.get('risk_flags') or []), *applicable]))
+            c['warning'] = '; '.join(c['risk_flags'])
+
+        required_books = max(
+            1, int((cfg.get('model') or {}).get('min_books_for_full_confidence', 1))
+        )
+        observed_books = len({
+            ''.join(ch for ch in str(q.get('book') or '').casefold() if ch.isalnum())
+            for q in (g.get('odds_quotes') or [])
+            if q.get('book')
+        })
+        if not observed_books and (g.get('odds') or {}).get('book'):
+            observed_books = 1
+        c['market_books_observed'] = observed_books
+        c['market_books_required'] = required_books
+        if observed_books < required_books and c['tier'] != 'PASS':
+            flag = (
+                f'Single-book market ({observed_books}/{required_books}) — '
+                'verify the line elsewhere'
+            )
+            c['tier'] = 'LEAN'
+            c['stake_multiplier'] = min(c.get('stake_multiplier', 1), .65)
+            c['risk_flags'] = list(dict.fromkeys([*(c.get('risk_flags') or []), flag]))
             c['warning'] = '; '.join(c['risk_flags'])
     return candidates
