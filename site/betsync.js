@@ -630,12 +630,16 @@
     return "Sync failed: " + msg;
   }
 
-  /** Push a new starting bankroll to the sheet, where the other boards read it. */
+  /** Push a new starting bankroll to the sheet, where the other boards read it.
+   *
+   *  No timestamp goes with it, deliberately. The sheet stamps settings on its
+   *  own clock; a stamp from here would be compared against that one, and a
+   *  device whose clock runs even slightly behind Google's would have the figure
+   *  it just typed silently ignored. Somebody opening the panel and saving a
+   *  bankroll is an explicit instruction, so it wins - and the sheet records
+   *  when it landed. */
   function setStartingBankroll(value) {
-    var conf = {};
-    conf.starting_bankroll = Number(value) || 0;
-    conf.starting_bankroll_updated_at = new Date().toISOString();
-    return sync({ settings: conf });
+    return sync({ settings: { starting_bankroll: Number(value) || 0 } });
   }
 
   function schedule() {
