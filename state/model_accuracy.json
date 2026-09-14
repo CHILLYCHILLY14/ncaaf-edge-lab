@@ -3351,6 +3351,24 @@
    "version": "2026-09-06-ev2",
    "season": 2026,
    "season_type": 2
+  },
+  "game:NCAAF:401869941:::": {
+   "kind": "game",
+   "league": "NCAAF",
+   "event_id": "401869941",
+   "start": "2026-09-24T23:30Z",
+   "season": 2026,
+   "season_type": 2,
+   "matchup": "LIB @ CCU",
+   "margin": 7.45,
+   "total": 49.0,
+   "probability": 0.7052047357547984,
+   "market_spread": null,
+   "market_total": null,
+   "id": "game:NCAAF:401869941:::",
+   "captured_at": "2026-09-14T00:38:09.442069+00:00",
+   "result": "Pending",
+   "version": "2026-09-06-ev2"
   }
  }
 }

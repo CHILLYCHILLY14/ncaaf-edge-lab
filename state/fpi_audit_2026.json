@@ -4327,6 +4327,21 @@
    "result": "Pending",
    "start": "2026-09-19T15:30Z"
   },
+  "401869941": {
+   "captured_at": "2026-09-14T00:38:09.416550+00:00",
+   "frozen": {
+    "margin": 5.7,
+    "total": 55.0
+   },
+   "game_id": "401869941",
+   "live": {
+    "margin": 7.45,
+    "total": 49.0
+   },
+   "matchup": "LIB @ CCU",
+   "result": "Pending",
+   "start": "2026-09-24T23:30Z"
+  },
   "401869948": {
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
