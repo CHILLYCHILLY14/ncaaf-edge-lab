@@ -104,7 +104,7 @@ def gate(candidates, g, cfg, now=None):
             c['warning'] = '; '.join(c['risk_flags'])
 
         required_books = max(
-            1, int((cfg.get('model') or {}).get('min_books_for_full_confidence', 1))
+            0, int((cfg.get('model') or {}).get('min_books_for_full_confidence', 0))
         )
         observed_books = len({
             ''.join(ch for ch in str(q.get('book') or '').casefold() if ch.isalnum())
@@ -115,7 +115,7 @@ def gate(candidates, g, cfg, now=None):
             observed_books = 1
         c['market_books_observed'] = observed_books
         c['market_books_required'] = required_books
-        if observed_books < required_books and c['tier'] != 'PASS':
+        if required_books and observed_books < required_books and c['tier'] != 'PASS':
             flag = (
                 f'Single-book market ({observed_books}/{required_books}) — '
                 'verify the line elsewhere'
