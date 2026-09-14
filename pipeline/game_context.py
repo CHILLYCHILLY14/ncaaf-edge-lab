@@ -56,6 +56,16 @@ def parse_availability(payload, season, now, max_hours=72):
                  'checked_at': now.isoformat(), 'max_report_age_hours': max_hours}
 
 
+def availability_review_flags(health, reports):
+    """Return review flags without treating silence as confirmed availability."""
+    flags = []
+    if health.get('status') == 'unavailable':
+        flags.append('QB/player availability feed unavailable — verify roster status')
+    if any(r.get('position') == 'QB' for rows in reports.values() for r in rows):
+        flags.append('Recent QB report — starter availability needs review')
+    return flags
+
+
 def parse_conferences(payload):
     out = {}
     def walk(node, conference=None):
@@ -187,11 +197,9 @@ def enrich(games, cfg, cache, now=None):
                    'location': (point or {}).get('location'), 'precision': 'venue city',
                    'source': 'Open-Meteo', 'source_url': 'https://open-meteo.com/',
                    'note': 'Forecast near kickoff; no uncalibrated scoring adjustment.'}
-        flags = []
+        flags = availability_review_flags(injury_health, reports)
         if not g.get('indoor') and fc and (fc['wind_mph'] >= 20 or (fc.get('gust_mph') or 0) >= 30):
             flags.append('Strong wind forecast — total needs review')
-        if any(r.get('position') == 'QB' for rs in reports.values() for r in rs):
-            flags.append('Recent QB report — starter availability needs review')
         g['context'] = {'availability': availability, 'weather': weather, 'review_flags': flags}
     return {'availability': injury_health,
             'weather_available': sum((g.get('context', {}).get('weather') or {}).get('status') == 'available' for g in current),
