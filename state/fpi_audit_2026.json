@@ -3325,6 +3325,21 @@
    "result": "Pending",
    "start": "2026-09-19T16:30Z"
   },
+  "401858468": {
+   "captured_at": "2026-09-15T00:38:41.626581+00:00",
+   "frozen": {
+    "margin": -0.32,
+    "total": 58.0
+   },
+   "game_id": "401858468",
+   "live": {
+    "margin": -3.9,
+    "total": 56.7
+   },
+   "matchup": "HOW @ RUTG",
+   "result": "Pending",
+   "start": "2026-09-25T23:00Z"
+  },
   "401858471": {
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
    "frozen": {
@@ -3734,6 +3749,36 @@
    "matchup": "DSU @ USF",
    "result": "Pending",
    "start": "2026-09-19T23:00Z"
+  },
+  "401862778": {
+   "captured_at": "2026-09-15T00:38:41.626581+00:00",
+   "frozen": {
+    "margin": -7.99,
+    "total": 59.9
+   },
+   "game_id": "401862778",
+   "live": {
+    "margin": -6.26,
+    "total": 57.0
+   },
+   "matchup": "NAVY @ UAB",
+   "result": "Pending",
+   "start": "2026-09-25T23:00Z"
+  },
+  "401862779": {
+   "captured_at": "2026-09-15T00:38:41.626581+00:00",
+   "frozen": {
+    "margin": 1.06,
+    "total": 53.6
+   },
+   "game_id": "401862779",
+   "live": {
+    "margin": 2.21,
+    "total": 53.3
+   },
+   "matchup": "ARMY @ TEM",
+   "result": "Pending",
+   "start": "2026-09-25T20:00Z"
   },
   "401864443": {
    "captured_at": "2026-09-12T01:41:44.175656+00:00",
