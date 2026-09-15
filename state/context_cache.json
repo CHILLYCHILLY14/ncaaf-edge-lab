@@ -139,7 +139,7 @@
   "98": "CUSA",
   "99": "SEC"
  },
- "conferences_checked_at": "2026-09-14T02:30:30.063423+00:00",
+ "conferences_checked_at": "2026-09-15T02:31:59.868783+00:00",
  "geo": {
   "Akron|OH|USA": {
    "checked_at": "2026-09-12T01:49:05.257434+00:00",
@@ -320,7 +320,7 @@
    }
   },
   "Chestnut Hill|MA|USA": {
-   "checked_at": "2026-09-14T02:30:30.063423+00:00",
+   "checked_at": "2026-09-15T02:31:59.868783+00:00",
    "point": null
   },
   "Cincinnati|OH|USA": {
@@ -673,7 +673,7 @@
    }
   },
   "London||England": {
-   "checked_at": "2026-09-14T02:30:30.063423+00:00",
+   "checked_at": "2026-09-15T02:31:59.868783+00:00",
    "point": null
   },
   "Los Angeles|CA|USA": {
@@ -767,7 +767,7 @@
    }
   },
   "Monroe|LA|USA": {
-   "checked_at": "2026-09-14T02:30:30.063423+00:00",
+   "checked_at": "2026-09-15T02:31:59.868783+00:00",
    "point": null
   },
   "Morgantown|WV|USA": {
@@ -870,7 +870,7 @@
    }
   },
   "Oxford|MS|USA": {
-   "checked_at": "2026-09-14T02:30:30.063423+00:00",
+   "checked_at": "2026-09-15T02:31:59.868783+00:00",
    "point": null
   },
   "Oxford|OH|USA": {
